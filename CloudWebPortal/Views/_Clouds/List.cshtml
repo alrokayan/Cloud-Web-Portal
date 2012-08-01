@@ -1,0 +1,88 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@model IEnumerable<CloudWebPortal.Models.Cloud>
+@{
+    Layout = null;
+}
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<div class="block-content">
+    <h1>
+        Aneka Clounds <a href="#" onclick="openModalWindow(null,'Create','_Clouds','Create New Cloud')">
+            <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle-blue.png")" width="16" height="16" alt="">Create
+            New Cloud</a>
+    </h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','List','_Clouds',12)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <!-- The class icon-user sets the default icon for the whole list -->
+    <ul class="extended-list icon-cloud">
+        @foreach (var item in Model)
+        {
+            <li>
+                <!-- Main content -->
+                <a href="@Url.Action("CloudDetails", "CloudManagement", new { id = @item.CloudId })">
+                    <span class="icon"></span>@Html.DisplayFor(modelItem => item.CloudName)<br>
+                    <small>Master: @Html.DisplayFor(modelItem => item.Master.DisplayName)</small>
+                </a>
+                <!-- Example use of the mini-menu -->
+                <ul class="mini-menu">
+                    <li><a href="#" onclick="openModalWindow(@item.CloudId,'Edit','_Clouds')" title="Edit">
+                        <img src="@Url.Content("~/Content/images/icons/fugue/pencil.png")" width="16" height="16"></a></li>
+                    <li><a href="#" onclick="openModalWindow(@item.CloudId,'Delete','_Clouds','Delete Cloud')" title="Delete">
+                        <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
+                        Delete</a></li>
+                </ul>
+                <!-- You can add here any number of option blocks -->
+                <ul class="extended-options">
+                    <li># of Workers: <strong>@item.Workers.Count()</strong><br />
+                        <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Workers')">
+                            <option></option>
+                            @foreach (var worker in item.Workers.ToList())
+                            {
+                                <option id="@Html.DisplayFor(widgetItem => worker.WorkerId)">@Html.DisplayFor(Item => worker.DisplayName)</option>
+                            }
+                        </select>
+                    </li>
+                    <li># of Users: <strong>@item.CloudUserAccounts.Count()</strong><br />
+                        <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_CloudUsers')">
+                            <option></option>
+                            @foreach (var user in item.CloudUserAccounts.ToList())
+                            {
+                                <option id="@Html.DisplayFor(widgetItem => user.CloudUserAccountId)">@Html.DisplayFor(Item => user.Username)</option>
+                            }
+                        </select>
+                    </li>
+                    <li>CPU Load: <strong>66%</strong><br>
+                        <span class="progress-bar"><span style="width: 66%"></span></span></li>
+                    <li>Workers Load: <strong>90%</strong><br>
+                        <span class="progress-bar"><span style="width: 90%"></span></span></li>
+                    <li>Disk Space: <strong>250GB/1024GB</strong><br>
+                        <span class="progress-bar"><span style="width: 75%"></span></span></li>
+                </ul>
+            </li>
+        }
+    </ul>
+    <ul class="message">
+        <li>Number of clouds: @Model.Count()</li>
+    </ul>
+</div>

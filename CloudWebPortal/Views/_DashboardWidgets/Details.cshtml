@@ -1,0 +1,73 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@model CloudWebPortal.Models.Widget
+
+@{
+    Layout = null;
+}
+
+<div class="block-content">
+    <h1>
+        Details for widget ID: @Model.WidgetId</h1>
+        <div class="block-controls">
+        <ul class="controls-buttons">
+            <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','Details','_DashboardWidgets',9,@Model.WidgetId)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <!-- Add the class 'table' -->
+    <table class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">@Html.LabelFor(model => model.ControllerName)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.ActionName)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.ActionId)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Width)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.ControllerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ActionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ActionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Width)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="block-footer">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WidgetId),'Edit','_DashboardWidgets','Edit Widget')" class="button">
+            Edit this widget</a>
+        <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WidgetId),'Delete','_DashboardWidgets','Remove Widget')">
+            <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
+            Delete this widget</a>
+    </div>
+</div>

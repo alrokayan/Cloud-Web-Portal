@@ -1,0 +1,65 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@model CloudWebPortal.Models.Widget
+@{
+    Layout = null;
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="block-content">
+    <h1>
+        Edit widget</h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','Edit','_DashboardWidgets',3,@Model.WidgetId)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    @using (Html.BeginForm("EditPost", "_DashboardWidgets", FormMethod.Post, new { @class = "form" }))
+    {
+        <div id="ValidationSummaryDiv_DashboardWidgets_Edit">
+            @Html.ValidationSummary()
+        </div>
+        <br />
+        <fieldset>
+            <legend>Widget ID: @Model.WidgetId</legend>
+            @Html.HiddenFor(model => model.WidgetId)
+            @Html.LabelFor(model => model.ControllerName)
+            @Html.TextBoxFor(model => model.ControllerName, new { @class = "full-width" })
+            @Html.LabelFor(model => model.ActionName)
+            @Html.TextBoxFor(model => model.ActionName, new { @class = "full-width" })
+            @Html.LabelFor(model => model.ActionId)
+            @Html.TextBoxFor(model => model.ActionId, new { @class = "full-width" })
+            @Html.LabelFor(model => model.Width)
+            @Html.TextBoxFor(model => model.Width, new { @class = "full-width" })
+            <br />
+            <br />
+            <p>
+                <button type="submit" class="button full-width">
+                    Edit</button>
+            </p>
+        </fieldset>
+    }
+</div>
+<script type="text/javascript">
+    $("button").click(function () {
+        $("#ValidationSummaryDiv_DashboardWidgets_Edit ul").addClass("message error no-margin");
+    });
+</script>

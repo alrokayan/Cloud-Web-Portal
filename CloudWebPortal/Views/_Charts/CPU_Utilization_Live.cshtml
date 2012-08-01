@@ -1,0 +1,104 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@using CloudWebPortal.Models
+@model Cloud
+@{
+    Layout = null;
+    String masterHostIP = ViewBag.masterHostIP;
+    int masterPort = ViewBag.masterPort;
+}
+
+<div class="block-content">
+    <h1>
+        CPU Utilization</h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','CPU_Utilization_Live','_Charts',12,@Model.CloudId)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <div id="chart-container-Live-@Model.CloudId" style="width: 100%; height: 400px"></div>
+    <div class="block-footer">
+        <button onclick="drawCPUUtilization_Live_@(Model.CloudId)_Start()">Start</button>
+        <button onclick="drawCPUUtilization_Live_@(Model.CloudId)_Stop()">Stop</button>
+        <!-- <input type="Text" id="temp" maxlength="25" size="25"/> -->
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var chart_Live_@(Model.CloudId); // global
+    var run = true;
+
+    $(document).ready(function() {
+        chart_Live_@(Model.CloudId) = new Highcharts.Chart({
+            chart: {
+                renderTo: 'chart-container-Live-@(Model.CloudId)',
+                defaultSeriesType: 'spline',
+                zoomType: 'x'
+            },
+            title: {
+                text: 'LIVE CPU Utilization'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'CPU Utilization (%)'
+                }
+            },
+            series: [{
+                name: '@(Model.CloudName) Live CPUs Utilization',
+                data: [],
+                pointStart: Date.now(),
+                pointInterval: 1000 // one sec
+            }]
+        });         
+    });
+
+    function drawCPUUtilization_Live_@(Model.CloudId)_Stop() { run = false }
+    function drawCPUUtilization_Live_@(Model.CloudId)_Start() { run = true; drawCPUUtilization_Live_@(Model.CloudId)(); }
+
+
+    function drawCPUUtilization_Live_@(Model.CloudId)() {
+        if(!run) return;
+
+        var masterHostIP = '@(masterHostIP)';
+        var masterPort = @(masterPort);
+
+        var URL = '/_Charts/GetLiveCpuUsagePercentForCloud?masterHostIP='+masterHostIP+'&masterPort='+masterPort;
+        //$('#temp').val(URL);
+        $.ajax({
+            url: URL,
+            success: function(cpuUsagePercent) {
+                var series = chart_Live_@(Model.CloudId).series[0],
+                    shift = series.data.length > 20; // shift if the series is longer than 20
+
+                // add the point
+                chart_Live_@(Model.CloudId).series[0].addPoint(parseFloat(cpuUsagePercent), true, shift);
+
+                // call it again after one second
+                setTimeout(drawCPUUtilization_Live_@(Model.CloudId), 1000);
+            },
+            cache: false
+        });
+    }
+</script>

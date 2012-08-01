@@ -1,0 +1,50 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@using CloudWebPortal.Models
+@model IEnumerable<WebPortalLoginCredential>
+@{
+    Layout = null;
+}
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<div class="block-content">
+    <h1>
+        Cloud Web Portal Users <a href="#" onclick="openModalWindow(null,'Create','_PortalUsers','Create New User')">
+            <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle-blue.png")" width="16" height="16" alt="">Create
+            New User</a>
+    </h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','List','_PortalUsers',12)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <ul class="icon-list icon-user">
+        @foreach (var item in Model)
+        {
+            <li><a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => item.WebPortalLoginCredentialId),'Details','_PortalUsers')">
+                <span class="icon"></span>@Html.DisplayFor(modelItem => item.Username)<br />
+                <small>User ID: <b>@Html.DisplayFor(modelItem => item.WebPortalLoginCredentialId)</b></small>
+            </a></li>
+        }
+    </ul>
+    <ul class="message">
+        <li>Number of users: @Model.Count()</li>
+    </ul>
+</div>

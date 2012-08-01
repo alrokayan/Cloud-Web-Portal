@@ -1,0 +1,185 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/reset.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/common.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/form.css")" rel="stylesheet" type="text/css">
+    <!-- Load either 960.gs.fluid or 960.gs to toggle between fixed and fluid layout -->
+    <link href="@Url.Content("~/Content/css/standard.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/960.gs.fluid.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/simple-lists.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/block-lists.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/planning.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/table.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/calendars.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/wizard.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/gallery.css")" rel="stylesheet" type="text/css">
+    <!-- html5.js has to be loaded before anything else -->
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/html5.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery-1.4.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/old-browsers.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.accessibleList.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/searchField.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/common.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/standard.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.tip.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.hashchange.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.contextMenu.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/list.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.modal.js")"></script>
+    <!-- highcharts -->
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Highcharts-js/highcharts.js")"></script>
+    <!-- Date Time Picker -->
+    <script type="text/javascript" src="@Url.Content("~/Content/DateTimePicker/datetimepicker_css.js")"></script>
+
+    <!--[if lte IE 8]><script type="text/javascript" src="js/standard.ie.js"></script><![endif]-->
+    <!-- Function To Open a Modal -->
+    <script type="text/javascript">
+    function openModalWindow(id, actionName, controllerName, modalTitle, modalWidth) {
+        if(modalWidth == null)
+            modalWidth = 600;
+
+        $.modal.all.getModalWindow().closeModal();
+        window.setTimeout(function () {
+            $.modal({
+                content: '<div id="ModelContent"></div>',
+                minWidth: modalWidth,
+                height: 500,
+                buttons: {
+                    'Cancel': function (win) { win.closeModal(); }
+                }
+            });
+            var loadingHTML = "<h2>LOADING ..</h2><br/><br/><img src='@Url.Content("~/Content/images/mask-loader.gif")' alt='loading...' />  Please wait ..";
+            $("#ModelContent").html(loadingHTML).load("@Url.Content("~/")"+controllerName+"/"+actionName+"/" + id);
+        }, 500);
+    }
+
+    function openModalWindow_ForWidget(username, actionName, controllerName, width, actionId) {
+        window.setTimeout(function () {
+            $.modal({
+                content: '<div id="ModelContent_ForWidget"></div>',
+                title: "Add Widget To The Dashboard",
+                height: 500,
+                buttons: {
+                    'Cancel': function (win) { win.closeModal(); }
+                }
+            });
+            var loadingHTML = "<h2>LOADING ..</h2><br/><br/><img src='@Url.Content("~/Content/images/mask-loader.gif")' alt='loading...' />  Please wait ..";
+            $("#ModelContent_ForWidget").html(loadingHTML).load("@Url.Content("~/_DashboardWidgets/CreateForLoggedInUser")"+"?username=" + username + "&actionName="+actionName+"&controllerName="+controllerName+"&width="+width+"&actionId="+actionId);
+        }, 500);
+    }
+    </script>
+</head>
+<body>
+    <!-- Server status -->
+    <header>
+        <div class="container_12">
+            <p id="skin-name">
+                <small>Cloud Web Portal<br>
+                    Beta</small> <strong>1.0</strong></p>
+            <div class="server-info">
+                Server: <strong>The University of Melbourne</strong></div>
+            <div class="server-info">
+                Aneka: <strong>2.0</strong></div>
+        </div>
+    </header>
+    <!-- End server status -->
+    <!-- Main nav -->
+    <nav id="main-nav">
+        <ul class="container_12">
+            <li id="Nav1" class="dashboard"><a href="@Url.Action("Dashboard", "Home")" title="Home"></a>
+                <ul>
+                    <li id="Nav1_1"><a href="@Url.Action("Dashboard", "Home")" title="Dashboard">Dashboard</a></li>
+                </ul>
+            </li>
+            <li id="Nav2" class="machines"><a href="#" title="Infrastructure"></a>
+                <ul>
+                    <li id="Nav2_1"><a href="@Url.Action("ManageMachinesandResourcePools", "Infrastructure")">
+                        Manage Machines and Resource Pools</a></li>
+                    <li id="Nav2_2"><a href="@Url.Action("ManageMachinesLoginCredentials", "Infrastructure")">
+                        Manage Machines Login Credentials</a></li>
+                    <li id="Nav2_3"><a href="#" onclick="openModalWindow(null,'Create','_Machines','Add Machine')">
+                        Add Machine</a></li>
+                    <li id="Nav2_4"><a href="#" onclick="openModalWindow(null,'Create','_MachinesLoginCredentials','Create Machine Login Credential')">
+                        Create Machine Login Credential</a></li>
+                    <li id="Nav2_5"><a href="#" onclick="openModalWindow(null,'Create','_ResourcePools','Create New Resource Pool',600)">
+                        Create New Resource Pool</a></li>
+                </ul>
+            </li>
+            <li id="Nav3" class="SWApps"><a href="#" title="Software Appliances"></a>
+                <ul>
+                    <li id="Nav3_1"><a href="@Url.Action("BrowseSoftwareAppliances", "SoftwareAppliances")">
+                        Browse Software Appliances</a></li>
+                    <li id="Nav3_2"><a href="#" onclick="openModalWindow(null,'Create','_SoftwareAppliances','Add Software Appliance')">
+                        Add Software Appliance</a></li>
+                </ul>
+            </li>
+            <li id="Nav4" class="services"><a href="#" title="Services Catalog"></a>
+                <ul>
+                    <li id="Nav4_1"><a href="@Url.Action("BrowseServicesCatalog", "Services")">Browse Services
+                        Catalog</a></li>
+                    <li id="Nav4_2"><a href="#" onclick="openModalWindow(null,'Create','_Services','Create New Service',600)">
+                        Create Service</a></li>
+                </ul>
+            </li>
+            <li id="Nav5" class="cloud"><a href="#" title="Cloud Management"></a>
+                <ul>
+                    <li id="Nav5_1"><a href="@Url.Action("BrowseClouds", "CloudManagement")">Browse Clouds</a></li>
+                    <li id="Nav5_2"><a href="@Url.Action("BrowseCloudUsers", "CloudManagement")">Browse
+                        Cloud Users</a></li>
+                    <li id="Nav5_3"><a href="#" onclick="openModalWindow(null,'Create','_Clouds','Create New Cloud')">
+                        Create A Cloud</a></li>
+                    <li id="Nav5_4"><a href="#" onclick="openModalWindow(null,'Create','_CloudUsers','Create New Cloud User')">
+                        Create New Cloud User</a></li>
+                    <li id="Nav5_5"><a href="#" onclick="openModalWindow(null,'Create','_Workers','Create New Worker')">
+                        Create New Worker</a></li>
+                </ul>
+            </li>
+            <li id="Nav6" class="users"><a href="#" title="Web Portal Users Management"></a>
+                <ul>
+                    <li id="Nav6_1"><a href="@Url.Action("UsersManagement", "WebPortalUsersManagement")">
+                        Users management</a></li>
+                    <li id="Nav6_2"><a href="#" onclick="openModalWindow(null,'Create','_PortalUsers','Create New User')">
+                        Create New User</a></li>
+                    <li id="Nav6_3"><a href="#" onclick="openModalWindow(null,'Create','_DashboardWidgets','Add Widget To Dashboard')">
+                        Add Widget To Dashboard</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <!-- End main nav -->
+    <!-- Sub nav -->
+    <div id="sub-nav">
+        <div class="container_12">
+            <a href="#" title="Help" class="nav-button"><b>Help</b></a>
+        </div>
+    </div>
+    <!-- End sub nav -->
+    <!-- Status bar -->
+    <div id="status-bar">
+        <div class="container_12">
+    @* The the two divs above will be closed inside the included view *@ 
+    @Html.Partial("StatusInfoBar")
+    @RenderBody()
+</body>
+</html>

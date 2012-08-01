@@ -1,0 +1,159 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@using CloudWebPortal.Models
+@using Aneka.PAL.Management.Model
+@{
+    Layout = null;
+
+    List<CloudWebPortal.Models.Machine> machines = (List<CloudWebPortal.Models.Machine>)ViewBag.Machines;
+    List<CloudWebPortal.Models.Cloud> clouds = (List<CloudWebPortal.Models.Cloud>)ViewBag.Clouds;
+
+    int num_of_issues = 0;
+}
+<a id="issue_list" href="#" class="button" title="">
+    <img src="@Url.Content("~/Content/images/icons/fugue/exclamation-diamond.png")" width="16" height="16" alt="">
+</a>
+<div id="messages-list" class="result-block">
+    <span class="arrow"><span></span></span>
+    <ul class="small-files-list icon-warning">
+        @foreach (var machine in machines)
+        {
+            if (machine.StatusEnum != DaemonProbeStatus.ServiceStarted && (machine.isInProgress == null || machine.isInProgress == false))
+            {
+            <li><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Details','_Machines',null,1100)" title="Show Machine Details" class="with-tip">
+                @if (machine.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStarted)
+                {
+                    <img src="@Url.Content("~/Content/images/icons/fugue/status.png")" width="16" height="16"/>
+                }
+                else
+                {
+                    if (machine.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStopped)
+                    {
+                    <img src="@Url.Content("~/Content/images/icons/fugue/status-busy.png")" width="16" height="16"/>
+                    }
+                    else
+                    {
+                        if (machine.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.NetworkNotReachable)
+                        {
+                    <img src="@Url.Content("~/Content/images/icons/fugue/status-offline.png")" width="16" height="16"/>
+                        }
+                        else
+                        {
+                            if (machine.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.BadCredentials)
+                            {
+                    <img src="@Url.Content("~/Content/images/icons/fugue/user-silhouette-question.png")" width="16" height="16"/>
+                            }
+                            else
+                            {
+                    <img src="@Url.Content("~/Content/images/icons/fugue/exclamation-diamond.png")" width="16" height="16"/>
+                            }
+
+                        }
+                    }
+                }
+                <strong>@machine.StatusEnum: </strong>@machine.DisplayName<br>
+                <small>IP: @machine.IP</small></a> </li>
+                num_of_issues++;
+            }
+        }
+        @foreach (var cloud in clouds)
+        {
+            if (cloud.Master.StatusEnum != Aneka.UI.Configuration.ProbeStatus.ServiceActive && (cloud.Master.isInProgress == null || cloud.Master.isInProgress == false))
+            {
+            <li>
+                @if (cloud.Master.isInstalled == false)
+                {
+                    <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => cloud.CloudId),'Details','_Clouds',null,1300)" title="Show Cloud/Master Details" class="with-tip">
+                        <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16"/>
+                        <strong>Not Installed: </strong>@cloud.CloudName<br />
+                        <small>Master Name: @cloud.Master.DisplayName</small></a>
+                }
+                else
+                {
+                    <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => cloud.CloudId),'Details','_Clouds',null,1300)" title="Show Cloud/Master Details" class="with-tip">
+                        @if (cloud.Master.StatusEnum == Aneka.UI.Configuration.ProbeStatus.ServiceUnactive)
+                        {
+                            <img src="@Url.Content("~/Content/images/icons/fugue/status-busy.png")" width="16" height="16"/>
+                        }
+                        else
+                        {
+                            if (cloud.Master.StatusEnum == Aneka.UI.Configuration.ProbeStatus.NetworkUnreachable)
+                            {
+                            <img src="@Url.Content("~/Content/images/icons/fugue/status-offline.png")" width="16" height="16"/>
+                            }
+                            else
+                            {
+                            <img src="@Url.Content("~/Content/images/icons/fugue/exclamation-diamond.png")" width="16" height="16"/>
+                            }
+                        }
+                        <strong>@cloud.Master.StatusEnum: </strong>@cloud.CloudName<br />
+                        <small>Master Name: @cloud.Master.DisplayName</small></a>
+                }
+            </li>
+                num_of_issues++;
+            }
+
+            foreach (var worker in cloud.Workers)
+            {
+                if (worker.StatusEnum != Aneka.UI.Configuration.ProbeStatus.ServiceActive && (worker.isInProgress == null || worker.isInProgress == false))
+                {
+            <li>
+                @if (worker.isInstalled == false)
+                {
+                    <a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,800)" title="Show Worker Details" class="with-tip">
+                        <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16"/>
+                        <strong>Not Installed: </strong>@worker.DisplayName<br />
+                        <small>Worker In Cloud: @cloud.CloudName</small></a>
+                }
+                else
+                {
+                    <a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,800)" title="Show Worker Details" class="with-tip">
+                        @if (worker.StatusEnum == Aneka.UI.Configuration.ProbeStatus.ServiceUnactive)
+                        {
+                            <img src="@Url.Content("~/Content/images/icons/fugue/status-busy.png")" width="16" height="16"/>
+                        }
+                        else
+                        {
+                            if (worker.StatusEnum == Aneka.UI.Configuration.ProbeStatus.NetworkUnreachable)
+                            {
+                            <img src="@Url.Content("~/Content/images/icons/fugue/status-offline.png")" width="16" height="16"/>
+                            }
+                            else
+                            {
+                            <img src="@Url.Content("~/Content/images/icons/fugue/exclamation-diamond.png")" width="16" height="16"/>
+                            }
+                        }
+                        <strong>@worker.StatusEnum: </strong>@worker.DisplayName<br />
+                        <small>Worker In Cloud: @cloud.CloudName</small></a>
+                }
+            </li>
+                num_of_issues++;
+                }
+            }
+        }
+    </ul>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#issue_list").attr("title", "@num_of_issues issues");
+            $("#issue_list").append("<strong>@num_of_issues</strong>");
+        });
+    </script>
+    <p id="messages-info" class="result-info">
+        <a href="#">Go to issues center &raquo;</a></p>
+</div>

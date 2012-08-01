@@ -1,0 +1,20 @@
+   This project developed at CLOUDS Laboratory, The University of Melbourne, Australia
+   and founded by Mohammed Alrokayan <http://alrokayan.com>.
+   
+   Highcharts JS scripts is free under Creative Commons Attribution-NonCommercial
+   3.0 License <http://creativecommons.org/licenses/by-nc/3.0/> to be used by
+   non-profit organizations <http://en.wikipedia.org/wiki/Non-profit_organization>,
+   students, universities, public schools and non-commercial personal websites.
+   Please refer to <www.highcharts.com/license> for commercial and government licenses.
+   
+   Data Annotations Extensions is © 2011 by Scott Kirkland under the BSD license
+   <http://dataannotationsextensions.org/>
+   
+   DateTimePicker_css.js under GNU General Public License 3.0
+   
+   You have to download the "Constellation complete admin skin" theme from
+   <http://themeforest.net/item/constellation-complete-admin-skin/116461>
+   and place the theme folders as following:
+   - "js" folder in \CloudWebPortal\Scripts
+   - "images" folder in \CloudWebPortal\Content
+   - "css" folder in \CloudWebPortal\Content

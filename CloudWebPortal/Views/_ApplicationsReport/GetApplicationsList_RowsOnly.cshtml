@@ -1,0 +1,109 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@{
+    Layout = null;
+    List<Aneka.Accounting.IAccountable> Applications = ViewBag.Applications;
+}
+@if (Applications != null)
+{
+    foreach (Aneka.Entity.ApplicationView app in Applications)
+    {
+    <tr>
+        <td><!-- Application Name -->
+            @app.Description
+        </td>
+        <td><!-- User -->
+            @app.User
+        </td>
+        <td><!-- Status -->
+            @if(app.IsActive)
+            {
+                <span class="button">In Progress
+			        <span class="progress-bar"><span class="orange with-stripes"></span></span>
+			    </span>
+            }
+            <strong>@app.Total Jobs</strong>
+            @if (app.Completed != app.Total)
+            {
+                <text> | </text><strong style="color:green;">Completed: @app.Completed</strong>
+                if (app.Failed > 0)
+                {
+                    <text> | </text><small style="color:red;">Failed: @app.Failed</small>
+                }
+                if (app.Aborted > 0)
+                {
+                    <text> | </text><small style="color:red;">Aborted: @app.Aborted</small>
+                }
+                if (app.Rejected > 0)
+                {
+                    <text> | </text><small style="color:red;">Rejecte: @app.Rejected</small>
+                }
+                if (app.Unsubmitted > 0)
+                {
+                    <text> | </text><small style="color:red;">Unsubmitted: @app.Unsubmitted</small>
+                }
+                if (app.Unknown > 0)
+                {
+                    <text> | </text><small style="color:red;">Unknown: @app.Unknown</small>
+                }
+             }
+             else
+             {
+                <text> | </text><strong style="color:green;">All Jobs Completed</strong>
+             }
+        </td>
+        <td><!-- Number of Resources -->
+            @if (app.IsActive)
+            {
+                <text>N/A</text>
+            }
+            else
+            {
+                @app.Resources
+            }
+        </td>
+        <td><!-- Start Time -->
+            @app.StartTime.ToString()
+        </td>
+        <td><!-- Finished Time -->
+            @app.FinishTime.ToString()
+        </td>
+        <td><!-- Cost -->
+            @app.Cost
+        </td>
+        <td><!-- User -->
+        @if (app.IsActive)
+        {
+            <button onclick="ForceStop('@app.MasterService','@app.Id')">Force Stop</button>
+        }
+        else
+        {
+            if (app.Completed != app.Total)
+            {
+                <img src="@Url.Content("~/Content/images/icons/fugue/status-busy.png")" title="Not All Jobs Completed" width="16" height="16"/>
+            }
+            else
+            {
+                <img src="@Url.Content("~/Content/images/icons/fugue/status.png")" title="All Jobs Completed" width="16" height="16"/>
+            }
+        }
+        </td>
+    </tr>
+    }
+}

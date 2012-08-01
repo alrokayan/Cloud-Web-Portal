@@ -1,0 +1,1429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4CA04774-9EED-4F38-BF06-61EA4AB31B20}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CloudWebPortal</RootNamespace>
+    <AssemblyName>CloudWebPortal</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="AnekaWebPortalDbContext-Deployment" Order="1">
+          <Destination Path="" />
+          <Object Type="dbFullSql" Enabled="False">
+            <PreSource Path="" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\AnekaWebPortalDbContext-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aneka, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Aneka_DLLs\Aneka.dll</HintPath>
+    </Reference>
+    <Reference Include="Aneka.Config, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Aneka_DLLs\Aneka.Config.dll</HintPath>
+    </Reference>
+    <Reference Include="Aneka.Management.Config, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Aneka_DLLs\Aneka.Management.Config.dll</HintPath>
+    </Reference>
+    <Reference Include="Aneka.PAL.Linux">
+      <HintPath>..\..\Aneka_DLLs\Aneka.PAL.Linux.dll</HintPath>
+    </Reference>
+    <Reference Include="Aneka.PAL.Management">
+      <HintPath>..\..\Aneka_DLLs\Aneka.PAL.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="Aneka.PAL.Management.Proxy">
+      <HintPath>Aneka\Aneka.PAL.Management.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Aneka.PAL.Windows">
+      <HintPath>..\..\Aneka_DLLs\Aneka.PAL.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Aneka.Runtime, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Aneka_DLLs\Aneka.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Aneka.Runtime.Common, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Aneka_DLLs\Aneka.Runtime.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Aneka.UI.Configuration">
+      <HintPath>Aneka\Aneka.UI.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Aneka.UI.Security">
+      <HintPath>Aneka\Aneka.UI.Security.exe</HintPath>
+    </Reference>
+    <Reference Include="Aneka.Util">
+      <HintPath>..\..\Aneka_DLLs\Aneka.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="DataAnnotationsExtensions">
+      <HintPath>..\packages\DataAnnotationsExtensions.1.1.0.0\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DataAnnotationsExtensions.ClientValidation">
+      <HintPath>..\packages\DataAnnotationsExtensions.MVC3.1.1.0.0\lib\NETFramework40\DataAnnotationsExtensions.ClientValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\Aneka_DLLs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.2.0.0\lib\NETFramework40\WebActivator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
+    <Compile Include="Controllers\CloudManagementController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfrastructureController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\SoftwareAppliancesController.cs" />
+    <Compile Include="Controllers\_ApplicationsReportController.cs" />
+    <Compile Include="Controllers\_ChartsController.cs" />
+    <Compile Include="Controllers\_WorkersController.cs" />
+    <Compile Include="Controllers\_CloudsController.cs" />
+    <Compile Include="Controllers\_CloudUsersController.cs" />
+    <Compile Include="Controllers\_ServicesController.cs" />
+    <Compile Include="Controllers\_SoftwareAppliancesController.cs" />
+    <Compile Include="Controllers\_MachinesLoginCredentialsController.cs" />
+    <Compile Include="Controllers\_ResourcePoolsController.cs" />
+    <Compile Include="Controllers\_MachinesController.cs" />
+    <Compile Include="Controllers\WebPortalUsersManagementController.cs" />
+    <Compile Include="Controllers\_DashboardWidgetsController.cs" />
+    <Compile Include="Controllers\_PortalUsersController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\AnekaUsersManagement.cs" />
+    <Compile Include="Logic\ContainersManagement.cs" />
+    <Compile Include="Logic\DaemonsManagement.cs" />
+    <Compile Include="Logic\MachinesManagement.cs" />
+    <Compile Include="Logic\MasterContainersManagement.cs" />
+    <Compile Include="Logic\Reporting\ApplicationManagement.cs" />
+    <Compile Include="Logic\Reporting\Helpers\Node.cs" />
+    <Compile Include="Logic\Reporting\Helpers\PeriodSelectionControl.cs" />
+    <Compile Include="Logic\Reporting\Helpers\ReportingUtil.cs" />
+    <Compile Include="Logic\Reporting\Helpers\ReportManager.cs" />
+    <Compile Include="Logic\Reporting\LiveResourceUtilizationManagement.cs" />
+    <Compile Include="Logic\Reporting\ResourceUtilizationManagement.cs" />
+    <Compile Include="Logic\WorkerContainersManagement.cs" />
+    <Compile Include="Models\AnekaStatusEnum.cs" />
+    <Compile Include="Models\AnekaWebPortalDbContext.cs" />
+    <Compile Include="Models\AnekaWebPortalDbModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\960.gs.css" />
+    <Content Include="Content\css\960.gs.fluid.css" />
+    <Content Include="Content\css\block-lists.css" />
+    <Content Include="Content\css\calendars.css" />
+    <Content Include="Content\css\common.css" />
+    <Content Include="Content\css\form.css" />
+    <Content Include="Content\css\gallery.css" />
+    <Content Include="Content\css\mobile.css" />
+    <Content Include="Content\css\planning.css" />
+    <Content Include="Content\css\reset.css" />
+    <Content Include="Content\css\simple-lists.css" />
+    <Content Include="Content\css\special-pages.css" />
+    <Content Include="Content\css\standard.css" />
+    <Content Include="Content\css\table.css" />
+    <Content Include="Content\css\wizard.css" />
+    <Content Include="Content\DateTimePicker\datetimepicker_css.js" />
+    <Content Include="Content\DateTimePicker\images2\cal.gif" />
+    <Content Include="Content\DateTimePicker\images2\cal_close.gif" />
+    <Content Include="Content\DateTimePicker\images2\cal_fastforward.gif" />
+    <Content Include="Content\DateTimePicker\images2\cal_fastreverse.gif" />
+    <Content Include="Content\DateTimePicker\images2\cal_forward.gif" />
+    <Content Include="Content\DateTimePicker\images2\cal_minus.gif" />
+    <Content Include="Content\DateTimePicker\images2\cal_plus.gif" />
+    <Content Include="Content\DateTimePicker\images2\cal_reverse.gif" />
+    <Content Include="Content\DateTimePicker\index.htm" />
+    <Content Include="Content\images\arbo-loader-dark.gif" />
+    <Content Include="Content\images\arbo-loader-grey.gif" />
+    <Content Include="Content\images\arbo-loader.gif" />
+    <Content Include="Content\images\arbo-points-h.gif" />
+    <Content Include="Content\images\arbo-points-v-end.gif" />
+    <Content Include="Content\images\arbo-points-v.gif" />
+    <Content Include="Content\images\back-button.png" />
+    <Content Include="Content\images\bg-mobile.png" />
+    <Content Include="Content\images\bg.png" />
+    <Content Include="Content\images\blue-corner.png" />
+    <Content Include="Content\images\breadcrumb-sep.png" />
+    <Content Include="Content\images\cal-arrow-left.png" />
+    <Content Include="Content\images\cal-arrow-right.png" />
+    <Content Include="Content\images\chevron-left.png" />
+    <Content Include="Content\images\chevron-left2.png" />
+    <Content Include="Content\images\chevron.png" />
+    <Content Include="Content\images\chevron2.png" />
+    <Content Include="Content\images\controls-bt-sep.png" />
+    <Content Include="Content\images\controls-tabs-bg.png" />
+    <Content Include="Content\images\corner.png" />
+    <Content Include="Content\images\demo\files\file1-medium.jpg" />
+    <Content Include="Content\images\demo\files\file1-mini.png" />
+    <Content Include="Content\images\demo\files\file1.jpg" />
+    <Content Include="Content\images\demo\files\file2-medium.jpg" />
+    <Content Include="Content\images\demo\files\file2-mini.png" />
+    <Content Include="Content\images\demo\files\file2.jpg" />
+    <Content Include="Content\images\demo\files\file3-medium.jpg" />
+    <Content Include="Content\images\demo\files\file3-mini.png" />
+    <Content Include="Content\images\demo\files\file3.jpg" />
+    <Content Include="Content\images\demo\files\file4-medium.jpg" />
+    <Content Include="Content\images\demo\files\file4-mini.png" />
+    <Content Include="Content\images\demo\files\file4.jpg" />
+    <Content Include="Content\images\demo\files\file5-medium.jpg" />
+    <Content Include="Content\images\demo\files\file5-mini.png" />
+    <Content Include="Content\images\demo\files\file5.jpg" />
+    <Content Include="Content\images\demo\files\file6-medium.jpg" />
+    <Content Include="Content\images\demo\files\file6-mini.png" />
+    <Content Include="Content\images\demo\files\file6.jpg" />
+    <Content Include="Content\images\demo\files\file7-medium.jpg" />
+    <Content Include="Content\images\demo\files\file7-mini.png" />
+    <Content Include="Content\images\demo\files\file7.jpg" />
+    <Content Include="Content\images\demo\files\file8-medium.jpg" />
+    <Content Include="Content\images\demo\files\file8-mini.png" />
+    <Content Include="Content\images\demo\files\file8.jpg" />
+    <Content Include="Content\images\demo\files\file9-medium.jpg" />
+    <Content Include="Content\images\demo\files\file9-mini.png" />
+    <Content Include="Content\images\demo\files\file9.jpg" />
+    <Content Include="Content\images\demo\sparklines\sparkline1.png" />
+    <Content Include="Content\images\dots.gif" />
+    <Content Include="Content\images\fade-black-left.png" />
+    <Content Include="Content\images\fade-black-right.png" />
+    <Content Include="Content\images\favorites-border.png" />
+    <Content Include="Content\images\gallery-bt-next.png" />
+    <Content Include="Content\images\gallery-bt-prev.png" />
+    <Content Include="Content\images\grey-corner-left.png" />
+    <Content Include="Content\images\grey-corner-right.png" />
+    <Content Include="Content\images\grey-stripes.png" />
+    <Content Include="Content\images\h1-menu-bg.png" />
+    <Content Include="Content\images\icons\add-faded-mini.png" />
+    <Content Include="Content\images\icons\add-faded.png" />
+    <Content Include="Content\images\icons\add-mini.png" />
+    <Content Include="Content\images\icons\add.png" />
+    <Content Include="Content\images\icons\backup_2states.png" />
+    <Content Include="Content\images\icons\browsers\chrome.jpg" />
+    <Content Include="Content\images\icons\browsers\firefox.jpg" />
+    <Content Include="Content\images\icons\browsers\ie.jpg" />
+    <Content Include="Content\images\icons\browsers\opera.jpg" />
+    <Content Include="Content\images\icons\browsers\safari.jpg" />
+    <Content Include="Content\images\icons\comments_2states.png" />
+    <Content Include="Content\images\icons\email.png" />
+    <Content Include="Content\images\icons\finefiles\32\aac.png" />
+    <Content Include="Content\images\icons\finefiles\32\access.png" />
+    <Content Include="Content\images\icons\finefiles\32\avi.png" />
+    <Content Include="Content\images\icons\finefiles\32\bat.png" />
+    <Content Include="Content\images\icons\finefiles\32\bmp.png" />
+    <Content Include="Content\images\icons\finefiles\32\chm.png" />
+    <Content Include="Content\images\icons\finefiles\32\css.png" />
+    <Content Include="Content\images\icons\finefiles\32\dat.png" />
+    <Content Include="Content\images\icons\finefiles\32\default.png" />
+    <Content Include="Content\images\icons\finefiles\32\desktop.png" />
+    <Content Include="Content\images\icons\finefiles\32\dll.png" />
+    <Content Include="Content\images\icons\finefiles\32\excel.png" />
+    <Content Include="Content\images\icons\finefiles\32\exe.png" />
+    <Content Include="Content\images\icons\finefiles\32\fon.png" />
+    <Content Include="Content\images\icons\finefiles\32\gif.png" />
+    <Content Include="Content\images\icons\finefiles\32\html.png" />
+    <Content Include="Content\images\icons\finefiles\32\ini.png" />
+    <Content Include="Content\images\icons\finefiles\32\jar.png" />
+    <Content Include="Content\images\icons\finefiles\32\jpg.png" />
+    <Content Include="Content\images\icons\finefiles\32\js.png" />
+    <Content Include="Content\images\icons\finefiles\32\log.png" />
+    <Content Include="Content\images\icons\finefiles\32\mov.png" />
+    <Content Include="Content\images\icons\finefiles\32\mp3.png" />
+    <Content Include="Content\images\icons\finefiles\32\mpg.png" />
+    <Content Include="Content\images\icons\finefiles\32\otf.png" />
+    <Content Include="Content\images\icons\finefiles\32\other_image.png" />
+    <Content Include="Content\images\icons\finefiles\32\other_movie.png" />
+    <Content Include="Content\images\icons\finefiles\32\other_music.png" />
+    <Content Include="Content\images\icons\finefiles\32\other_music2.png" />
+    <Content Include="Content\images\icons\finefiles\32\pdf.png" />
+    <Content Include="Content\images\icons\finefiles\32\png.png" />
+    <Content Include="Content\images\icons\finefiles\32\powerpoint.png" />
+    <Content Include="Content\images\icons\finefiles\32\real.png" />
+    <Content Include="Content\images\icons\finefiles\32\reg.png" />
+    <Content Include="Content\images\icons\finefiles\32\rtf.png" />
+    <Content Include="Content\images\icons\finefiles\32\swf.png" />
+    <Content Include="Content\images\icons\finefiles\32\sys.png" />
+    <Content Include="Content\images\icons\finefiles\32\text.png" />
+    <Content Include="Content\images\icons\finefiles\32\ttc.png" />
+    <Content Include="Content\images\icons\finefiles\32\ttf.png" />
+    <Content Include="Content\images\icons\finefiles\32\vbs.png" />
+    <Content Include="Content\images\icons\finefiles\32\wav.png" />
+    <Content Include="Content\images\icons\finefiles\32\wma.png" />
+    <Content Include="Content\images\icons\finefiles\32\wmv.png" />
+    <Content Include="Content\images\icons\finefiles\32\word.png" />
+    <Content Include="Content\images\icons\finefiles\32\xml.png" />
+    <Content Include="Content\images\icons\finefiles\32\xsl.png" />
+    <Content Include="Content\images\icons\finefiles\32\_Close.png" />
+    <Content Include="Content\images\icons\finefiles\32\_Documents.png" />
+    <Content Include="Content\images\icons\finefiles\32\_Favorites.png" />
+    <Content Include="Content\images\icons\finefiles\32\_Image.png" />
+    <Content Include="Content\images\icons\finefiles\32\_Movie.png" />
+    <Content Include="Content\images\icons\finefiles\32\_Music.png" />
+    <Content Include="Content\images\icons\finefiles\32\_Net.png" />
+    <Content Include="Content\images\icons\finefiles\32\_Open.png" />
+    <Content Include="Content\images\icons\finefiles\32\_ProgramFiles.png" />
+    <Content Include="Content\images\icons\finefiles\32\_Works.png" />
+    <Content Include="Content\images\icons\finefiles\64\aac.png" />
+    <Content Include="Content\images\icons\finefiles\64\access.png" />
+    <Content Include="Content\images\icons\finefiles\64\avi.png" />
+    <Content Include="Content\images\icons\finefiles\64\bat.png" />
+    <Content Include="Content\images\icons\finefiles\64\bmp.png" />
+    <Content Include="Content\images\icons\finefiles\64\chm.png" />
+    <Content Include="Content\images\icons\finefiles\64\css.png" />
+    <Content Include="Content\images\icons\finefiles\64\dat.png" />
+    <Content Include="Content\images\icons\finefiles\64\default.png" />
+    <Content Include="Content\images\icons\finefiles\64\desktop.png" />
+    <Content Include="Content\images\icons\finefiles\64\dll.png" />
+    <Content Include="Content\images\icons\finefiles\64\excel.png" />
+    <Content Include="Content\images\icons\finefiles\64\exe.png" />
+    <Content Include="Content\images\icons\finefiles\64\fon.png" />
+    <Content Include="Content\images\icons\finefiles\64\gif.png" />
+    <Content Include="Content\images\icons\finefiles\64\html.png" />
+    <Content Include="Content\images\icons\finefiles\64\ini.png" />
+    <Content Include="Content\images\icons\finefiles\64\jar.png" />
+    <Content Include="Content\images\icons\finefiles\64\jpg.png" />
+    <Content Include="Content\images\icons\finefiles\64\js.png" />
+    <Content Include="Content\images\icons\finefiles\64\log.png" />
+    <Content Include="Content\images\icons\finefiles\64\mov.png" />
+    <Content Include="Content\images\icons\finefiles\64\mp3.png" />
+    <Content Include="Content\images\icons\finefiles\64\mpg.png" />
+    <Content Include="Content\images\icons\finefiles\64\otf.png" />
+    <Content Include="Content\images\icons\finefiles\64\other_image.png" />
+    <Content Include="Content\images\icons\finefiles\64\other_movie.png" />
+    <Content Include="Content\images\icons\finefiles\64\other_music.png" />
+    <Content Include="Content\images\icons\finefiles\64\other_music2.png" />
+    <Content Include="Content\images\icons\finefiles\64\pdf.png" />
+    <Content Include="Content\images\icons\finefiles\64\png.png" />
+    <Content Include="Content\images\icons\finefiles\64\powerpoint.png" />
+    <Content Include="Content\images\icons\finefiles\64\real.png" />
+    <Content Include="Content\images\icons\finefiles\64\reg.png" />
+    <Content Include="Content\images\icons\finefiles\64\rtf.png" />
+    <Content Include="Content\images\icons\finefiles\64\swf.png" />
+    <Content Include="Content\images\icons\finefiles\64\sys.png" />
+    <Content Include="Content\images\icons\finefiles\64\text.png" />
+    <Content Include="Content\images\icons\finefiles\64\ttc.png" />
+    <Content Include="Content\images\icons\finefiles\64\ttf.png" />
+    <Content Include="Content\images\icons\finefiles\64\vbs.png" />
+    <Content Include="Content\images\icons\finefiles\64\wav.png" />
+    <Content Include="Content\images\icons\finefiles\64\wma.png" />
+    <Content Include="Content\images\icons\finefiles\64\wmv.png" />
+    <Content Include="Content\images\icons\finefiles\64\word.png" />
+    <Content Include="Content\images\icons\finefiles\64\xml.png" />
+    <Content Include="Content\images\icons\finefiles\64\xsl.png" />
+    <Content Include="Content\images\icons\finefiles\64\_Close.png" />
+    <Content Include="Content\images\icons\finefiles\64\_Documents.png" />
+    <Content Include="Content\images\icons\finefiles\64\_Favorites.png" />
+    <Content Include="Content\images\icons\finefiles\64\_Image.png" />
+    <Content Include="Content\images\icons\finefiles\64\_Movie.png" />
+    <Content Include="Content\images\icons\finefiles\64\_Music.png" />
+    <Content Include="Content\images\icons\finefiles\64\_Net.png" />
+    <Content Include="Content\images\icons\finefiles\64\_Open.png" />
+    <Content Include="Content\images\icons\finefiles\64\_ProgramFiles.png" />
+    <Content Include="Content\images\icons\finefiles\64\_Works.png" />
+    <Content Include="Content\images\icons\flags\ad.png" />
+    <Content Include="Content\images\icons\flags\ae.png" />
+    <Content Include="Content\images\icons\flags\af.png" />
+    <Content Include="Content\images\icons\flags\ag.png" />
+    <Content Include="Content\images\icons\flags\ai.png" />
+    <Content Include="Content\images\icons\flags\al.png" />
+    <Content Include="Content\images\icons\flags\am.png" />
+    <Content Include="Content\images\icons\flags\an.png" />
+    <Content Include="Content\images\icons\flags\ao.png" />
+    <Content Include="Content\images\icons\flags\ar.png" />
+    <Content Include="Content\images\icons\flags\as.png" />
+    <Content Include="Content\images\icons\flags\at.png" />
+    <Content Include="Content\images\icons\flags\au.png" />
+    <Content Include="Content\images\icons\flags\aw.png" />
+    <Content Include="Content\images\icons\flags\ax.png" />
+    <Content Include="Content\images\icons\flags\az.png" />
+    <Content Include="Content\images\icons\flags\ba.png" />
+    <Content Include="Content\images\icons\flags\bb.png" />
+    <Content Include="Content\images\icons\flags\bd.png" />
+    <Content Include="Content\images\icons\flags\be.png" />
+    <Content Include="Content\images\icons\flags\bf.png" />
+    <Content Include="Content\images\icons\flags\bg.png" />
+    <Content Include="Content\images\icons\flags\bh.png" />
+    <Content Include="Content\images\icons\flags\bi.png" />
+    <Content Include="Content\images\icons\flags\bj.png" />
+    <Content Include="Content\images\icons\flags\bm.png" />
+    <Content Include="Content\images\icons\flags\bn.png" />
+    <Content Include="Content\images\icons\flags\bo.png" />
+    <Content Include="Content\images\icons\flags\br.png" />
+    <Content Include="Content\images\icons\flags\bs.png" />
+    <Content Include="Content\images\icons\flags\bt.png" />
+    <Content Include="Content\images\icons\flags\bv.png" />
+    <Content Include="Content\images\icons\flags\bw.png" />
+    <Content Include="Content\images\icons\flags\by.png" />
+    <Content Include="Content\images\icons\flags\bz.png" />
+    <Content Include="Content\images\icons\flags\ca.png" />
+    <Content Include="Content\images\icons\flags\catalonia.png" />
+    <Content Include="Content\images\icons\flags\cc.png" />
+    <Content Include="Content\images\icons\flags\cd.png" />
+    <Content Include="Content\images\icons\flags\cf.png" />
+    <Content Include="Content\images\icons\flags\cg.png" />
+    <Content Include="Content\images\icons\flags\ch.png" />
+    <Content Include="Content\images\icons\flags\ci.png" />
+    <Content Include="Content\images\icons\flags\ck.png" />
+    <Content Include="Content\images\icons\flags\cl.png" />
+    <Content Include="Content\images\icons\flags\cm.png" />
+    <Content Include="Content\images\icons\flags\cn.png" />
+    <Content Include="Content\images\icons\flags\co.png" />
+    <Content Include="Content\images\icons\flags\cr.png" />
+    <Content Include="Content\images\icons\flags\cs.png" />
+    <Content Include="Content\images\icons\flags\cu.png" />
+    <Content Include="Content\images\icons\flags\cv.png" />
+    <Content Include="Content\images\icons\flags\cx.png" />
+    <Content Include="Content\images\icons\flags\cy.png" />
+    <Content Include="Content\images\icons\flags\cz.png" />
+    <Content Include="Content\images\icons\flags\de.png" />
+    <Content Include="Content\images\icons\flags\dj.png" />
+    <Content Include="Content\images\icons\flags\dk.png" />
+    <Content Include="Content\images\icons\flags\dm.png" />
+    <Content Include="Content\images\icons\flags\do.png" />
+    <Content Include="Content\images\icons\flags\dz.png" />
+    <Content Include="Content\images\icons\flags\ec.png" />
+    <Content Include="Content\images\icons\flags\ee.png" />
+    <Content Include="Content\images\icons\flags\eg.png" />
+    <Content Include="Content\images\icons\flags\eh.png" />
+    <Content Include="Content\images\icons\flags\england.png" />
+    <Content Include="Content\images\icons\flags\er.png" />
+    <Content Include="Content\images\icons\flags\es.png" />
+    <Content Include="Content\images\icons\flags\et.png" />
+    <Content Include="Content\images\icons\flags\europeanunion.png" />
+    <Content Include="Content\images\icons\flags\fam.png" />
+    <Content Include="Content\images\icons\flags\fi.png" />
+    <Content Include="Content\images\icons\flags\fj.png" />
+    <Content Include="Content\images\icons\flags\fk.png" />
+    <Content Include="Content\images\icons\flags\fm.png" />
+    <Content Include="Content\images\icons\flags\fo.png" />
+    <Content Include="Content\images\icons\flags\fr.png" />
+    <Content Include="Content\images\icons\flags\ga.png" />
+    <Content Include="Content\images\icons\flags\gb.png" />
+    <Content Include="Content\images\icons\flags\gd.png" />
+    <Content Include="Content\images\icons\flags\ge.png" />
+    <Content Include="Content\images\icons\flags\gf.png" />
+    <Content Include="Content\images\icons\flags\gh.png" />
+    <Content Include="Content\images\icons\flags\gi.png" />
+    <Content Include="Content\images\icons\flags\gl.png" />
+    <Content Include="Content\images\icons\flags\gm.png" />
+    <Content Include="Content\images\icons\flags\gn.png" />
+    <Content Include="Content\images\icons\flags\gp.png" />
+    <Content Include="Content\images\icons\flags\gq.png" />
+    <Content Include="Content\images\icons\flags\gr.png" />
+    <Content Include="Content\images\icons\flags\gs.png" />
+    <Content Include="Content\images\icons\flags\gt.png" />
+    <Content Include="Content\images\icons\flags\gu.png" />
+    <Content Include="Content\images\icons\flags\gw.png" />
+    <Content Include="Content\images\icons\flags\gy.png" />
+    <Content Include="Content\images\icons\flags\hk.png" />
+    <Content Include="Content\images\icons\flags\hm.png" />
+    <Content Include="Content\images\icons\flags\hn.png" />
+    <Content Include="Content\images\icons\flags\hr.png" />
+    <Content Include="Content\images\icons\flags\ht.png" />
+    <Content Include="Content\images\icons\flags\hu.png" />
+    <Content Include="Content\images\icons\flags\id.png" />
+    <Content Include="Content\images\icons\flags\ie.png" />
+    <Content Include="Content\images\icons\flags\il.png" />
+    <Content Include="Content\images\icons\flags\in.png" />
+    <Content Include="Content\images\icons\flags\io.png" />
+    <Content Include="Content\images\icons\flags\iq.png" />
+    <Content Include="Content\images\icons\flags\ir.png" />
+    <Content Include="Content\images\icons\flags\is.png" />
+    <Content Include="Content\images\icons\flags\it.png" />
+    <Content Include="Content\images\icons\flags\jm.png" />
+    <Content Include="Content\images\icons\flags\jo.png" />
+    <Content Include="Content\images\icons\flags\jp.png" />
+    <Content Include="Content\images\icons\flags\ke.png" />
+    <Content Include="Content\images\icons\flags\kg.png" />
+    <Content Include="Content\images\icons\flags\kh.png" />
+    <Content Include="Content\images\icons\flags\ki.png" />
+    <Content Include="Content\images\icons\flags\km.png" />
+    <Content Include="Content\images\icons\flags\kn.png" />
+    <Content Include="Content\images\icons\flags\kp.png" />
+    <Content Include="Content\images\icons\flags\kr.png" />
+    <Content Include="Content\images\icons\flags\kw.png" />
+    <Content Include="Content\images\icons\flags\ky.png" />
+    <Content Include="Content\images\icons\flags\kz.png" />
+    <Content Include="Content\images\icons\flags\la.png" />
+    <Content Include="Content\images\icons\flags\lb.png" />
+    <Content Include="Content\images\icons\flags\lc.png" />
+    <Content Include="Content\images\icons\flags\li.png" />
+    <Content Include="Content\images\icons\flags\lk.png" />
+    <Content Include="Content\images\icons\flags\lr.png" />
+    <Content Include="Content\images\icons\flags\ls.png" />
+    <Content Include="Content\images\icons\flags\lt.png" />
+    <Content Include="Content\images\icons\flags\lu.png" />
+    <Content Include="Content\images\icons\flags\lv.png" />
+    <Content Include="Content\images\icons\flags\ly.png" />
+    <Content Include="Content\images\icons\flags\ma.png" />
+    <Content Include="Content\images\icons\flags\mc.png" />
+    <Content Include="Content\images\icons\flags\md.png" />
+    <Content Include="Content\images\icons\flags\me.png" />
+    <Content Include="Content\images\icons\flags\mg.png" />
+    <Content Include="Content\images\icons\flags\mh.png" />
+    <Content Include="Content\images\icons\flags\mk.png" />
+    <Content Include="Content\images\icons\flags\ml.png" />
+    <Content Include="Content\images\icons\flags\mm.png" />
+    <Content Include="Content\images\icons\flags\mn.png" />
+    <Content Include="Content\images\icons\flags\mo.png" />
+    <Content Include="Content\images\icons\flags\mp.png" />
+    <Content Include="Content\images\icons\flags\mq.png" />
+    <Content Include="Content\images\icons\flags\mr.png" />
+    <Content Include="Content\images\icons\flags\ms.png" />
+    <Content Include="Content\images\icons\flags\mt.png" />
+    <Content Include="Content\images\icons\flags\mu.png" />
+    <Content Include="Content\images\icons\flags\mv.png" />
+    <Content Include="Content\images\icons\flags\mw.png" />
+    <Content Include="Content\images\icons\flags\mx.png" />
+    <Content Include="Content\images\icons\flags\my.png" />
+    <Content Include="Content\images\icons\flags\mz.png" />
+    <Content Include="Content\images\icons\flags\na.png" />
+    <Content Include="Content\images\icons\flags\nc.png" />
+    <Content Include="Content\images\icons\flags\ne.png" />
+    <Content Include="Content\images\icons\flags\nf.png" />
+    <Content Include="Content\images\icons\flags\ng.png" />
+    <Content Include="Content\images\icons\flags\ni.png" />
+    <Content Include="Content\images\icons\flags\nl.png" />
+    <Content Include="Content\images\icons\flags\no.png" />
+    <Content Include="Content\images\icons\flags\np.png" />
+    <Content Include="Content\images\icons\flags\nr.png" />
+    <Content Include="Content\images\icons\flags\nu.png" />
+    <Content Include="Content\images\icons\flags\nz.png" />
+    <Content Include="Content\images\icons\flags\om.png" />
+    <Content Include="Content\images\icons\flags\pa.png" />
+    <Content Include="Content\images\icons\flags\pe.png" />
+    <Content Include="Content\images\icons\flags\pf.png" />
+    <Content Include="Content\images\icons\flags\pg.png" />
+    <Content Include="Content\images\icons\flags\ph.png" />
+    <Content Include="Content\images\icons\flags\pk.png" />
+    <Content Include="Content\images\icons\flags\pl.png" />
+    <Content Include="Content\images\icons\flags\pm.png" />
+    <Content Include="Content\images\icons\flags\pn.png" />
+    <Content Include="Content\images\icons\flags\pr.png" />
+    <Content Include="Content\images\icons\flags\ps.png" />
+    <Content Include="Content\images\icons\flags\pt.png" />
+    <Content Include="Content\images\icons\flags\pw.png" />
+    <Content Include="Content\images\icons\flags\py.png" />
+    <Content Include="Content\images\icons\flags\qa.png" />
+    <Content Include="Content\images\icons\flags\re.png" />
+    <Content Include="Content\images\icons\flags\readme.txt" />
+    <Content Include="Content\images\icons\flags\ro.png" />
+    <Content Include="Content\images\icons\flags\rs.png" />
+    <Content Include="Content\images\icons\flags\ru.png" />
+    <Content Include="Content\images\icons\flags\rw.png" />
+    <Content Include="Content\images\icons\flags\sa.png" />
+    <Content Include="Content\images\icons\flags\sb.png" />
+    <Content Include="Content\images\icons\flags\sc.png" />
+    <Content Include="Content\images\icons\flags\scotland.png" />
+    <Content Include="Content\images\icons\flags\sd.png" />
+    <Content Include="Content\images\icons\flags\se.png" />
+    <Content Include="Content\images\icons\flags\sg.png" />
+    <Content Include="Content\images\icons\flags\sh.png" />
+    <Content Include="Content\images\icons\flags\si.png" />
+    <Content Include="Content\images\icons\flags\sj.png" />
+    <Content Include="Content\images\icons\flags\sk.png" />
+    <Content Include="Content\images\icons\flags\sl.png" />
+    <Content Include="Content\images\icons\flags\sm.png" />
+    <Content Include="Content\images\icons\flags\sn.png" />
+    <Content Include="Content\images\icons\flags\so.png" />
+    <Content Include="Content\images\icons\flags\sr.png" />
+    <Content Include="Content\images\icons\flags\st.png" />
+    <Content Include="Content\images\icons\flags\sv.png" />
+    <Content Include="Content\images\icons\flags\sy.png" />
+    <Content Include="Content\images\icons\flags\sz.png" />
+    <Content Include="Content\images\icons\flags\tc.png" />
+    <Content Include="Content\images\icons\flags\td.png" />
+    <Content Include="Content\images\icons\flags\tf.png" />
+    <Content Include="Content\images\icons\flags\tg.png" />
+    <Content Include="Content\images\icons\flags\th.png" />
+    <Content Include="Content\images\icons\flags\tj.png" />
+    <Content Include="Content\images\icons\flags\tk.png" />
+    <Content Include="Content\images\icons\flags\tl.png" />
+    <Content Include="Content\images\icons\flags\tm.png" />
+    <Content Include="Content\images\icons\flags\tn.png" />
+    <Content Include="Content\images\icons\flags\to.png" />
+    <Content Include="Content\images\icons\flags\tr.png" />
+    <Content Include="Content\images\icons\flags\tt.png" />
+    <Content Include="Content\images\icons\flags\tv.png" />
+    <Content Include="Content\images\icons\flags\tw.png" />
+    <Content Include="Content\images\icons\flags\tz.png" />
+    <Content Include="Content\images\icons\flags\ua.png" />
+    <Content Include="Content\images\icons\flags\ug.png" />
+    <Content Include="Content\images\icons\flags\um.png" />
+    <Content Include="Content\images\icons\flags\us.png" />
+    <Content Include="Content\images\icons\flags\uy.png" />
+    <Content Include="Content\images\icons\flags\uz.png" />
+    <Content Include="Content\images\icons\flags\va.png" />
+    <Content Include="Content\images\icons\flags\vc.png" />
+    <Content Include="Content\images\icons\flags\ve.png" />
+    <Content Include="Content\images\icons\flags\vg.png" />
+    <Content Include="Content\images\icons\flags\vi.png" />
+    <Content Include="Content\images\icons\flags\vn.png" />
+    <Content Include="Content\images\icons\flags\vu.png" />
+    <Content Include="Content\images\icons\flags\wales.png" />
+    <Content Include="Content\images\icons\flags\wf.png" />
+    <Content Include="Content\images\icons\flags\ws.png" />
+    <Content Include="Content\images\icons\flags\ye.png" />
+    <Content Include="Content\images\icons\flags\yt.png" />
+    <Content Include="Content\images\icons\flags\za.png" />
+    <Content Include="Content\images\icons\flags\zm.png" />
+    <Content Include="Content\images\icons\flags\zw.png" />
+    <Content Include="Content\images\icons\fugue\address-book.png" />
+    <Content Include="Content\images\icons\fugue\alarm-clock-blue.png" />
+    <Content Include="Content\images\icons\fugue\application-blog.png" />
+    <Content Include="Content\images\icons\fugue\application-export.png" />
+    <Content Include="Content\images\icons\fugue\application-monitor.png" />
+    <Content Include="Content\images\icons\fugue\application-table.png" />
+    <Content Include="Content\images\icons\fugue\application-terminal.png" />
+    <Content Include="Content\images\icons\fugue\arrow-090.png" />
+    <Content Include="Content\images\icons\fugue\arrow-270.png" />
+    <Content Include="Content\images\icons\fugue\arrow-circle.png" />
+    <Content Include="Content\images\icons\fugue\arrow-curve-000-left.png" />
+    <Content Include="Content\images\icons\fugue\arrow-curve-090-red.png" />
+    <Content Include="Content\images\icons\fugue\arrow-curve-090.png" />
+    <Content Include="Content\images\icons\fugue\balloon-reverse.png" />
+    <Content Include="Content\images\icons\fugue\balloon.png" />
+    <Content Include="Content\images\icons\fugue\battery-full.png" />
+    <Content Include="Content\images\icons\fugue\building.png" />
+    <Content Include="Content\images\icons\fugue\calendar-day.png" />
+    <Content Include="Content\images\icons\fugue\calendar-month.png" />
+    <Content Include="Content\images\icons\fugue\cards-address.png" />
+    <Content Include="Content\images\icons\fugue\chart.png" />
+    <Content Include="Content\images\icons\fugue\chevron-expand-off.png" />
+    <Content Include="Content\images\icons\fugue\chevron-expand.png" />
+    <Content Include="Content\images\icons\fugue\chevron-off.png" />
+    <Content Include="Content\images\icons\fugue\chevron-small-expand-off.png" />
+    <Content Include="Content\images\icons\fugue\chevron-small-expand.png" />
+    <Content Include="Content\images\icons\fugue\chevron-small-off.png" />
+    <Content Include="Content\images\icons\fugue\chevron-small.png" />
+    <Content Include="Content\images\icons\fugue\chevron.png" />
+    <Content Include="Content\images\icons\fugue\clock.png" />
+    <Content Include="Content\images\icons\fugue\computer.png" />
+    <Content Include="Content\images\icons\fugue\control-000-small.png" />
+    <Content Include="Content\images\icons\fugue\control-180.png" />
+    <Content Include="Content\images\icons\fugue\control-double-180.png" />
+    <Content Include="Content\images\icons\fugue\control-double.png" />
+    <Content Include="Content\images\icons\fugue\control-eject.png" />
+    <Content Include="Content\images\icons\fugue\control-pause.png" />
+    <Content Include="Content\images\icons\fugue\control-power.png" />
+    <Content Include="Content\images\icons\fugue\control-skip-180.png" />
+    <Content Include="Content\images\icons\fugue\control-skip.png" />
+    <Content Include="Content\images\icons\fugue\control-stop-square.png" />
+    <Content Include="Content\images\icons\fugue\control.png" />
+    <Content Include="Content\images\icons\fugue\counter-reset.png" />
+    <Content Include="Content\images\icons\fugue\cross-circle.png" />
+    <Content Include="Content\images\icons\fugue\cross-small.png" />
+    <Content Include="Content\images\icons\fugue\database.png" />
+    <Content Include="Content\images\icons\fugue\document-access.png" />
+    <Content Include="Content\images\icons\fugue\document-binary.png" />
+    <Content Include="Content\images\icons\fugue\document-bookmark.png" />
+    <Content Include="Content\images\icons\fugue\document-code.png" />
+    <Content Include="Content\images\icons\fugue\document-excel-csv.png" />
+    <Content Include="Content\images\icons\fugue\document-excel.png" />
+    <Content Include="Content\images\icons\fugue\document-film.png" />
+    <Content Include="Content\images\icons\fugue\document-flash-movie.png" />
+    <Content Include="Content\images\icons\fugue\document-globe.png" />
+    <Content Include="Content\images\icons\fugue\document-illustrator.png" />
+    <Content Include="Content\images\icons\fugue\document-image.png" />
+    <Content Include="Content\images\icons\fugue\document-music.png" />
+    <Content Include="Content\images\icons\fugue\document-office.png" />
+    <Content Include="Content\images\icons\fugue\document-pdf.png" />
+    <Content Include="Content\images\icons\fugue\document-photoshop.png" />
+    <Content Include="Content\images\icons\fugue\document-powerpoint.png" />
+    <Content Include="Content\images\icons\fugue\document-small.png" />
+    <Content Include="Content\images\icons\fugue\document-text.png" />
+    <Content Include="Content\images\icons\fugue\document-word.png" />
+    <Content Include="Content\images\icons\fugue\document-zipper.png" />
+    <Content Include="Content\images\icons\fugue\document.png" />
+    <Content Include="Content\images\icons\fugue\exclamation-diamond.png" />
+    <Content Include="Content\images\icons\fugue\film.png" />
+    <Content Include="Content\images\icons\fugue\flag.png" />
+    <Content Include="Content\images\icons\fugue\folder-bookmark.png" />
+    <Content Include="Content\images\icons\fugue\folder-open-document-music.png" />
+    <Content Include="Content\images\icons\fugue\folder-open-document-text.png" />
+    <Content Include="Content\images\icons\fugue\folder-open-document.png" />
+    <Content Include="Content\images\icons\fugue\folder-open-film.png" />
+    <Content Include="Content\images\icons\fugue\folder-open-image.png" />
+    <Content Include="Content\images\icons\fugue\folder-open-table.png" />
+    <Content Include="Content\images\icons\fugue\folder-open.png" />
+    <Content Include="Content\images\icons\fugue\folder-zipper.png" />
+    <Content Include="Content\images\icons\fugue\folder.png" />
+    <Content Include="Content\images\icons\fugue\globe-network.png" />
+    <Content Include="Content\images\icons\fugue\hard-hat.png" />
+    <Content Include="Content\images\icons\fugue\home.png" />
+    <Content Include="Content\images\icons\fugue\image.png" />
+    <Content Include="Content\images\icons\fugue\images.png" />
+    <Content Include="Content\images\icons\fugue\information-blue.png" />
+    <Content Include="Content\images\icons\fugue\information-ocre.png" />
+    <Content Include="Content\images\icons\fugue\magnifier.png" />
+    <Content Include="Content\images\icons\fugue\mail.png" />
+    <Content Include="Content\images\icons\fugue\monitor.png" />
+    <Content Include="Content\images\icons\fugue\navigation-000-white.png" />
+    <Content Include="Content\images\icons\fugue\navigation-090-white.png" />
+    <Content Include="Content\images\icons\fugue\navigation-090.png" />
+    <Content Include="Content\images\icons\fugue\navigation-180-white.png" />
+    <Content Include="Content\images\icons\fugue\navigation-180.png" />
+    <Content Include="Content\images\icons\fugue\navigation-270-white.png" />
+    <Content Include="Content\images\icons\fugue\navigation-270.png" />
+    <Content Include="Content\images\icons\fugue\navigation.png" />
+    <Content Include="Content\images\icons\fugue\newspaper.png" />
+    <Content Include="Content\images\icons\fugue\pencil.png" />
+    <Content Include="Content\images\icons\fugue\pin-small.png" />
+    <Content Include="Content\images\icons\fugue\plus-circle-blue.png" />
+    <Content Include="Content\images\icons\fugue\plus-circle.png" />
+    <Content Include="Content\images\icons\fugue\question-white.png" />
+    <Content Include="Content\images\icons\fugue\readme.txt" />
+    <Content Include="Content\images\icons\fugue\server.png" />
+    <Content Include="Content\images\icons\fugue\star-empty.png" />
+    <Content Include="Content\images\icons\fugue\star-half.png" />
+    <Content Include="Content\images\icons\fugue\star.png" />
+    <Content Include="Content\images\icons\fugue\status-away.png" />
+    <Content Include="Content\images\icons\fugue\status-busy.png" />
+    <Content Include="Content\images\icons\fugue\status-offline.png" />
+    <Content Include="Content\images\icons\fugue\status.png" />
+    <Content Include="Content\images\icons\fugue\tag-small.png" />
+    <Content Include="Content\images\icons\fugue\tags-label.png" />
+    <Content Include="Content\images\icons\fugue\tick-circle-blue.png" />
+    <Content Include="Content\images\icons\fugue\tick-circle.png" />
+    <Content Include="Content\images\icons\fugue\user-black-female.png" />
+    <Content Include="Content\images\icons\fugue\user-black.png" />
+    <Content Include="Content\images\icons\fugue\user-business-boss.png" />
+    <Content Include="Content\images\icons\fugue\user-business-gray-boss.png" />
+    <Content Include="Content\images\icons\fugue\user-business-gray.png" />
+    <Content Include="Content\images\icons\fugue\user-business.png" />
+    <Content Include="Content\images\icons\fugue\user-detective-gray.png" />
+    <Content Include="Content\images\icons\fugue\user-detective.png" />
+    <Content Include="Content\images\icons\fugue\user-female.png" />
+    <Content Include="Content\images\icons\fugue\user-gray-female.png" />
+    <Content Include="Content\images\icons\fugue\user-gray.png" />
+    <Content Include="Content\images\icons\fugue\user-green-female.png" />
+    <Content Include="Content\images\icons\fugue\user-green.png" />
+    <Content Include="Content\images\icons\fugue\user-nude-female.png" />
+    <Content Include="Content\images\icons\fugue\user-nude.png" />
+    <Content Include="Content\images\icons\fugue\user-red-female.png" />
+    <Content Include="Content\images\icons\fugue\user-red.png" />
+    <Content Include="Content\images\icons\fugue\user-silhouette-question.png" />
+    <Content Include="Content\images\icons\fugue\user-silhouette.png" />
+    <Content Include="Content\images\icons\fugue\user-thief-baldie.png" />
+    <Content Include="Content\images\icons\fugue\user-thief-female.png" />
+    <Content Include="Content\images\icons\fugue\user-thief.png" />
+    <Content Include="Content\images\icons\fugue\user-white-female.png" />
+    <Content Include="Content\images\icons\fugue\user-white.png" />
+    <Content Include="Content\images\icons\fugue\user-yellow-female.png" />
+    <Content Include="Content\images\icons\fugue\user-yellow.png" />
+    <Content Include="Content\images\icons\fugue\user.png" />
+    <Content Include="Content\images\icons\fugue\users.png" />
+    <Content Include="Content\images\icons\home_2states.png" />
+    <Content Include="Content\images\icons\medias_2states.png" />
+    <Content Include="Content\images\icons\settings_2states.png" />
+    <Content Include="Content\images\icons\stats_2states.png" />
+    <Content Include="Content\images\icons\toggle-small-sprite.png" />
+    <Content Include="Content\images\icons\toggle-sprite.png" />
+    <Content Include="Content\images\icons\users_2states.png" />
+    <Content Include="Content\images\icons\web-app\24\Add.png" />
+    <Content Include="Content\images\icons\web-app\24\Back.png" />
+    <Content Include="Content\images\icons\web-app\24\Bar-Chart.png" />
+    <Content Include="Content\images\icons\web-app\24\Comment.png" />
+    <Content Include="Content\images\icons\web-app\24\Delete.png" />
+    <Content Include="Content\images\icons\web-app\24\Email.png" />
+    <Content Include="Content\images\icons\web-app\24\Exit.png" />
+    <Content Include="Content\images\icons\web-app\24\Info.png" />
+    <Content Include="Content\images\icons\web-app\24\Line-Chart.png" />
+    <Content Include="Content\images\icons\web-app\24\Load.png" />
+    <Content Include="Content\images\icons\web-app\24\Loading.png" />
+    <Content Include="Content\images\icons\web-app\24\Modify.png" />
+    <Content Include="Content\images\icons\web-app\24\Next.png" />
+    <Content Include="Content\images\icons\web-app\24\Picture.png" />
+    <Content Include="Content\images\icons\web-app\24\Pie-Chart.png" />
+    <Content Include="Content\images\icons\web-app\24\Print.png" />
+    <Content Include="Content\images\icons\web-app\24\Profile.png" />
+    <Content Include="Content\images\icons\web-app\24\Save.png" />
+    <Content Include="Content\images\icons\web-app\24\Search.png" />
+    <Content Include="Content\images\icons\web-app\24\Warning.png" />
+    <Content Include="Content\images\icons\web-app\32\Add.png" />
+    <Content Include="Content\images\icons\web-app\32\Back.png" />
+    <Content Include="Content\images\icons\web-app\32\Bar-Chart.png" />
+    <Content Include="Content\images\icons\web-app\32\Comment.png" />
+    <Content Include="Content\images\icons\web-app\32\Delete.png" />
+    <Content Include="Content\images\icons\web-app\32\Email.png" />
+    <Content Include="Content\images\icons\web-app\32\Exit.png" />
+    <Content Include="Content\images\icons\web-app\32\Info.png" />
+    <Content Include="Content\images\icons\web-app\32\Line-Chart.png" />
+    <Content Include="Content\images\icons\web-app\32\Load.png" />
+    <Content Include="Content\images\icons\web-app\32\Loading.png" />
+    <Content Include="Content\images\icons\web-app\32\Modify.png" />
+    <Content Include="Content\images\icons\web-app\32\Next.png" />
+    <Content Include="Content\images\icons\web-app\32\Picture.png" />
+    <Content Include="Content\images\icons\web-app\32\Pie-Chart.png" />
+    <Content Include="Content\images\icons\web-app\32\Print.png" />
+    <Content Include="Content\images\icons\web-app\32\Profile.png" />
+    <Content Include="Content\images\icons\web-app\32\Save.png" />
+    <Content Include="Content\images\icons\web-app\32\Search.png" />
+    <Content Include="Content\images\icons\web-app\32\Warning.png" />
+    <Content Include="Content\images\icons\web-app\48\Add.png" />
+    <Content Include="Content\images\icons\web-app\48\Back.png" />
+    <Content Include="Content\images\icons\web-app\48\Bar-Chart.png" />
+    <Content Include="Content\images\icons\web-app\48\Comment.png" />
+    <Content Include="Content\images\icons\web-app\48\Delete.png" />
+    <Content Include="Content\images\icons\web-app\48\Email.png" />
+    <Content Include="Content\images\icons\web-app\48\Exit.png" />
+    <Content Include="Content\images\icons\web-app\48\Info.png" />
+    <Content Include="Content\images\icons\web-app\48\Line-Chart.png" />
+    <Content Include="Content\images\icons\web-app\48\Load.png" />
+    <Content Include="Content\images\icons\web-app\48\Loading.png" />
+    <Content Include="Content\images\icons\web-app\48\Modify.png" />
+    <Content Include="Content\images\icons\web-app\48\Next.png" />
+    <Content Include="Content\images\icons\web-app\48\Picture.png" />
+    <Content Include="Content\images\icons\web-app\48\Pie-Chart.png" />
+    <Content Include="Content\images\icons\web-app\48\Print.png" />
+    <Content Include="Content\images\icons\web-app\48\Profile.png" />
+    <Content Include="Content\images\icons\web-app\48\Save.png" />
+    <Content Include="Content\images\icons\web-app\48\Search.png" />
+    <Content Include="Content\images\icons\web-app\48\Warning.png" />
+    <Content Include="Content\images\icons\web-app\Terms Of Use.txt" />
+    <Content Include="Content\images\icons\write_2states.png" />
+    <Content Include="Content\images\info-loader.gif" />
+    <Content Include="Content\images\lite-grey-stripes.png" />
+    <Content Include="Content\images\loading-stripes.gif" />
+    <Content Include="Content\images\loading-stripes.png" />
+    <Content Include="Content\images\logout.png" />
+    <Content Include="Content\images\main-menu-bg.png" />
+    <Content Include="Content\images\mask-loader.gif" />
+    <Content Include="Content\images\medium-grey-stripes.png" />
+    <Content Include="Content\images\menu-arrow-white.png" />
+    <Content Include="Content\images\menu-arrow.png" />
+    <Content Include="Content\images\menu-bg.png" />
+    <Content Include="Content\images\menu-border.png" />
+    <Content Include="Content\images\menu-open-arrow.png" />
+    <Content Include="Content\images\mini-switch-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\accordion-content-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\accordion-tab-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\action-tab-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\action-tab-hover-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\black-cell-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\black05.png" />
+    <Content Include="Content\images\old-browsers-bg\black10.png" />
+    <Content Include="Content\images\old-browsers-bg\black50.png" />
+    <Content Include="Content\images\old-browsers-bg\black80.png" />
+    <Content Include="Content\images\old-browsers-bg\block-control-hover-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\block-controls-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\block-footer-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\block-header-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\block-header-red-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\breadcrumb-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-bg2.png" />
+    <Content Include="Content\images\old-browsers-bg\button-element-active-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-element-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-element-disabled-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-element-grey-active-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-element-grey-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-element-grey-hover-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-element-hover-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-element-red-active-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-element-red-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-element-red-hover-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-hover-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-red-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\button-red-hover-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\calendar-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\content-columns-sep-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\content-dark-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\control-bar-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\controls-bt-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\dark-grey-gradient-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\event-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\favorites-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\footer-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\footer-shadow-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\grid-block-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\grid-block-controls-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\header-shadow-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\input-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\legend-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\lite-grey-grad-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\lite-grey-gradient-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\loading-status-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\loading-tab-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\login-radial-bg-mobile.png" />
+    <Content Include="Content\images\old-browsers-bg\login-radial-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\main-nav-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\medium-cal-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\mini-cal-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\mini-calendar-head-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\mini-tabs-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\mini-tabs-tab-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\more-arrow-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\nb-events-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\nb-events-other-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\number-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\planning-bar-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\planning-bar-blue-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\planning-bar-green-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\planning-bar-orange-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\planning-bar-purple-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\planning-header-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\progress-bar-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\search-more-shadow.png" />
+    <Content Include="Content\images\old-browsers-bg\search-sep-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\server-status-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\status-bar-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\status-bar-shadow.png" />
+    <Content Include="Content\images\old-browsers-bg\subnav-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\subnav-bt-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\subnav-bt-border-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\subnav-bt-hover-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\subnav-bt-hover-border-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\subnav-current-bt-border-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\tabs-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\tfoot-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\title-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\title-grey-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\title-link-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\title-link-hover-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\title-red-bg.png" />
+    <Content Include="Content\images\old-browsers-bg\white20.png" />
+    <Content Include="Content\images\old-browsers-screen\body-dark.jpg" />
+    <Content Include="Content\images\old-browsers-screen\body.jpg" />
+    <Content Include="Content\images\old-browsers-screen\head-dark.jpg" />
+    <Content Include="Content\images\old-browsers-screen\head.jpg" />
+    <Content Include="Content\images\old-browsers-screen\skip-dark.jpg" />
+    <Content Include="Content\images\old-browsers-screen\skip.jpg" />
+    <Content Include="Content\images\red-corner.png" />
+    <Content Include="Content\images\search-less-arrow-hover.png" />
+    <Content Include="Content\images\search-less-arrow.png" />
+    <Content Include="Content\images\search-more-arrow-hover.png" />
+    <Content Include="Content\images\search-more-arrow.png" />
+    <Content Include="Content\images\switch-bg.png" />
+    <Content Include="Content\images\tab-bg.png" />
+    <Content Include="Content\images\table-loader.gif" />
+    <Content Include="Content\images\table-sort-arrows.png" />
+    <Content Include="Content\images\trans.png" />
+    <Content Include="Content\images\wizard-head-effect.png" />
+    <Content Include="Content\images\zebras.png" />
+    <Content Include="Content\images_added\Cloud.png" />
+    <Content Include="Content\images_added\container_master_started_32.png" />
+    <Content Include="Content\images_added\container_worker_started_32.png" />
+    <Content Include="Content\images_added\Dashboard.png" />
+    <Content Include="Content\images_added\mac-icon.png" />
+    <Content Include="Content\images_added\Machines.png" />
+    <Content Include="Content\images_added\Services.png" />
+    <Content Include="Content\images_added\SWApp.png" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Repository\Container\Amazon.EC2.dll" />
+    <Content Include="Repository\Container\Aneka.Accounting.dll" />
+    <Content Include="Repository\Container\Aneka.Config.dll" />
+    <Content Include="Repository\Container\Aneka.Data.dll" />
+    <Content Include="Repository\Container\Aneka.Data.Ftp.dll" />
+    <Content Include="Repository\Container\Aneka.Data.S3.dll" />
+    <Content Include="Repository\Container\Aneka.dll" />
+    <Content Include="Repository\Container\Aneka.Execution.dll" />
+    <Content Include="Repository\Container\Aneka.Hosting.Console.exe" />
+    <Content Include="Repository\Container\Aneka.Licensing.dll" />
+    <Content Include="Repository\Container\Aneka.Logging.dll" />
+    <Content Include="Repository\Container\Aneka.Management.Config.dll" />
+    <Content Include="Repository\Container\Aneka.MapReduce.Common.dll" />
+    <Content Include="Repository\Container\Aneka.MapReduce.dll" />
+    <Content Include="Repository\Container\Aneka.MapReduce.Execution.dll" />
+    <Content Include="Repository\Container\Aneka.MapReduce.Scheduler.dll" />
+    <Content Include="Repository\Container\Aneka.MapReduce.SimFTP.dll" />
+    <Content Include="Repository\Container\Aneka.PAL.Daemon.exe" />
+    <Content Include="Repository\Container\Aneka.PAL.dll" />
+    <Content Include="Repository\Container\Aneka.PAL.Linux.dll" />
+    <Content Include="Repository\Container\Aneka.PAL.MacOSX.dll" />
+    <Content Include="Repository\Container\Aneka.PAL.Management.dll" />
+    <Content Include="Repository\Container\Aneka.PAL.Windows.dll" />
+    <Content Include="Repository\Container\Aneka.Runtime.Common.dll" />
+    <Content Include="Repository\Container\Aneka.Runtime.dll" />
+    <Content Include="Repository\Container\Aneka.Runtime.Provisioning.dll" />
+    <Content Include="Repository\Container\Aneka.Runtime.Provisioning.EC2.dll" />
+    <Content Include="Repository\Container\Aneka.Runtime.Provisioning.GoGrid.dll" />
+    <Content Include="Repository\Container\Aneka.Runtime.Provisioning.Xen.dll" />
+    <Content Include="Repository\Container\Aneka.Scheduling.dll" />
+    <Content Include="Repository\Container\Aneka.Security.Windows.dll" />
+    <Content Include="Repository\Container\Aneka.Storage.dll" />
+    <Content Include="Repository\Container\Aneka.Tasks.dll" />
+    <Content Include="Repository\Container\Aneka.Tasks.Execution.dll" />
+    <Content Include="Repository\Container\Aneka.Tasks.Scheduler.dll" />
+    <Content Include="Repository\Container\Aneka.Threading.dll" />
+    <Content Include="Repository\Container\Aneka.Threading.Execution.dll" />
+    <Content Include="Repository\Container\Aneka.Threading.Scheduler.dll" />
+    <Content Include="Repository\Container\Aneka.Util.dll" />
+    <Content Include="Repository\Container\antlr.runtime.dll" />
+    <Content Include="Repository\Container\AWSSDK.dll" />
+    <Content Include="Repository\Container\Common.Logging.dll" />
+    <Content Include="Repository\Container\CookComputing.XmlRpcV2.dll" />
+    <Content Include="Repository\Container\DiffieHellman.dll" />
+    <Content Include="Repository\Container\Fl0yd.Controls.dll" />
+    <Content Include="Repository\Container\Fl0yd.Data.dll" />
+    <Content Include="Repository\Container\Fl0yd.Project.dll" />
+    <Content Include="Repository\Container\Fl0yd.Runtime.dll" />
+    <Content Include="Repository\Container\FtpClient.dll" />
+    <Content Include="Repository\Container\FtpServer.dll" />
+    <Content Include="Repository\Container\log4net.config.xml" />
+    <Content Include="Repository\Container\log4net.dll" />
+    <Content Include="Repository\Container\Mono.Posix.dll" />
+    <Content Include="Repository\Container\Org.Mentalis.Security.dll" />
+    <Content Include="Repository\Container\SharpSSH.Client.dll" />
+    <Content Include="Repository\Container\Spring.Core.dll" />
+    <Content Include="Repository\Container\Tamir.SharpSSH.dll" />
+    <Content Include="Repository\Container\XenServer.dll" />
+    <Content Include="Repository\Daemon\Aneka.Management.Config.dll" />
+    <Content Include="Repository\Daemon\Aneka.PAL.dll" />
+    <Content Include="Repository\Daemon\Aneka.PAL.Linux.dll" />
+    <Content Include="Repository\Daemon\Aneka.PAL.Management.dll" />
+    <Content Include="Repository\Daemon\Aneka.PAL.Windows.dll" />
+    <Content Include="Repository\Daemon\Aneka.Util.dll" />
+    <Content Include="Repository\Daemon\FtpClient.dll" />
+    <Content Include="Repository\Daemon\log4net.config.daemon.xml" />
+    <Content Include="Repository\Daemon\log4net.dll" />
+    <Content Include="Repository\Daemon\Mono.Posix.dll" />
+    <Content Include="Repository\Loader\Aneka.Management.Config.dll" />
+    <Content Include="Repository\Loader\Aneka.PAL.Daemon.exe" />
+    <Content Include="Repository\Loader\Aneka.PAL.dll" />
+    <Content Include="Repository\Loader\Aneka.PAL.Linux.dll" />
+    <Content Include="Repository\Loader\Aneka.PAL.Management.dll" />
+    <Content Include="Repository\Loader\Aneka.PAL.Windows.dll" />
+    <Content Include="Repository\Loader\Aneka.Util.dll" />
+    <Content Include="Repository\Loader\FtpClient.dll" />
+    <Content Include="Repository\Loader\log4net.config.daemon.xml" />
+    <Content Include="Repository\Loader\log4net.dll" />
+    <Content Include="Repository\Loader\Mono.Posix.dll" />
+    <Content Include="Scripts\Highcharts-js\adapters\mootools-adapter.js" />
+    <Content Include="Scripts\Highcharts-js\adapters\mootools-adapter.src.js" />
+    <Content Include="Scripts\Highcharts-js\adapters\prototype-adapter.js" />
+    <Content Include="Scripts\Highcharts-js\adapters\prototype-adapter.src.js" />
+    <Content Include="Scripts\Highcharts-js\highcharts.js" />
+    <Content Include="Scripts\Highcharts-js\highcharts.src.js" />
+    <Content Include="Scripts\Highcharts-js\modules\exporting.js" />
+    <Content Include="Scripts\Highcharts-js\modules\exporting.src.js" />
+    <Content Include="Scripts\Highcharts-js\themes\dark-blue.js" />
+    <Content Include="Scripts\Highcharts-js\themes\dark-green.js" />
+    <Content Include="Scripts\Highcharts-js\themes\gray.js" />
+    <Content Include="Scripts\Highcharts-js\themes\grid.js" />
+    <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.5.1.js" />
+    <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\js\common.js" />
+    <Content Include="Scripts\js\html5.js" />
+    <Content Include="Scripts\js\jquery-1.4.2.min.js" />
+    <Content Include="Scripts\js\jquery.accessibleList.js" />
+    <Content Include="Scripts\js\jquery.contextMenu.js" />
+    <Content Include="Scripts\js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\js\jquery.datepick\calendar-blue.gif" />
+    <Content Include="Scripts\js\jquery.datepick\calendar-green.gif" />
+    <Content Include="Scripts\js\jquery.datepick\calendar.gif" />
+    <Content Include="Scripts\js\jquery.datepick\datepickBasic.html" />
+    <Content Include="Scripts\js\jquery.datepick\flora.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\humanity.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-af.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ar.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-az.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-bg.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-bs.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ca.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-cs.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-da.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-de-CH.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-de.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-el.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-en-GB.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-eo.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-es-AR.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-es.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-et.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-eu.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-fa.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-fi.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-fo.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-fr-CH.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-fr.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-gl.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-gu.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-he.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-hr.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-hu.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-hy.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-id.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-is.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-it.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ja.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ko.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-lt.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-lv.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ms.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-nl-BE.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-nl.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-no.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-pl.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-pt-BR.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ro.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ru.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sk.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sl.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sq.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sr-SR.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sr.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sv.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ta.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-th.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-tr.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-uk.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ur.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-vi.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-zh-CN.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-zh-HK.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-zh-TW.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.ext.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.ext.min.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.ext.pack.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.lang.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.lang.min.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.lang.pack.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.min.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.pack.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.validation.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.validation.min.js" />
+    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.validation.pack.js" />
+    <Content Include="Scripts\js\jquery.datepick\redmond.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\smoothness.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-blacktie.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-blitzer.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-cupertino.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-dotluv.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-excitebike.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-hotsneaks.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-humanity.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-mintchoc.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-redmond.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-smoothness.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-southstreet.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-start.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-swankypurse.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-trontastic.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-uidarkness.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-uilightness.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui-vader.datepick.css" />
+    <Content Include="Scripts\js\jquery.datepick\ui.datepick.css" />
+    <Content Include="Scripts\js\jquery.hashchange.js" />
+    <Content Include="Scripts\js\jquery.modal.js" />
+    <Content Include="Scripts\js\jquery.tip.js" />
+    <Content Include="Scripts\js\list.js" />
+    <Content Include="Scripts\js\mobile.js" />
+    <Content Include="Scripts\js\old-browsers.js" />
+    <Content Include="Scripts\js\searchField.js" />
+    <Content Include="Scripts\js\standard.ie.js" />
+    <Content Include="Scripts\js\standard.js" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\LogOn.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\WebPortalUsersManagement\UsersManagement.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Dashboard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\StatusInfoBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_PortalUsers\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_PortalUsers\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_PortalUsers\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_PortalUsers\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_PortalUsers\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_DashboardWidgets\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_DashboardWidgets\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_DashboardWidgets\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_DashboardWidgets\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Machines\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Machines\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Machines\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Machines\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ResourcePools\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ResourcePools\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ResourcePools\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ResourcePools\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ResourcePools\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_MachinesLoginCredentials\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_MachinesLoginCredentials\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_MachinesLoginCredentials\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_MachinesLoginCredentials\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_MachinesLoginCredentials\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_SoftwareAppliances\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_SoftwareAppliances\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_SoftwareAppliances\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_SoftwareAppliances\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_SoftwareAppliances\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Infrastructure\ManageMachinesandResourcePools.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Infrastructure\ManageMachinesLoginCredentials.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SoftwareAppliances\BrowseSoftwareAppliances.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Services\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Services\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Services\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Services\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Services\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Services\BrowseServicesCatalog.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Clouds\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Clouds\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Clouds\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Clouds\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Clouds\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_CloudUsers\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_CloudUsers\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_CloudUsers\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_CloudUsers\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_CloudUsers\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CloudManagement\BrowseClouds.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CloudManagement\CloudDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CloudManagement\BrowseCloudUsers.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Workers\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Workers\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Workers\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Workers\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\DashboardContent.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_IssuesList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Workers\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Repository\Container\Aneka.License" />
+    <None Include="Repository\Container\__listing__.map" />
+    <None Include="Repository\Daemon\__listing__.map" />
+    <None Include="Repository\Loader\__listing__.map" />
+    <Content Include="Views\Shared\_ActivitiesList.cshtml" />
+    <Content Include="Views\_Charts\CPU_Utilization_Range.cshtml" />
+    <Content Include="Views\_Charts\CPU_Utilization_Live.cshtml" />
+    <Content Include="Views\_ApplicationsReport\ApplicationsList.cshtml" />
+    <Content Include="Views\_Charts\JobsStatusSummary.cshtml" />
+    <Content Include="Views\_ApplicationsReport\GetApplicationsList_RowsOnly.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>10397</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:10397/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

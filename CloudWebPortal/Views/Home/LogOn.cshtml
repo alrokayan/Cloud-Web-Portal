@@ -1,0 +1,131 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+	<title>Cloud Web Portal LogOn</title>
+	<meta charset="utf-8">
+	
+    <link href="@Url.Content("~/Content/css/reset.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/common.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/form.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/standard.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/css/special-pages.css")" rel="stylesheet" type="text/css">
+
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/html5.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery-1.4.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/old-browsers.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/common.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/standard.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.tip.js")"></script>
+	
+	<!-- login script -->
+	<script type="text/javascript">
+
+	    $(document).ready(function () {
+
+	        $('#login-form').submit(function (event) {
+
+	            // Check fields
+	            var login = $('#Username').val();
+	            var pass = $('#Password').val();
+
+	            if (!login || login.length == 0) {
+	                event.preventDefault();
+	                $('#login-block').removeBlockMessages().blockMessage('Please enter your user name', { type: 'warning' });
+	            }
+	            else if (!pass || pass.length == 0) {
+	                event.preventDefault();
+	                $('#login-block').removeBlockMessages().blockMessage('Please enter your password', { type: 'warning' });
+	            }
+	        });
+
+	        var ValidationMessage = $('#ValidationSummaryDiv li').html();
+            if (ValidationMessage != null) {
+                var ValidationMessage = "";
+                $('#ValidationSummaryDiv').find("li").each(function (i) {
+                    ValidationMessage = ValidationMessage + $(this).html() + "\n";
+                });
+                $('#login-block').removeBlockMessages().blockMessage(ValidationMessage, { type: 'error' });
+            }
+	    });
+	
+	</script>
+</head>
+
+<!-- the 'special-page' class is only an identifier for scripts -->
+<body class="special-page login-bg dark">
+<!-- The template uses conditional comments to add wrappers div for ie8 and ie7 - just add .ie, .ie7 or .ie6 prefix to your css selectors when needed -->
+<!--[if lt IE 9]><div class="ie"><![endif]-->
+<!--[if lt IE 8]><div class="ie7"><![endif]-->
+<div id="ValidationSummaryDiv" style="display: none">@Html.ValidationSummary()</div>
+
+	<section id="message">
+		<div class="block-border"><div class="block-content no-title dark-bg">
+			<p class="mini-infos">In development phase, use <b>admin</b> / <b>admin</b></p>
+		</div></div>
+	</section>
+	
+	<section id="login-block">
+		<div class="block-border"><div class="block-content">
+				
+			<h1>Aneka</h1>
+			<div class="block-header">Please login</div>
+				
+			<form class="form with-margin" name="login-form" id="login-form" method="post" action="@Url.Action("LogOn")">
+				<p class="inline-small-label">
+					<label for="login"><span class="big">User name</span></label>
+					<input type="text" name="Username" id="Username" class="full-width" value="">
+				</p>
+				<p class="inline-small-label">
+					<label for="pass"><span class="big">Password</span></label>
+					<input type="password" name="Password" id="Password" class="full-width" value="">
+				</p>
+				
+				<button type="submit" class="float-right">Login</button>
+				<p class="input-height">
+					<input type="checkbox" name="keep_logged" id="keep_logged" value="1" class="mini-switch" checked="checked">
+					<label for="keep-logged" class="inline">Keep me logged in</label>
+				</p>
+			</form>
+			
+			<form class="form" id="password-recovery" method="post" action="#">
+				<fieldset class="grey-bg no-margin collapse">
+					<legend><a href="#">Lost password?</a></legend>
+					<p class="input-with-button">
+						<label for="recovery-mail">Enter your e-mail address</label>
+						<input type="text" name="recovery-mail" id="recovery-mail" value="">
+						<button type="button">Send</button>
+					</p>
+				</fieldset>
+			</form>
+		</div></div>
+	</section>
+
+<!--[if lt IE 8]></div><![endif]-->
+<!--[if lt IE 9]></div><![endif]-->
+</body>
+</html>

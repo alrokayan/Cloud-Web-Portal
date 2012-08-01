@@ -1,0 +1,142 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@using CloudWebPortal.Models
+@model Cloud
+@{
+    Layout = null;
+    String masterHostIP = ViewBag.masterHostIP;
+    int masterPort = ViewBag.masterPort;
+}
+
+<div class="block-content">
+    <h1>
+        CPU Utilization</h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','CPU_Utilization_Range','_Charts',12,@Model.CloudId)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <div id="chart-container-Range-@Model.CloudId" style="width: 100%; height: 400px"></div>
+    <div class="block-footer">
+        <input type="Text" id="fromDate" maxlength="25" size="25"/>
+        <button onclick="javascript:NewCssCal ('fromDate','MMddyyyy','dropdown',true,'24',true)">From Date</button>
+        <input type="Text" id="toDate" maxlength="25" size="25"/>
+        <button onclick="javascript:NewCssCal ('toDate','MMddyyyy','dropdown',true,'24',true)">To Date</button>
+        <select id="ChartSeriesType">
+            <option value="Summary">Summary</option>
+            <option value="Detailed">Detailed</option>
+        </select>
+        <button onclick="drawCPUUtilization_Range_@(Model.CloudId)()">Draw</button>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var chart_Range_@(Model.CloudId); // global
+
+    function drawCPUUtilization_Range_@(Model.CloudId)() {
+        if($("#fromDate").val() == "" || $("#toDate").val() == "")
+        {
+            alert("Please insert dates");
+            return;
+        }
+
+        var options = {
+            chart: {
+                renderTo: 'chart-container-Range-@(Model.CloudId)',
+                zoomType: 'x'
+            },
+            title: {
+                text: 'CPU Utilization'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'CPU Utilization (%)'
+                }
+            },
+            series: []
+        };
+        
+        var fromDate = new Date($("#fromDate").val());
+        var toDate = new Date($("#toDate").val());
+
+        var masterHostIP = '@(masterHostIP)';
+        var masterPort = @(masterPort);
+        var fromDateYear = fromDate.getFullYear();
+        var fromDateMonth = fromDate.getMonth()+1;
+        var fromDateDay = fromDate.getDate();
+        var fromTimeHour = fromDate.getHours();
+        var fromDateMin = fromDate.getMinutes();
+        var toDateYear = toDate.getFullYear();
+        var toDateMonth = toDate.getMonth()+1;
+        var toDateDay = toDate.getDate();
+        var toTimeHour = toDate.getHours();
+        var toDateMin = toDate.getMinutes();
+
+        var URL = '/_Charts/GetCSVData?ChartSeriesType='+$("#ChartSeriesType").val()+'&masterHostIP=' + masterHostIP + '&masterPort=' + masterPort + '&fromDateYear=' + fromDateYear + '&fromDateMonth=' + fromDateMonth + '&fromDateDay=' + fromDateDay + '&fromTimeHour=' + fromTimeHour + '&fromDateMin=' + fromDateMin + '&toDateYear=' + toDateYear + '&toDateMonth=' + toDateMonth + '&toDateDay=' + toDateDay + '&toTimeHour=' + toTimeHour + '&toDateMin=' + toDateMin;
+        
+        //$("#fromDate").val(URL);
+        $.get(URL, function (data) {
+            var maxHight = 0.0;
+
+            // Split the lines
+            var lines = data.split('\n');
+
+            // Iterate over the lines and add categories or series
+            $.each(lines, function (lineNo, line) {
+                var series = {
+                    name: "NOT SET YET",
+                    data: []
+                };
+                var items = line.split(',');
+                var time = "";
+                 $.each(items, function(itemNo, item) {
+                    if(itemNo == 0)
+                        series.name = item;
+                    else
+                    {
+                        if(time == "")
+                        {
+                            var itemDate = item.split('-');
+                            time = Date.UTC(itemDate[0], itemDate[1], itemDate[2], itemDate[3], itemDate[4], itemDate[5], itemDate[6]);
+                        }
+                        else
+                        {
+                            if(item>maxHight)
+                                maxHight = parseFloat(item);
+                            series.data.push([time, parseFloat(item)]);
+                            time = "";
+                        }
+                    }
+                });
+                options.series.push(series);
+            });
+            
+            options.yAxis.max = maxHight;
+
+            // Create the chart
+            chart_Range_@(Model.CloudId) = new Highcharts.Chart(options);
+        });
+    }
+</script>

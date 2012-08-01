@@ -1,0 +1,140 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@using CloudWebPortal.Models
+@model Cloud
+@{
+    Layout = null;
+    String masterHostIP = ViewBag.masterHostIP;
+    int masterPort = ViewBag.masterPort;
+}
+
+<div class="block-content">
+    <h1>
+        Cloud Applications</h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li id="Widget_Link"><a onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','ApplicationsList','_ApplicationsReport',12,@Model.CloudId)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <table class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">Application Name
+                </th>
+                <th scope="col">User
+                </th>
+                <th scope="col">Status
+                </th>
+                <th scope="col">Number of Resources
+                </th>
+                <th scope="col">Start Time
+                </th>
+                <th scope="col">Finished Time
+                </th>
+                <th scope="col">Cost
+                </th>
+                <th scope="col">Action
+                </th>
+            </tr>
+        </thead>
+        <tbody id="AppTableBody-@(Model.CloudId)">
+        </tbody>
+    </table>
+    <div class="block-footer">
+        <input type="Text" id="@(Model.CloudId)_applist_fromDate" maxlength="25" size="25"/>
+        <button onclick="javascript:NewCssCal ('@(Model.CloudId)_applist_fromDate','MMddyyyy','dropdown',true,'24',true)">From Date</button>
+        <input type="Text" id="@(Model.CloudId)_applist_toDate" maxlength="25" size="25"/>
+        <button onclick="javascript:NewCssCal ('@(Model.CloudId)_applist_toDate','MMddyyyy','dropdown',true,'24',true)">To Date</button>
+        <select id="@(Model.CloudId)_applist_ChartSeriesType">
+            <option value="All">Show All Application</option>
+            <option value="ErrorsOnly">Show Application With Errors Only</option>
+            <option value="ActiveOnly">Show Active Application</option>
+        </select>
+        <button onclick="show_applist_Range_@(Model.CloudId)()">Show</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function show_applist_Range_@(Model.CloudId)() {
+        var masterHostIP = '@(masterHostIP)';
+        var masterPort = @(masterPort);
+
+        var fromDate = new Date($("#@(Model.CloudId)_applist_fromDate").val());
+        var toDate = new Date($("#@(Model.CloudId)_applist_toDate").val());
+        var fromDateYear = fromDate.getFullYear();
+        var fromDateMonth = fromDate.getMonth()+1;
+        var fromDateDay = fromDate.getDate();
+        var fromTimeHour = fromDate.getHours();
+        var fromDateMin = fromDate.getMinutes();
+        var toDateYear = toDate.getFullYear();
+        var toDateMonth = toDate.getMonth()+1;
+        var toDateDay = toDate.getDate();
+        var toTimeHour = toDate.getHours();
+        var toDateMin = toDate.getMinutes();
+
+        var type = $("#@(Model.CloudId)_applist_ChartSeriesType").val();
+
+        var URL = '/_ApplicationsReport/GetApplicationsList_RowsOnly?type='+type+'&masterHostIP=' + masterHostIP + '&masterPort=' + masterPort + '&fromDateYear=' + fromDateYear + '&fromDateMonth=' + fromDateMonth + '&fromDateDay=' + fromDateDay + '&fromTimeHour=' + fromTimeHour + '&fromDateMin=' + fromDateMin + '&toDateYear=' + toDateYear + '&toDateMonth=' + toDateMonth + '&toDateDay=' + toDateDay + '&toTimeHour=' + toTimeHour + '&toDateMin=' + toDateMin;
+        $.ajax({
+            url: URL,
+            success: function(data){
+                $("#AppTableBody-@(Model.CloudId)").html(data);
+            }
+        });
+    }
+
+
+
+    function refreshAppTable(data) {
+        var masterHostIP = '@(masterHostIP)';
+        var masterPortNumber = @(masterPort);
+
+        var URL = '/_ApplicationsReport/GetActiveApplications_RowsOnly?masterHostIP='+masterHostIP+'&masterPortNumber='+masterPortNumber;
+        $.ajax({
+            url: URL,
+            success: function(ActiveApplications_RowsOnly){
+                $("#AppTableBody-@(Model.CloudId)").html(ActiveApplications_RowsOnly);
+                var URL2 = '/_ApplicationsReport/GetDoneApplications_RowsOnly?masterHostIP='+masterHostIP+'&masterPortNumber='+masterPortNumber+'&Data='+data;
+                $.ajax({
+                    url: URL2,
+                    success: function(DoneApplications_RowsOnly){
+                        $("#AppTableBody-@(Model.CloudId)").append(DoneApplications_RowsOnly);
+                    }
+                });
+            }
+        });
+    }
+
+
+    function ForceStop(ApplicationMasterService, ApplicationID) {
+        var username = "Administrator";
+        var password = "";
+        var masterHostIP = '@(masterHostIP)';
+        var masterPortNumber = @(masterPort);
+
+        var URL = '/_ApplicationsReport/ForceStopApp?masterHostIP='+masterHostIP+'&masterPortNumber='+masterPortNumber+'&ApplicationMasterService='+ApplicationMasterService+'&ApplicationID='+ApplicationID;
+        $.ajax({
+            url: URL,
+            success: function(){
+                setTimeout('refreshAppTable(\'NonSuccessfulOnly\');',2000);
+            }
+        });
+    }
+</script>

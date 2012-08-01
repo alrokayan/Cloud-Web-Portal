@@ -1,0 +1,56 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@{
+    ViewBag.Title = "Browse Services Catalog";
+}
+
+
+<ul id="breadcrumb">
+	<li><a href="@Url.Action("BrowseServicesCatalog", "Services")" title="Services Catalog">Services Catalog</a></li>
+	<li><a href="@Url.Action("BrowseServicesCatalog", "Services")" title="Browse Services Catalog">Browse Services Catalog</a></li>
+</ul>
+	
+</div></div>
+<!-- End status bar -->
+	
+<div id="header-shadow"></div>
+<!-- End header -->
+
+<article class="container_12">
+    <div id="ValidationSummaryDiv_Services_BrowseServicesCatalog">
+        @Html.ValidationSummary()
+    </div>
+    <div class="clear"></div>
+    <section class="grid_12"><br />
+        <div class="block-border">
+            @Html.Action("List", "_Services")
+        </div>
+    </section>
+</article>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Nav4").addClass("current");
+        $("#Nav4_1").addClass("current");
+
+        var ValidationMessage = $('#ValidationSummaryDiv_Services_BrowseServicesCatalog li').html();
+        if (ValidationMessage != "") {
+            $("#ValidationSummaryDiv_Services_BrowseServicesCatalog ul").addClass("message error grid_12");
+        }
+    });
+</script>

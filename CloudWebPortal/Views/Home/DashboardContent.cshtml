@@ -1,0 +1,48 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@using CloudWebPortal.Models
+@model IEnumerable<Widget>
+@{
+    Layout = null;
+}
+@foreach (var widget in Model)
+{
+    <section class="grid_@(widget.Width.ToString())">
+        <br />
+        <div class="block-border">
+            @try
+            {
+                <div id="WidgetID_@(widget.WidgetId)">
+                    @Html.Action(widget.ActionName, widget.ControllerName, new { id = widget.ActionId })
+                </div>
+                
+                <script type="text/javascript">
+                    var editLink = "<a href='#' onclick=\"openModalWindow("+"@widget.WidgetId"+",'Edit','_DashboardWidgets')\" title='Edit This Widget'><img src='"+"@(Url.Content("~/Content/images/icons/fugue/pencil.png"))"+"' width='16' height='16'></a>";
+                    $("#WidgetID_@(widget.WidgetId) #Widget_Link").html(editLink);
+
+                    var removeLink = "<li><a href='#' onclick=\"openModalWindow("+"@widget.WidgetId"+",'Delete','_DashboardWidgets')\" title='Delete This Widget'><img src='"+"@(Url.Content("~/Content/images/icons/fugue/cross-circle.png"))"+"' width='16' height='16'></a></li>";
+                    $("#WidgetID_@(widget.WidgetId) ul").first().append(removeLink);
+                </script>
+            }
+            catch
+            {
+            }
+        </div>
+    </section>
+}
