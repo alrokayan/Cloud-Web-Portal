@@ -18,8 +18,8 @@ Installtion Guide:
 2. Install NuGet Package Manager: http://nuget.org/
 3. Download DataAnnotationsExtensions.MVC3 & EntityFramework by running the following command
 in Package Manager Console <http://docs.nuget.org/docs/start-here/using-the-package-manager-console>:
-- Install-Package DataAnnotationsExtensions.MVC3
-- Install-Package EntityFramework
+	- Install-Package DataAnnotationsExtensions.MVC3
+	- Install-Package EntityFramework
 
    
 More Information is coming soon ..
