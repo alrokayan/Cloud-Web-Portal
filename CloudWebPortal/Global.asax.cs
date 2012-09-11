@@ -51,6 +51,7 @@ namespace CloudWebPortal
         protected void Application_Start()
         {
             System.Data.Entity.Database.SetInitializer(new CloudWebPortal.Models.CloudWebPortalDbInitializer());
+            System.Data.Entity.Database.SetInitializer(new CloudWebPortal.Areas.Aneka.Models.AnekaDbInitializer());
 
             AreaRegistration.RegisterAllAreas();
 
