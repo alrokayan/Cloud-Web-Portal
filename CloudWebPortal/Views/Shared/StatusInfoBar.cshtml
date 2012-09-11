@@ -18,8 +18,8 @@
 
 <ul id="status-infos">
     <li class="spaced">Logged as: <strong>@HttpContext.Current.User.Identity.Name</strong></li>
-    <li>@Html.Action("_ActivitiesList", "Shared") </li>
-     <li>@Html.Action("_IssuesList", "Shared") </li>
-    <li><a href="@Url.Action("Logout", "Home")" class="button red" title="Logout"><span
+    <li>@Html.Action("_ActivitiesList", "Shared", new { area = "" }) </li>
+     <li>@Html.Action("_IssuesList", "Shared", new { area = "" }) </li>
+    <li><a href="@Url.Action("Logout", "Home", new { area = "" })" class="button red" title="Logout"><span
         class="smaller">LOGOUT</span></a></li>
 </ul>

@@ -17,12 +17,13 @@
 -->
 
 @using CloudWebPortal.Models
+@using CloudWebPortal.Areas.Aneka.Models
 @using Aneka.PAL.Management.Model
 @{
     Layout = null;
 
-    List<CloudWebPortal.Models.Machine> machines = (List<CloudWebPortal.Models.Machine>)ViewBag.Machines;
-    List<CloudWebPortal.Models.Cloud> clouds = (List<CloudWebPortal.Models.Cloud>)ViewBag.Clouds;
+    List<CloudWebPortal.Areas.Aneka.Models.Machine> machines = (List<CloudWebPortal.Areas.Aneka.Models.Machine>)ViewBag.Machines;
+    List<Cloud> clouds = (List<Cloud>)ViewBag.Clouds;
 
     int num_of_issues = 0;
 }

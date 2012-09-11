@@ -1,0 +1,102 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@using CloudWebPortal.Areas.Aneka.Models
+@model Worker
+@{
+    Layout = null;
+    Machine machine = (Machine)ViewBag.Machine;
+}
+<div class="block-content">
+    <h1>
+        Details for worker ID: @Model.WorkerId</h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','Details','_Workers',9,@Model.WorkerId)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <!-- Add the class 'table' -->
+    <table class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">@Html.LabelFor(model => model.DisplayName)
+                </th>
+                <th scope="col">@Html.Label("Machine Hosting This Worker")
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Services)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Port)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Cost)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.isQuarantined)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.DisplayName)
+                </td>
+                <td>
+                    <a href="#" onclick="openModalWindow(@machine.MachineId,'Details','_Machines',null,1100)">@machine.DisplayName</a>
+                </td>
+                <td>
+                    <div class="more-events">@Model.Services.Count() Services
+                        <ul>
+                            @foreach (var Service in Model.Services.ToList())
+                            {
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => Service.ServiceId),'Details','_Services',null,600)">@Html.DisplayFor(Item => Service.Name)</a></li>
+                            }
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Port)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Cost)
+                </td>
+                <td>
+                    @if (Model.isQuarantined)
+                    {
+                        <text>Yes</text>
+                    }
+                    else
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <div class="block-footer">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'Edit','_Workers','Edit Worker')" class="button">
+            Edit this worker</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'Create','_Services')" class="button">
+                Add Service</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'','')" class="button">
+                    Re-Install</a><!-- HAS TO BE IMPLEMENTED -->
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'','')" class="button">
+            Quarantine</a><!-- HAS TO BE IMPLEMENTED -->
+        <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'Delete','_Workers','Remove Worker')">
+            <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
+            Remove this worker</a>
+    </div>
+</div>

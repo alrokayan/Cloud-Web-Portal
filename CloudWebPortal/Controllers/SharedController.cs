@@ -24,13 +24,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CloudWebPortal.Models;
+using CloudWebPortal.Areas.Aneka.Models;
 
 namespace CloudWebPortal.Controllers
 {
     public class SharedController : Controller
     {
-        private CloudWebPortalDbContext db = new CloudWebPortalDbContext();
+        private AnekaDbContext db = new AnekaDbContext();
 
         //
         // GET: /Shared/_IssuesList

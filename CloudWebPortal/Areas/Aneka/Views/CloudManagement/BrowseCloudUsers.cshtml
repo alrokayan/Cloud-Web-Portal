@@ -1,0 +1,58 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@{
+    ViewBag.Title = "Browse Clouds";
+}
+
+<ul id="breadcrumb">
+	<li><a href="@Url.Action("BrowseClouds", "CloudManagement")" title="Cloud Management">Cloud Management</a></li>
+	<li><a href="@Url.Action("BrowseCloudUsers", "CloudManagement")" title="Browse Clouds">Browse Cloud Users</a></li>
+</ul>
+	
+</div></div>
+<!-- End status bar -->
+	
+<div id="header-shadow"></div>
+<!-- End header -->
+
+
+<article class="container_12">
+    <div id="ValidationSummaryDiv_CloudManagement_BrowseCloudUsers">
+        @Html.ValidationSummary()
+    </div>
+    <div class="clear"></div>
+    <section class="grid_12"><br />
+        <div class="block-border">
+            @Html.Action("List", "_CloudUsers")
+        </div>
+    </section>
+</article>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Nav_Aneka").addClass("current");
+        $("#Nav_Aneka_4").addClass("current");
+
+        var ValidationMessage = $('#ValidationSummaryDiv_CloudManagement_BrowseCloudUsers li').html();
+        if (ValidationMessage != "") {
+            $("#ValidationSummaryDiv_CloudManagement_BrowseCloudUsers ul").addClass("message error grid_12");
+        }
+    });
+</script>
+

@@ -1,0 +1,88 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@using CloudWebPortal.Areas.Aneka.Models
+@model Cloud
+@{
+    Layout = null;
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="block-content">
+    <h1>
+        Create New Cloud</h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','Create','_Clouds',5)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    @using (Html.BeginForm("CreatePost", "_Clouds", FormMethod.Post, new { @class = "form" }))
+    {
+    
+        <div id="ValidationSummaryDiv_Clouds_Create">
+            @Html.ValidationSummary()
+        </div>
+        <br />
+        <fieldset>
+            <div class="task with-legend">
+                <div class="legend">
+                    Cloud Info</div>
+                @Html.LabelFor(model => model.CloudName)
+                @Html.TextBoxFor(model => model.CloudName, new { @class = "full-width" })
+                @Html.Label("Database Connection String (Keep it blank to store in memory)")
+                @Html.TextBoxFor(model => model.DBConnectionString, new { @class = "full-width" })
+                <small><strong>Example1:</strong><br />uid=admin;Pwd=password;server=128.250.35.190\SQLEXPRESS;Database=dbname</small>
+                <small><strong>Example2:</strong><br />Data Source=128.250.35.190;Initial Catalog=dbname;Persist Security Info=True;User ID=admin;Password=password</small>
+                <br />
+                <br />
+            </div>
+            <div class="task with-legend">
+                <div class="legend">
+                    Master Container Info</div>
+                @Html.LabelFor(model => model.Master.DisplayName)
+                @Html.TextBoxFor(model => model.Master.DisplayName, new { @class = "full-width" })
+                @Html.LabelFor(model => model.Master.Port)
+                @Html.TextBoxFor(model => model.Master.Port, new { @class = "full-width" })
+                @Html.LabelFor(model => model.Master.Cost)
+                @Html.TextBoxFor(model => model.Master.Cost, new { @class = "full-width" })
+                @Html.Label("Select Master Machine")
+                @Html.ListBox("masterMachineID", (SelectList)ViewBag.Machines, new { style = "width: 200px;" })
+                @Html.Label("Select Services (must select at least one)")
+                @Html.ListBox("selectedServicesIDs", (MultiSelectList)ViewBag.Services, new { style = "width: 200px;" })
+                @Html.Label("Master Failover Backup URI (Optional)")
+                @Html.TextBoxFor(model => model.Master.MasterFailoverBackupURI, new { @class = "full-width" })
+                <small><strong>Example:</strong> tcp://128.250.29.30:9090/Aneka<br /><strong>Note:</strong> You must add "tcp://" and "/Aneka"</small>
+                <br />
+                <br />
+            </div>
+            <br />
+            <br />
+            <p>
+                <button type="submit" class="full-width button">
+                    Create</button>
+            </p>
+        </fieldset>
+    }
+</div>
+<script type="text/javascript">
+    $("button").click(function () {
+        $("#ValidationSummaryDiv_Clouds_Create ul").addClass("message error no-margin");
+    });
+</script>

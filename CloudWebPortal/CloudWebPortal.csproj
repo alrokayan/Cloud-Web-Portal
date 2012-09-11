@@ -127,62 +127,51 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
-    <Compile Include="Controllers\CloudManagementController.cs" />
+    <Compile Include="Areas\Aneka\AnekaAreaRegistration.cs" />
+    <Compile Include="Areas\SMICloud\SMIAreaRegistration.cs" />
+    <Compile Include="Areas\Aneka\Controllers\CloudManagementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InfrastructureController.cs" />
-    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\InfrastructureController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\ServicesController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
-    <Compile Include="Controllers\SoftwareAppliancesController.cs" />
-    <Compile Include="Controllers\_ApplicationsReportController.cs" />
-    <Compile Include="Controllers\_ChartsController.cs" />
-    <Compile Include="Controllers\_WorkersController.cs" />
-    <Compile Include="Controllers\_CloudsController.cs" />
-    <Compile Include="Controllers\_CloudUsersController.cs" />
-    <Compile Include="Controllers\_ServicesController.cs" />
-    <Compile Include="Controllers\_SoftwareAppliancesController.cs" />
-    <Compile Include="Controllers\_MachinesLoginCredentialsController.cs" />
-    <Compile Include="Controllers\_ResourcePoolsController.cs" />
-    <Compile Include="Controllers\_MachinesController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\SoftwareAppliancesController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\_ApplicationsReportController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\_ChartsController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\_WorkersController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\_CloudsController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\_CloudUsersController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\_ServicesController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\_SoftwareAppliancesController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\_MachinesLoginCredentialsController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\_ResourcePoolsController.cs" />
+    <Compile Include="Areas\Aneka\Controllers\_MachinesController.cs" />
     <Compile Include="Controllers\WebPortalUsersManagementController.cs" />
     <Compile Include="Controllers\_DashboardWidgetsController.cs" />
     <Compile Include="Controllers\_PortalUsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Logic\AnekaUsersManagement.cs" />
-    <Compile Include="Logic\ContainersManagement.cs" />
-    <Compile Include="Logic\DaemonsManagement.cs" />
+    <Compile Include="Areas\Aneka\Logic\AnekaUsersManagement.cs" />
+    <Compile Include="Areas\Aneka\Logic\ContainersManagement.cs" />
+    <Compile Include="Areas\Aneka\Logic\DaemonsManagement.cs" />
     <Compile Include="Logic\MachinesManagement.cs" />
-    <Compile Include="Logic\MasterContainersManagement.cs" />
-    <Compile Include="Logic\Reporting\ApplicationManagement.cs" />
-    <Compile Include="Logic\Reporting\Helpers\Node.cs" />
-    <Compile Include="Logic\Reporting\Helpers\PeriodSelectionControl.cs" />
-    <Compile Include="Logic\Reporting\Helpers\ReportingUtil.cs" />
-    <Compile Include="Logic\Reporting\Helpers\ReportManager.cs" />
-    <Compile Include="Logic\Reporting\LiveResourceUtilizationManagement.cs" />
-    <Compile Include="Logic\Reporting\ResourceUtilizationManagement.cs" />
-    <Compile Include="Logic\WorkerContainersManagement.cs" />
-    <Compile Include="Models\AnekaStatusEnum.cs" />
-    <Compile Include="Models\AnekaWebPortalDbContext.cs" />
-    <Compile Include="Models\AnekaWebPortalDbModels.cs" />
+    <Compile Include="Areas\Aneka\Logic\MasterContainersManagement.cs" />
+    <Compile Include="Areas\Aneka\Logic\Reporting\ApplicationManagement.cs" />
+    <Compile Include="Areas\Aneka\Logic\Reporting\Helpers\Node.cs" />
+    <Compile Include="Areas\Aneka\Logic\Reporting\Helpers\PeriodSelectionControl.cs" />
+    <Compile Include="Areas\Aneka\Logic\Reporting\Helpers\ReportingUtil.cs" />
+    <Compile Include="Areas\Aneka\Logic\Reporting\Helpers\ReportManager.cs" />
+    <Compile Include="Areas\Aneka\Logic\Reporting\LiveResourceUtilizationManagement.cs" />
+    <Compile Include="Areas\Aneka\Logic\Reporting\ResourceUtilizationManagement.cs" />
+    <Compile Include="Areas\Aneka\Logic\WorkerContainersManagement.cs" />
+    <Compile Include="Areas\Aneka\Models\AnekaStatusEnum.cs" />
+    <Compile Include="Areas\Aneka\Models\AnekaDbContext.cs" />
+    <Compile Include="Areas\Aneka\Models\AnekaDbModels.cs" />
+    <Compile Include="Models\CloudWebPortalDbContext.cs" />
+    <Compile Include="Models\CloudWebPortalDbModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\960.gs.css" />
-    <Content Include="Content\css\960.gs.fluid.css" />
-    <Content Include="Content\css\block-lists.css" />
-    <Content Include="Content\css\calendars.css" />
-    <Content Include="Content\css\common.css" />
-    <Content Include="Content\css\form.css" />
-    <Content Include="Content\css\gallery.css" />
-    <Content Include="Content\css\mobile.css" />
-    <Content Include="Content\css\planning.css" />
-    <Content Include="Content\css\reset.css" />
-    <Content Include="Content\css\simple-lists.css" />
-    <Content Include="Content\css\special-pages.css" />
-    <Content Include="Content\css\standard.css" />
-    <Content Include="Content\css\table.css" />
-    <Content Include="Content\css\wizard.css" />
     <Content Include="Content\DateTimePicker\datetimepicker_css.js" />
     <Content Include="Content\DateTimePicker\images2\cal.gif" />
     <Content Include="Content\DateTimePicker\images2\cal_close.gif" />
@@ -957,6 +946,7 @@
     <Content Include="Content\images\table-sort-arrows.png" />
     <Content Include="Content\images\trans.png" />
     <Content Include="Content\images\wizard-head-effect.png" />
+    <Content Include="Content\images\your-logo.png" />
     <Content Include="Content\images\zebras.png" />
     <Content Include="Content\images_added\Cloud.png" />
     <Content Include="Content\images_added\container_master_started_32.png" />
@@ -968,85 +958,85 @@
     <Content Include="Content\images_added\SWApp.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Repository\Container\Amazon.EC2.dll" />
-    <Content Include="Repository\Container\Aneka.Accounting.dll" />
-    <Content Include="Repository\Container\Aneka.Config.dll" />
-    <Content Include="Repository\Container\Aneka.Data.dll" />
-    <Content Include="Repository\Container\Aneka.Data.Ftp.dll" />
-    <Content Include="Repository\Container\Aneka.Data.S3.dll" />
-    <Content Include="Repository\Container\Aneka.dll" />
-    <Content Include="Repository\Container\Aneka.Execution.dll" />
-    <Content Include="Repository\Container\Aneka.Hosting.Console.exe" />
-    <Content Include="Repository\Container\Aneka.Licensing.dll" />
-    <Content Include="Repository\Container\Aneka.Logging.dll" />
-    <Content Include="Repository\Container\Aneka.Management.Config.dll" />
-    <Content Include="Repository\Container\Aneka.MapReduce.Common.dll" />
-    <Content Include="Repository\Container\Aneka.MapReduce.dll" />
-    <Content Include="Repository\Container\Aneka.MapReduce.Execution.dll" />
-    <Content Include="Repository\Container\Aneka.MapReduce.Scheduler.dll" />
-    <Content Include="Repository\Container\Aneka.MapReduce.SimFTP.dll" />
-    <Content Include="Repository\Container\Aneka.PAL.Daemon.exe" />
-    <Content Include="Repository\Container\Aneka.PAL.dll" />
-    <Content Include="Repository\Container\Aneka.PAL.Linux.dll" />
-    <Content Include="Repository\Container\Aneka.PAL.MacOSX.dll" />
-    <Content Include="Repository\Container\Aneka.PAL.Management.dll" />
-    <Content Include="Repository\Container\Aneka.PAL.Windows.dll" />
-    <Content Include="Repository\Container\Aneka.Runtime.Common.dll" />
-    <Content Include="Repository\Container\Aneka.Runtime.dll" />
-    <Content Include="Repository\Container\Aneka.Runtime.Provisioning.dll" />
-    <Content Include="Repository\Container\Aneka.Runtime.Provisioning.EC2.dll" />
-    <Content Include="Repository\Container\Aneka.Runtime.Provisioning.GoGrid.dll" />
-    <Content Include="Repository\Container\Aneka.Runtime.Provisioning.Xen.dll" />
-    <Content Include="Repository\Container\Aneka.Scheduling.dll" />
-    <Content Include="Repository\Container\Aneka.Security.Windows.dll" />
-    <Content Include="Repository\Container\Aneka.Storage.dll" />
-    <Content Include="Repository\Container\Aneka.Tasks.dll" />
-    <Content Include="Repository\Container\Aneka.Tasks.Execution.dll" />
-    <Content Include="Repository\Container\Aneka.Tasks.Scheduler.dll" />
-    <Content Include="Repository\Container\Aneka.Threading.dll" />
-    <Content Include="Repository\Container\Aneka.Threading.Execution.dll" />
-    <Content Include="Repository\Container\Aneka.Threading.Scheduler.dll" />
-    <Content Include="Repository\Container\Aneka.Util.dll" />
-    <Content Include="Repository\Container\antlr.runtime.dll" />
-    <Content Include="Repository\Container\AWSSDK.dll" />
-    <Content Include="Repository\Container\Common.Logging.dll" />
-    <Content Include="Repository\Container\CookComputing.XmlRpcV2.dll" />
-    <Content Include="Repository\Container\DiffieHellman.dll" />
-    <Content Include="Repository\Container\Fl0yd.Controls.dll" />
-    <Content Include="Repository\Container\Fl0yd.Data.dll" />
-    <Content Include="Repository\Container\Fl0yd.Project.dll" />
-    <Content Include="Repository\Container\Fl0yd.Runtime.dll" />
-    <Content Include="Repository\Container\FtpClient.dll" />
-    <Content Include="Repository\Container\FtpServer.dll" />
-    <Content Include="Repository\Container\log4net.config.xml" />
-    <Content Include="Repository\Container\log4net.dll" />
-    <Content Include="Repository\Container\Mono.Posix.dll" />
-    <Content Include="Repository\Container\Org.Mentalis.Security.dll" />
-    <Content Include="Repository\Container\SharpSSH.Client.dll" />
-    <Content Include="Repository\Container\Spring.Core.dll" />
-    <Content Include="Repository\Container\Tamir.SharpSSH.dll" />
-    <Content Include="Repository\Container\XenServer.dll" />
-    <Content Include="Repository\Daemon\Aneka.Management.Config.dll" />
-    <Content Include="Repository\Daemon\Aneka.PAL.dll" />
-    <Content Include="Repository\Daemon\Aneka.PAL.Linux.dll" />
-    <Content Include="Repository\Daemon\Aneka.PAL.Management.dll" />
-    <Content Include="Repository\Daemon\Aneka.PAL.Windows.dll" />
-    <Content Include="Repository\Daemon\Aneka.Util.dll" />
-    <Content Include="Repository\Daemon\FtpClient.dll" />
-    <Content Include="Repository\Daemon\log4net.config.daemon.xml" />
-    <Content Include="Repository\Daemon\log4net.dll" />
-    <Content Include="Repository\Daemon\Mono.Posix.dll" />
-    <Content Include="Repository\Loader\Aneka.Management.Config.dll" />
-    <Content Include="Repository\Loader\Aneka.PAL.Daemon.exe" />
-    <Content Include="Repository\Loader\Aneka.PAL.dll" />
-    <Content Include="Repository\Loader\Aneka.PAL.Linux.dll" />
-    <Content Include="Repository\Loader\Aneka.PAL.Management.dll" />
-    <Content Include="Repository\Loader\Aneka.PAL.Windows.dll" />
-    <Content Include="Repository\Loader\Aneka.Util.dll" />
-    <Content Include="Repository\Loader\FtpClient.dll" />
-    <Content Include="Repository\Loader\log4net.config.daemon.xml" />
-    <Content Include="Repository\Loader\log4net.dll" />
-    <Content Include="Repository\Loader\Mono.Posix.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Amazon.EC2.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Accounting.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Config.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Data.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Data.Ftp.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Data.S3.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Execution.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Hosting.Console.exe" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Licensing.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Logging.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Management.Config.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.MapReduce.Common.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.MapReduce.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.MapReduce.Execution.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.MapReduce.Scheduler.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.MapReduce.SimFTP.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.PAL.Daemon.exe" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.PAL.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.PAL.Linux.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.PAL.MacOSX.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.PAL.Management.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.PAL.Windows.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Runtime.Common.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Runtime.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Runtime.Provisioning.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Runtime.Provisioning.EC2.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Runtime.Provisioning.GoGrid.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Runtime.Provisioning.Xen.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Scheduling.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Security.Windows.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Storage.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Tasks.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Tasks.Execution.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Tasks.Scheduler.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Threading.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Threading.Execution.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Threading.Scheduler.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Aneka.Util.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\antlr.runtime.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\AWSSDK.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Common.Logging.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\CookComputing.XmlRpcV2.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\DiffieHellman.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Fl0yd.Controls.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Fl0yd.Data.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Fl0yd.Project.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Fl0yd.Runtime.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\FtpClient.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\FtpServer.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\log4net.config.xml" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\log4net.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Mono.Posix.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Org.Mentalis.Security.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\SharpSSH.Client.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Spring.Core.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\Tamir.SharpSSH.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Container\XenServer.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Daemon\Aneka.Management.Config.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Daemon\Aneka.PAL.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Daemon\Aneka.PAL.Linux.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Daemon\Aneka.PAL.Management.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Daemon\Aneka.PAL.Windows.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Daemon\Aneka.Util.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Daemon\FtpClient.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Daemon\log4net.config.daemon.xml" />
+    <Content Include="Areas\Aneka\Logic\Repository\Daemon\log4net.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Daemon\Mono.Posix.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Loader\Aneka.Management.Config.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Loader\Aneka.PAL.Daemon.exe" />
+    <Content Include="Areas\Aneka\Logic\Repository\Loader\Aneka.PAL.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Loader\Aneka.PAL.Linux.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Loader\Aneka.PAL.Management.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Loader\Aneka.PAL.Windows.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Loader\Aneka.Util.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Loader\FtpClient.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Loader\log4net.config.daemon.xml" />
+    <Content Include="Areas\Aneka\Logic\Repository\Loader\log4net.dll" />
+    <Content Include="Areas\Aneka\Logic\Repository\Loader\Mono.Posix.dll" />
     <Content Include="Scripts\Highcharts-js\adapters\mootools-adapter.js" />
     <Content Include="Scripts\Highcharts-js\adapters\mootools-adapter.src.js" />
     <Content Include="Scripts\Highcharts-js\adapters\prototype-adapter.js" />
@@ -1068,111 +1058,112 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\js\common.js" />
-    <Content Include="Scripts\js\html5.js" />
-    <Content Include="Scripts\js\jquery-1.4.2.min.js" />
     <Content Include="Scripts\js\jquery.accessibleList.js" />
     <Content Include="Scripts\js\jquery.contextMenu.js" />
-    <Content Include="Scripts\js\jquery.dataTables.min.js" />
-    <Content Include="Scripts\js\jquery.datepick\calendar-blue.gif" />
-    <Content Include="Scripts\js\jquery.datepick\calendar-green.gif" />
-    <Content Include="Scripts\js\jquery.datepick\calendar.gif" />
-    <Content Include="Scripts\js\jquery.datepick\datepickBasic.html" />
-    <Content Include="Scripts\js\jquery.datepick\flora.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\humanity.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-af.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ar.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-az.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-bg.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-bs.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ca.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-cs.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-da.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-de-CH.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-de.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-el.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-en-GB.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-eo.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-es-AR.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-es.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-et.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-eu.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-fa.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-fi.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-fo.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-fr-CH.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-fr.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-gl.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-gu.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-he.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-hr.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-hu.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-hy.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-id.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-is.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-it.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ja.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ko.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-lt.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-lv.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ms.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-nl-BE.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-nl.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-no.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-pl.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-pt-BR.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ro.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ru.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sk.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sl.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sq.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sr-SR.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sr.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-sv.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ta.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-th.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-tr.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-uk.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-ur.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-vi.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-zh-CN.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-zh-HK.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick-zh-TW.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.ext.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.ext.min.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.ext.pack.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.lang.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.lang.min.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.lang.pack.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.min.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.pack.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.validation.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.validation.min.js" />
-    <Content Include="Scripts\js\jquery.datepick\jquery.datepick.validation.pack.js" />
-    <Content Include="Scripts\js\jquery.datepick\redmond.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\smoothness.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-blacktie.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-blitzer.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-cupertino.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-dotluv.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-excitebike.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-hotsneaks.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-humanity.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-mintchoc.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-redmond.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-smoothness.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-southstreet.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-start.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-swankypurse.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-trontastic.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-uidarkness.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-uilightness.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui-vader.datepick.css" />
-    <Content Include="Scripts\js\jquery.datepick\ui.datepick.css" />
-    <Content Include="Scripts\js\jquery.hashchange.js" />
     <Content Include="Scripts\js\jquery.modal.js" />
     <Content Include="Scripts\js\jquery.tip.js" />
+    <Content Include="Scripts\js\libs\jquery-1.6.3.min.js" />
+    <Content Include="Scripts\js\libs\jquery.dataTables.min.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\calendar-blue.gif" />
+    <Content Include="Scripts\js\libs\jquery.datepick\calendar-green.gif" />
+    <Content Include="Scripts\js\libs\jquery.datepick\calendar.gif" />
+    <Content Include="Scripts\js\libs\jquery.datepick\datepickBasic.html" />
+    <Content Include="Scripts\js\libs\jquery.datepick\flora.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\humanity.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-af.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-ar.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-az.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-bg.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-bs.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-ca.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-cs.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-da.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-de-CH.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-de.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-el.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-en-GB.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-eo.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-es-AR.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-es.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-et.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-eu.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-fa.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-fi.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-fo.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-fr-CH.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-fr.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-gl.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-gu.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-he.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-hr.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-hu.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-hy.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-id.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-is.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-it.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-ja.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-ko.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-lt.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-lv.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-ms.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-nl-BE.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-nl.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-no.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-pl.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-pt-BR.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-ro.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-ru.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-sk.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-sl.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-sq.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-sr-SR.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-sr.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-sv.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-ta.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-th.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-tr.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-uk.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-ur.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-vi.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-zh-CN.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-zh-HK.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick-zh-TW.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.ext.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.ext.min.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.ext.pack.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.lang.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.lang.min.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.lang.pack.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.min.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.pack.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.validation.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.validation.min.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\jquery.datepick.validation.pack.js" />
+    <Content Include="Scripts\js\libs\jquery.datepick\redmond.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\smoothness.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-blacktie.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-blitzer.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-cupertino.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-dotluv.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-excitebike.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-hotsneaks.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-humanity.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-mintchoc.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-redmond.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-smoothness.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-southstreet.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-start.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-swankypurse.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-trontastic.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-uidarkness.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-uilightness.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui-vader.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.datepick\ui.datepick.css" />
+    <Content Include="Scripts\js\libs\jquery.hashchange.js" />
+    <Content Include="Scripts\js\libs\modernizr.custom.min.js" />
+    <Content Include="Scripts\js\libs\selectivizr-min.js" />
     <Content Include="Scripts\js\list.js" />
     <Content Include="Scripts\js\mobile.js" />
     <Content Include="Scripts\js\old-browsers.js" />
@@ -1192,7 +1183,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
@@ -1239,139 +1230,139 @@
     <Content Include="Views\_DashboardWidgets\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Machines\Details.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Machines\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Machines\Create.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Machines\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Machines\Edit.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Machines\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Machines\Delete.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Machines\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_ResourcePools\List.cshtml" />
+    <Content Include="Areas\Aneka\Views\_ResourcePools\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_ResourcePools\Create.cshtml" />
+    <Content Include="Areas\Aneka\Views\_ResourcePools\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_ResourcePools\Edit.cshtml" />
+    <Content Include="Areas\Aneka\Views\_ResourcePools\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_ResourcePools\Delete.cshtml" />
+    <Content Include="Areas\Aneka\Views\_ResourcePools\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_ResourcePools\Details.cshtml" />
+    <Content Include="Areas\Aneka\Views\_ResourcePools\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_MachinesLoginCredentials\List.cshtml" />
+    <Content Include="Areas\Aneka\Views\_MachinesLoginCredentials\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_MachinesLoginCredentials\Details.cshtml" />
+    <Content Include="Areas\Aneka\Views\_MachinesLoginCredentials\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_MachinesLoginCredentials\Create.cshtml" />
+    <Content Include="Areas\Aneka\Views\_MachinesLoginCredentials\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_MachinesLoginCredentials\Edit.cshtml" />
+    <Content Include="Areas\Aneka\Views\_MachinesLoginCredentials\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_MachinesLoginCredentials\Delete.cshtml" />
+    <Content Include="Areas\Aneka\Views\_MachinesLoginCredentials\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_SoftwareAppliances\List.cshtml" />
+    <Content Include="Areas\Aneka\Views\_SoftwareAppliances\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_SoftwareAppliances\Details.cshtml" />
+    <Content Include="Areas\Aneka\Views\_SoftwareAppliances\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_SoftwareAppliances\Create.cshtml" />
+    <Content Include="Areas\Aneka\Views\_SoftwareAppliances\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_SoftwareAppliances\Edit.cshtml" />
+    <Content Include="Areas\Aneka\Views\_SoftwareAppliances\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_SoftwareAppliances\Delete.cshtml" />
+    <Content Include="Areas\Aneka\Views\_SoftwareAppliances\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Infrastructure\ManageMachinesandResourcePools.cshtml" />
+    <Content Include="Areas\Aneka\Views\Infrastructure\ManageMachinesandResourcePools.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Infrastructure\ManageMachinesLoginCredentials.cshtml" />
+    <Content Include="Areas\Aneka\Views\Infrastructure\ManageMachinesLoginCredentials.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\SoftwareAppliances\BrowseSoftwareAppliances.cshtml" />
+    <Content Include="Areas\Aneka\Views\SoftwareAppliances\BrowseSoftwareAppliances.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Services\List.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Services\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Services\Details.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Services\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Services\Create.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Services\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Services\Edit.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Services\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Services\Delete.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Services\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Services\BrowseServicesCatalog.cshtml" />
+    <Content Include="Areas\Aneka\Views\Services\BrowseServicesCatalog.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Clouds\List.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Clouds\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Clouds\Details.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Clouds\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Clouds\Create.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Clouds\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Clouds\Edit.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Clouds\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Clouds\Delete.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Clouds\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_CloudUsers\List.cshtml" />
+    <Content Include="Areas\Aneka\Views\_CloudUsers\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_CloudUsers\Details.cshtml" />
+    <Content Include="Areas\Aneka\Views\_CloudUsers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_CloudUsers\Create.cshtml" />
+    <Content Include="Areas\Aneka\Views\_CloudUsers\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_CloudUsers\Edit.cshtml" />
+    <Content Include="Areas\Aneka\Views\_CloudUsers\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_CloudUsers\Delete.cshtml" />
+    <Content Include="Areas\Aneka\Views\_CloudUsers\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\CloudManagement\BrowseClouds.cshtml" />
+    <Content Include="Areas\Aneka\Views\CloudManagement\BrowseClouds.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\CloudManagement\CloudDetails.cshtml" />
+    <Content Include="Areas\Aneka\Views\CloudManagement\CloudDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\CloudManagement\BrowseCloudUsers.cshtml" />
+    <Content Include="Areas\Aneka\Views\CloudManagement\BrowseCloudUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Workers\Details.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Workers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Workers\Create.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Workers\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Workers\Edit.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Workers\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Workers\Delete.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Workers\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\DashboardContent.cshtml" />
@@ -1380,22 +1371,37 @@
     <Content Include="Views\Shared\_IssuesList.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Workers\List.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Workers\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Repository\Container\Aneka.License" />
-    <None Include="Repository\Container\__listing__.map" />
-    <None Include="Repository\Daemon\__listing__.map" />
-    <None Include="Repository\Loader\__listing__.map" />
+    <Content Include="Areas\Aneka\Views\Web.config" />
+    <Content Include="Areas\SMICloud\Views\Web.config" />
+    <None Include="Content\images\.DS_Store" />
+    <None Include="Content\images\icons\.DS_Store" />
+    <None Include="Content\images\icons\fugue\.DS_Store" />
+    <None Include="Content\images\icons\web-app\.DS_Store" />
+    <None Include="Content\images\icons\web-app\24\.DS_Store" />
+    <None Include="Content\images\icons\web-app\32\.DS_Store" />
+    <None Include="Areas\Aneka\Logic\Repository\Container\Aneka.License" />
+    <None Include="Areas\Aneka\Logic\Repository\Container\__listing__.map" />
+    <None Include="Areas\Aneka\Logic\Repository\Daemon\__listing__.map" />
+    <None Include="Areas\Aneka\Logic\Repository\Loader\__listing__.map" />
     <Content Include="Views\Shared\_ActivitiesList.cshtml" />
-    <Content Include="Views\_Charts\CPU_Utilization_Range.cshtml" />
-    <Content Include="Views\_Charts\CPU_Utilization_Live.cshtml" />
-    <Content Include="Views\_ApplicationsReport\ApplicationsList.cshtml" />
-    <Content Include="Views\_Charts\JobsStatusSummary.cshtml" />
-    <Content Include="Views\_ApplicationsReport\GetApplicationsList_RowsOnly.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Charts\CPU_Utilization_Range.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Charts\CPU_Utilization_Live.cshtml" />
+    <Content Include="Areas\Aneka\Views\_ApplicationsReport\ApplicationsList.cshtml" />
+    <Content Include="Areas\Aneka\Views\_Charts\JobsStatusSummary.cshtml" />
+    <Content Include="Areas\Aneka\Views\_ApplicationsReport\GetApplicationsList_RowsOnly.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Aneka\Views\Shared\" />
+    <Folder Include="Areas\SMICloud\Controllers\" />
+    <Folder Include="Areas\SMICloud\Models\" />
+    <Folder Include="Areas\SMICloud\Views\Shared\" />
+    <Folder Include="Content\css\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

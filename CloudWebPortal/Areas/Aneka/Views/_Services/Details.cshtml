@@ -1,0 +1,104 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@model CloudWebPortal.Areas.Aneka.Models.Service
+@{
+    Layout = null;
+}
+<div class="block-content">
+    <h1>
+        Details For Service ID: @Model.ServiceId</h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','Details','_Services',9,@Model.ServiceId)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <!-- Add the class 'table' -->
+    <table class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">@Html.LabelFor(model => model.Name)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Workers)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Masters)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.isMasterOnly)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Name)
+                </td>
+                <td>
+                    <div class="more-events">@Model.Workers.Count() Workers
+                        <ul>
+                            @foreach (var worker in Model.Workers.ToList())
+                            {
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => worker.WorkerId),'Details','_Workers')">@Html.DisplayFor(widgetItem => worker.DisplayName)</a></li>
+                            }
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    <div class="more-events">@Model.Masters.Count() Masters
+                        <ul>
+                            @foreach (var master in Model.Masters.ToList())
+                            {
+                                <li class="icon-file"><a href="#" onclick="">@Html.DisplayFor(widgetItem => master.DisplayName)</a></li>
+                            }
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    @if (Model.isMasterOnly)
+                    {
+                        <text>Yes</text>
+                    }
+                    else
+                    {
+                        <text>No</text>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">@Html.LabelFor(model => model.SpringSegmentXML)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.TextAreaFor(model => model.SpringSegmentXML, new { style = "width: 100%; height: 300px;", disabled = string.Empty })
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="block-footer">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.ServiceId),'Edit','_Services','Edit Service')" class="button">
+            Edit this service</a> <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.ServiceId),'Delete','_Services','Delete Service')">
+                <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
+                Delete this service</a>
+    </div>
+</div>

@@ -1,0 +1,163 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@using CloudWebPortal.Areas.Aneka.Models
+@model Cloud
+@{
+    Layout = null;
+    Dictionary<int, Machine> WorkersMachines = (Dictionary<int, Machine>)ViewBag.WorkersMachines;
+}
+
+<div class="block-content">
+    <h1>
+        @Model.CloudName Cloud Workers <a href="#" onclick="openModalWindow(null,'Create','_Workers')">
+            <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle-blue.png")" width="16" height="16" alt="">Add
+            New Worker</a></h1>
+
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li><a href="@Url.Action("RefreshAllWorkers", "_Workers", new { id = Model.CloudId })" title="Refreash All Workers">
+                        <img src="@Url.Content("~/Content/images/icons/fugue/arrow-circle.png")" width="16" height="16">
+                        Refreash All Workers</a></li>
+                    <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','List','_Workers',12,@Model.CloudId)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <!-- Add the class 'table' -->
+    <table class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">@Html.Label("Worker Name")
+                </th>
+                <th scope="col">@Html.Label("Port")
+                </th>
+                <th scope="col">@Html.Label("Cost")
+                </th>
+                <th scope="col">@Html.Label("Services")
+                </th>
+                <th scope="col">@Html.Label("Is Quarantined?")
+                </th>
+                <th scope="col">@Html.Label("Worker Status")
+                </th>
+                <th scope="col" class="table-actions">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var worker in Model.Workers)
+        {
+            <tr>
+                <td>
+                    <a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,1100)">@Html.DisplayFor(w => worker.DisplayName)</a>   (<a href="#" onclick="openModalWindow(@WorkersMachines[worker.WorkerId].MachineId,'Details','_Machines',null,1100)">@WorkersMachines[worker.WorkerId].DisplayName</a>)
+                </td>
+                <td>
+                    @Html.DisplayFor(w => worker.Port)
+                </td>
+                <td>
+                    @Html.DisplayFor(w => worker.Cost)
+                </td>
+                <td>
+                    <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Services')">
+                        <option>@worker.Services.Count() Services</option>
+                        @foreach (var service in worker.Services.ToList())
+                        {
+                            <option id="@Html.DisplayFor(widgetItem => service.ServiceId)">@Html.DisplayFor(Item => service.Name)</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    @if (worker.isQuarantined)
+                    {<text>YES</text>}
+                    else
+                    {<text>NO</text>}
+                </td>
+                <td>
+                    @if (worker.isInProgress != null && worker.isInProgress == true)
+                    {
+                        <span class="button">@worker.ProgressMesage
+					        <span class="progress-bar"><span class="orange with-stripes"></span></span>
+					    </span>
+                    }
+                    else
+                    {
+                        if (worker.isInstalled != null && worker.isInstalled == false)
+                        {
+                            <a title="@Model.Master.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16"/></a> <text>Not Installed</text>
+                        }
+                        else
+                        {
+                            if (worker.StatusEnum == Aneka.UI.Configuration.ProbeStatus.ServiceActive)
+                            {
+                                    <a title="@Model.Master.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/status.png")" width="16" height="16"/></a>
+                            }
+                            else
+                            {
+                                if (worker.StatusEnum == Aneka.UI.Configuration.ProbeStatus.ServiceUnactive)
+                                {
+                                        <a title="@Model.Master.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/status-busy.png")" width="16" height="16"/></a>
+                                }
+                                else
+                                {
+                                    if (worker.StatusEnum == Aneka.UI.Configuration.ProbeStatus.NetworkUnreachable)
+                                    {
+                                            <a title="@Model.Master.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/status-offline.png")" width="16" height="16"/></a>
+                                    }
+                                    else
+                                    {
+                                        if (worker.StatusEnum == Aneka.UI.Configuration.ProbeStatus.Error)
+                                        {
+                                                <a title="@Model.Master.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16"/></a> @Model.Master.ProgressMesage <text> - </text>
+                                        }
+                                        else
+                                        {
+                                                <a title="@Model.Master.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/exclamation-diamond.png")" width="16" height="16"/></a>
+                                        }
+
+                                    }
+                                }
+                            }
+                            @worker.StatusEnum
+                        }
+                    }
+                </td>
+                <td class="table-actions">
+                    <a href="@Url.Action("RestartContainer", "_Workers", new { id = worker.WorkerId })" title="Restart" class="with-tip">
+                        <img src="@Url.Content("~/Content/images/icons/fugue/arrow-circle.png")" width="16" height="16">
+                    </a>
+                    <a href="@Url.Action("StartContainer", "_Workers", new { id = worker.WorkerId })" title="Start" class="with-tip">
+                        <img src="@Url.Content("~/Content/images/icons/fugue/control.png")" width="16" height="16">
+                    </a>
+                    <a href="@Url.Action("StopContainer", "_Workers", new { id = worker.WorkerId })" title="Stop" class="with-tip">
+                        <img src="@Url.Content("~/Content/images/icons/fugue/control-stop-square.png")" width="16" height="16">
+                    </a>
+                    <a href="@Url.Action("DestroyContainer", "_Workers", new { id = worker.WorkerId })" title="Uninstall" class="with-tip">
+                        <img src="@Url.Content("~/Content/images/icons/fugue/cross-small.png")" width="16" height="16">
+                   </a>
+                   <a href="@Url.Action("CreateContainer", "_Workers", new { id = worker.WorkerId })" title="Install" class="with-tip">
+                        <img src="@Url.Content("~/Content/images/icons/fugue/control-power.png")" width="16" height="16">
+                   </a>
+                   <span class="sep"></span>
+                   <a href="#" onclick="openModalWindow(@worker.WorkerId,'Delete','_Workers')" title="Remove Worker" class="with-tip">
+                        <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
+                   </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

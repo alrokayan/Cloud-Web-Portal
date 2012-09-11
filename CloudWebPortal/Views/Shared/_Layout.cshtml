@@ -34,19 +34,20 @@
     <link href="@Url.Content("~/Content/css/calendars.css")" rel="stylesheet" type="text/css">
     <link href="@Url.Content("~/Content/css/wizard.css")" rel="stylesheet" type="text/css">
     <link href="@Url.Content("~/Content/css/gallery.css")" rel="stylesheet" type="text/css">
-    <!-- html5.js has to be loaded before anything else -->
-    <script type="text/javascript" src="@Url.Content("~/Scripts/js/html5.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery-1.4.2.min.js")"></script>
+    
+	<script type="text/javascript" src="@Url.Content("~/Scripts/js/libs/modernizr.custom.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/libs/jquery-1.6.3.min.js")"></script><!-- make sure that you have the right link -->
     <script type="text/javascript" src="@Url.Content("~/Scripts/js/old-browsers.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.accessibleList.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/js/searchField.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/js/common.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/js/standard.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.tip.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.hashchange.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/libs/jquery.hashchange.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.contextMenu.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/js/list.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.modal.js")"></script>
+	
     <!-- highcharts -->
     <script type="text/javascript" src="@Url.Content("~/Scripts/Highcharts-js/highcharts.js")"></script>
     <!-- Date Time Picker -->
@@ -107,65 +108,144 @@
     <!-- Main nav -->
     <nav id="main-nav">
         <ul class="container_12">
-            <li id="Nav1" class="dashboard"><a href="@Url.Action("Dashboard", "Home")" title="Home"></a>
+            <!-- Home -->
+            <li id="Nav_Home" class="settings"><a href="@Url.Action("Dashboard", "Home", new { area = "" })" title="Home"></a>
                 <ul>
-                    <li id="Nav1_1"><a href="@Url.Action("Dashboard", "Home")" title="Dashboard">Dashboard</a></li>
+                    <li id="Nav_Home_1"><a href="@Url.Action("Dashboard", "Home", new { area = "" })" title="Dashboard">Dashboard</a></li>
                 </ul>
             </li>
-            <li id="Nav2" class="machines"><a href="#" title="Infrastructure"></a>
+
+            <!-- Resources -->
+            <li id="Nav_Resources" class="home"><a href="#" title="Resources"></a>
                 <ul>
-                    <li id="Nav2_1"><a href="@Url.Action("ManageMachinesandResourcePools", "Infrastructure")">
-                        Manage Machines and Resource Pools</a></li>
-                    <li id="Nav2_2"><a href="@Url.Action("ManageMachinesLoginCredentials", "Infrastructure")">
-                        Manage Machines Login Credentials</a></li>
-                    <li id="Nav2_3"><a href="#" onclick="openModalWindow(null,'Create','_Machines','Add Machine')">
+                    <li id="Nav_Resource_1"><a href="#" title="Dashboard">Manage Resources</a></li>
+                </ul>
+            </li>
+
+            <!-- Aneka -->
+            <li id="Nav_Aneka" class="stats"><a href="#" title="Aneka"></a>
+                <ul>
+
+                    <!-- Infrastructure -->
+                    <li id="Nav_Aneka_1" class="with-menu"><a href="@Url.Action("ManageMachinesandResourcePools", "Infrastructure", new { area = "Aneka" })">Infrastructure</a>
+                        <!-- Here comes the menu -->
+                        <div class="menu">
+     
+                            <!-- This is the arrow down image -->
+                            <img src="/Content/images/menu-open-arrow.png" width="16" height="16">
+         
+                            <!-- Menu content -->
+                            <ul>
+                                <li class="icon_server"><a href="@Url.Action("ManageMachinesandResourcePools", "Infrastructure", new { area = "Aneka" })">Manage Machines and Resource Pools</a>
+                                    <ul>
+                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Machines','Add Machine')">
                         Add Machine</a></li>
-                    <li id="Nav2_4"><a href="#" onclick="openModalWindow(null,'Create','_MachinesLoginCredentials','Create Machine Login Credential')">
-                        Create Machine Login Credential</a></li>
-                    <li id="Nav2_5"><a href="#" onclick="openModalWindow(null,'Create','_ResourcePools','Create New Resource Pool',600)">
+                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_ResourcePools','Create New Resource Pool',600)">
                         Create New Resource Pool</a></li>
-                </ul>
-            </li>
-            <li id="Nav3" class="SWApps"><a href="#" title="Software Appliances"></a>
-                <ul>
-                    <li id="Nav3_1"><a href="@Url.Action("BrowseSoftwareAppliances", "SoftwareAppliances")">
-                        Browse Software Appliances</a></li>
-                    <li id="Nav3_2"><a href="#" onclick="openModalWindow(null,'Create','_SoftwareAppliances','Add Software Appliance')">
+                                    </ul>
+                                </li>
+
+                                <li class="icon_server"><a href="@Url.Action("ManageMachinesLoginCredentials", "Infrastructure", new { area = "Aneka" })">Manage Machines Login Credentials</a>
+                                    <ul>
+                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_MachinesLoginCredentials','Create Machine Login Credential')">
+                        Create Machine Login Credential</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <!-- End  of menu content -->
+                        </div>
+                        <!-- Menu end -->
+                    </li>
+
+                    <!-- Software Appliances -->
+                    <li id="Nav_Aneka_2" class="with-menu">
+						<a href="@Url.Action("BrowseSoftwareAppliances", "SoftwareAppliances", new { area = "Aneka" })">Software Appliances</a>
+                        <!-- Here comes the menu -->
+                        <div class="menu">
+     
+                            <!-- This is the arrow down image -->
+                            <img src="/Content/images/menu-open-arrow.png" width="16" height="16">
+         
+                            <!-- Menu content -->
+                            <ul>
+                                <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_SoftwareAppliances','Add Software Appliance')">
                         Add Software Appliance</a></li>
-                </ul>
-            </li>
-            <li id="Nav4" class="services"><a href="#" title="Services Catalog"></a>
-                <ul>
-                    <li id="Nav4_1"><a href="@Url.Action("BrowseServicesCatalog", "Services")">Browse Services
-                        Catalog</a></li>
-                    <li id="Nav4_2"><a href="#" onclick="openModalWindow(null,'Create','_Services','Create New Service',600)">
+                            </ul>
+                            <!-- End  of menu content -->
+                        </div>
+                        <!-- Menu end -->
+                    </li>
+
+                    <!-- Services -->
+                    <li id="Nav_Aneka_3" class="with-menu">
+						<a href="@Url.Action("BrowseServicesCatalog", "Services", new { area = "Aneka" })">Services Catalog</a>
+                        <!-- Here comes the menu -->
+                        <div class="menu">
+     
+                            <!-- This is the arrow down image -->
+                            <img src="/Content/images/menu-open-arrow.png" width="16" height="16">
+         
+                            <!-- Menu content -->
+                            <ul>
+                                <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Services','Create New Service',600)">
                         Create Service</a></li>
-                </ul>
-            </li>
-            <li id="Nav5" class="cloud"><a href="#" title="Cloud Management"></a>
-                <ul>
-                    <li id="Nav5_1"><a href="@Url.Action("BrowseClouds", "CloudManagement")">Browse Clouds</a></li>
-                    <li id="Nav5_2"><a href="@Url.Action("BrowseCloudUsers", "CloudManagement")">Browse
-                        Cloud Users</a></li>
-                    <li id="Nav5_3"><a href="#" onclick="openModalWindow(null,'Create','_Clouds','Create New Cloud')">
+                            </ul>
+                            <!-- End  of menu content -->
+                        </div>
+                        <!-- Menu end -->
+                    </li>
+
+                    <!-- Cloud -->
+                    <li id="Nav_Aneka_4" class="with-menu"><a href="@Url.Action("BrowseClouds", "CloudManagement", new { area = "Aneka" })">Aneka Cloud Managment</a>
+                        <!-- Here comes the menu -->
+                        <div class="menu">
+     
+                            <!-- This is the arrow down image -->
+                            <img src="/Content/images/menu-open-arrow.png" width="16" height="16">
+         
+                            <!-- Menu content -->
+                            <ul>
+                                <li class="icon_server"><a href="@Url.Action("BrowseClouds", "CloudManagement", new { area = "Aneka" })">Browse Clouds</a>
+                                    <ul>
+                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Clouds','Create New Cloud')">
                         Create A Cloud</a></li>
-                    <li id="Nav5_4"><a href="#" onclick="openModalWindow(null,'Create','_CloudUsers','Create New Cloud User')">
-                        Create New Cloud User</a></li>
-                    <li id="Nav5_5"><a href="#" onclick="openModalWindow(null,'Create','_Workers','Create New Worker')">
-                        Create New Worker</a></li>
+                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Workers','Create New Worker')">
+                        Add New Worker</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="icon_server"><a href="@Url.Action("BrowseCloudUsers", "CloudManagement", new { area = "Aneka" })">Browse
+                        Cloud Users</a>
+                                </li>
+                            </ul>
+                            <!-- End  of menu content -->
+                        </div>
+                        <!-- Menu end -->
+                    </li>
                 </ul>
             </li>
-            <li id="Nav6" class="users"><a href="#" title="Web Portal Users Management"></a>
+
+            <!-- SMICloud -->
+            <li id="Nav_SMICloud" class="comments"><a href="#" title="SMICloud"></a>
                 <ul>
-                    <li id="Nav6_1"><a href="@Url.Action("UsersManagement", "WebPortalUsersManagement")">
+                    <li id="Nav_SMICloud_1"><a href="#" title="QoS Managment">QoS Managment</a></li>
+                    <li id="Nav_SMICloud_2"><a href="#" title="Ranking Result">Ranking Result</a></li>
+                </ul>
+            </li>
+
+            <!-- Web Portal Users Management -->
+            <li id="Nav_Users" class="users"><a href="#" title="Web Portal Users Management"></a>
+                <ul>
+                    <li id="Nav_Users_1"><a href="@Url.Action("UsersManagement", "WebPortalUsersManagement", new { area = "" })">
                         Users management</a></li>
-                    <li id="Nav6_2"><a href="#" onclick="openModalWindow(null,'Create','_PortalUsers','Create New User')">
+                    <li id="Nav_Users_2"><a href="#" onclick="openModalWindow(null,'Create','_PortalUsers','Create New User')">
                         Create New User</a></li>
-                    <li id="Nav6_3"><a href="#" onclick="openModalWindow(null,'Create','_DashboardWidgets','Add Widget To Dashboard')">
+                    <li id="Nav_Users_3"><a href="#" onclick="openModalWindow(null,'Create','_DashboardWidgets','Add Widget To Dashboard')">
                         Add Widget To Dashboard</a></li>
                 </ul>
             </li>
         </ul>
+
     </nav>
     <!-- End main nav -->
     <!-- Sub nav -->

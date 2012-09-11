@@ -1,0 +1,71 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@model CloudWebPortal.Areas.Aneka.Models.Worker
+@{
+    Layout = null;
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="block-content">
+    <h1>
+        Add New Worker</h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','Create','_Workers',3)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    @using (Html.BeginForm("CreatePost", "_Workers", FormMethod.Post, new { @class = "form" }))
+    {
+        <div id="ValidationSummaryDiv_Workers_Create">
+            @Html.ValidationSummary()
+        </div>
+        <br />
+        <fieldset>
+            @Html.LabelFor(model => model.DisplayName)
+            @Html.TextBoxFor(model => model.DisplayName, new { @class = "full-width" })
+            @Html.LabelFor(model => model.Port)
+            @Html.TextBoxFor(model => model.Port, new { @class = "full-width" })
+            @Html.LabelFor(model => model.Cost)
+            @Html.TextBoxFor(model => model.Cost, new { @class = "full-width" })
+            @Html.Label("Create this worker in this machine (Must choose one)")
+            @Html.DropDownList("MachineId", (SelectList)ViewBag.Machines, new { style = "width: 200px;" })
+            @Html.Label("Add this worker to this cloud (Must choose one)")
+            @Html.DropDownList("CloudID", (SelectList)ViewBag.Clouds, new { style = "width: 200px;" })
+            @Html.LabelFor(model => model.Services)
+            @Html.ListBox("ServicesList", (MultiSelectList)ViewBag.Services, new { style = "width: 200px;" })
+            <br />
+            <br />
+            @Html.CheckBox("isQuarantined", false, new { @class = "mini-switch", style = "visibility:hidden;" })
+            @*Quarantine this worker
+            <br />
+            <br />*@
+            <p>
+                <button type="submit" class="full-width button">
+                    Add</button>
+            </p>
+        </fieldset>
+    }
+</div>
+<script type="text/javascript">
+    $("button").click(function () {
+        $("#ValidationSummaryDiv_Workers_Create ul").addClass("message error no-margin");
+    });
+</script>

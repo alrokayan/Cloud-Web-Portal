@@ -27,6 +27,7 @@ using Aneka.PAL.Management.Impl;
 using CloudWebPortal.Models;
 using System.Runtime.Serialization;
 using log4net;
+using CloudWebPortal.Areas.Aneka.Models;
 
 // Configure log4net using the .config file
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "Web.config", Watch = true)]
@@ -35,7 +36,7 @@ namespace CloudWebPortal.Logic
 {
     public class MachinesManagement
     {
-        private CloudWebPortalDbContext db = new CloudWebPortalDbContext();
+        private AnekaDbContext db = new AnekaDbContext();
 
         /// <summary>
         /// Get the latest Machine Status, and update it in the database
@@ -46,10 +47,10 @@ namespace CloudWebPortal.Logic
         public DaemonProbeResult UpdateMachineStatus(int machineID, MachineLoginCredential login)
         {
             DaemonProbeResult probeResult = new DaemonProbeResult(DaemonProbeStatus.Unknown,null);
-            CloudWebPortal.Models.Machine machine = db.Machines.Find(machineID);
+            CloudWebPortal.Areas.Aneka.Models.Machine machine = db.Machines.Find(machineID);
             if (pingMachine(machine.IP))
             {
-                Aneka.PAL.Management.Model.Machine daemonMachine = ToAnekaPALMachineWithLogin(machine, login);
+                global::Aneka.PAL.Management.Model.Machine daemonMachine = ToAnekaPALMachineWithLogin(machine, login);
                 probeResult = ProbeMachine(daemonMachine);
 
                 machine.IP = daemonMachine.Address;
@@ -95,7 +96,7 @@ namespace CloudWebPortal.Logic
         /// </summary>
         /// <param name="daemonMachine">Daemon Machine entity</param>
         /// <returns></returns>
-        public DaemonProbeResult ProbeMachine(Aneka.PAL.Management.Model.Machine daemonMachine)
+        public DaemonProbeResult ProbeMachine(global::Aneka.PAL.Management.Model.Machine daemonMachine)
         {
             DaemonProbeResult result = new DaemonProbeResult(DaemonProbeStatus.Unknown, null);
 
@@ -158,29 +159,29 @@ namespace CloudWebPortal.Logic
         }
 
         /// <summary>
-        /// Convert the Machine entity from CloudWebPortal.Models.Machine to Aneka.PAL.Management.Model.Machine by passing the Machine Login Credential
+        /// Convert the Machine entity from CloudWebPortal.Areas.Aneka.Models.Machine to Aneka.PAL.Management.Model.Machine by passing the Machine Login Credential
         /// </summary>
-        /// <param name="machine">CloudWebPortal.Models.Machine</param>
+        /// <param name="machine">CloudWebPortal.Areas.Aneka.Models.Machine</param>
         /// <param name="login">Machine Login Credential</param>
         /// <returns>Aneka.PAL.Management.Model.Machine</returns>
-        public Aneka.PAL.Management.Model.Machine ToAnekaPALMachineWithLogin(CloudWebPortal.Models.Machine machine, MachineLoginCredential login)
+        public global::Aneka.PAL.Management.Model.Machine ToAnekaPALMachineWithLogin(CloudWebPortal.Areas.Aneka.Models.Machine machine, MachineLoginCredential login)
         {
-            Aneka.PAL.Management.Model.Machine result = new Aneka.PAL.Management.Model.Machine(machine.IP);
+            global::Aneka.PAL.Management.Model.Machine result = new global::Aneka.PAL.Management.Model.Machine(machine.IP);
             result.DaemonUri = ResolveURL(string.Format("tcp://{0}:{1}/daemon", result.Address, machine.Daemon.Port));
             if (login != null)
-                result.UserAccount = new Aneka.PAL.Management.Model.UserAccount(login.Username, login.Password);
+                result.UserAccount = new global::Aneka.PAL.Management.Model.UserAccount(login.Username, login.Password);
             result.Platform = machine.Platform.Platform;
             result.HomeDirectory = machine.Daemon.Directory + "\\LocalRepository\\Container";
             return result;
         }
 
         /// <summary>
-        /// Convert the Machine entity from CloudWebPortal.Models.Machine to Aneka.PAL.Management.Model.Machine without passing the Machine Login Credential
+        /// Convert the Machine entity from CloudWebPortal.Areas.Aneka.Models.Machine to Aneka.PAL.Management.Model.Machine without passing the Machine Login Credential
         /// </summary>
-        /// <param name="machine">CloudWebPortal.Models.Machine</param>
+        /// <param name="machine">CloudWebPortal.Areas.Aneka.Models.Machine</param>
         /// <param name="login">Machine Login Credential</param>
         /// <returns>Aneka.PAL.Management.Model.Machine</returns>
-        public Aneka.PAL.Management.Model.Machine ToAnekaPALMachine(CloudWebPortal.Models.Machine machine)
+        public global::Aneka.PAL.Management.Model.Machine ToAnekaPALMachine(CloudWebPortal.Areas.Aneka.Models.Machine machine)
         {
             return ToAnekaPALMachineWithLogin(machine, getLogin(machine));
         }
@@ -190,7 +191,7 @@ namespace CloudWebPortal.Logic
         /// </summary>
         /// <param name="machine">Machine</param>
         /// <returns>Machine Login Credential</returns>
-        public MachineLoginCredential getLogin(CloudWebPortal.Models.Machine machine)
+        public MachineLoginCredential getLogin(CloudWebPortal.Areas.Aneka.Models.Machine machine)
         {
             MachineLoginCredential login = null;
             var logins = db.MachineLoginCredentials.ToList();

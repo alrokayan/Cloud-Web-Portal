@@ -1,0 +1,265 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@model CloudWebPortal.Areas.Aneka.Models.Machine
+@{
+    Layout = null;
+}
+<div class="block-content">
+    <h1>
+        Details for machine ID: @Model.MachineId</h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','Details','_Machines',9,@Model.MachineId)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <!-- Add the class 'table' -->
+    <table class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">@Html.LabelFor(model => model.DisplayName)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.IP)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Platform)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Type)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.SoftwareAppliances)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Workers)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Masters)
+                </th>
+                <th scope="col">@Html.Label("Resource Pool")
+                </th>
+                <th scope="col">@Html.Label("Login Username")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.DisplayName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.IP)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Platform.Platform)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Type.Type)
+                </td>
+                <td>
+                    <div class="more-events">@Model.SoftwareAppliances.Count() Software Appliances
+                        <ul>
+                            @foreach (var SoftwareAppliance in Model.SoftwareAppliances.ToList())
+                            {
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => SoftwareAppliance.SoftwareApplianceId),'Details','_SoftwareAppliances')">@Html.DisplayFor(Item => SoftwareAppliance.Name)</a></li>
+                            }
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    <div class="more-events">@Model.Workers.Count() Workers
+                        <ul>
+                            @foreach (var worker in Model.Workers.ToList())
+                            {
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => worker.WorkerId),'Details','_Workers')">@Html.DisplayFor(Item => worker.DisplayName)</a></li>
+                            }
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    <div class="more-events">@Model.Masters.Count() Masters
+                        <ul>
+                            @foreach (var master in Model.Masters.ToList())
+                            {
+                                <li class="icon-file"><a href="#" onclick="">@Html.DisplayFor(Item => master.DisplayName)</a></li>
+                            }
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    @ViewBag.ResourcePool
+                </td>
+                <td>
+                    @ViewBag.MachineLoginCredential
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <table class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">@Html.Label("Machine/Daemon Status")
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Daemon.Port)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Daemon.Directory)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                @if (Model.isInProgress != null && Model.isInProgress == true)
+                {
+                    <span class="button">@Model.ProgressMesage
+					    <span class="progress-bar"><span class="orange with-stripes"></span></span>
+					</span>
+                }
+                else
+                {
+                    if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStarted)
+                    {
+                                <a title="@Model.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/status.png")" width="16" height="16"/></a>
+                    }
+                    else
+                    {
+                        if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStopped)
+                        {
+                                    <a title="@Model.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/status-busy.png")" width="16" height="16"/></a>
+                        }
+                        else
+                        {
+                            if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.NetworkNotReachable)
+                            {
+                                        <a title="@Model.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/status-offline.png")" width="16" height="16"/></a>
+                            }
+                            else
+                            {
+                                if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.BadCredentials)
+                                {
+                                            <a title="@Model.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/user-silhouette-question.png")" width="16" height="16"/></a>
+                                }
+                                else
+                                {
+                                            <a title="@Model.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/exclamation-diamond.png")" width="16" height="16"/></a>
+                                }
+
+                            }
+                        }
+                    }
+                    @Model.StatusEnum
+                }
+                </td>
+                <td>
+                    @if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStarted)
+                    {
+                        @Model.Daemon.Port
+                    }
+                    else
+                    {
+                        <text>Daemon Not Running</text>
+                    }
+                </td>
+                <td>
+                    @if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStarted)
+                    {
+                        @Model.Daemon.Directory
+                    }
+                    else
+                    {
+                        <text>Daemon Not Running</text>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="block-footer">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.MachineId),'Edit','_Machines','Edit Machine')" class="button">
+            Edit this machine</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.MachineId),'Create','_SoftwareAppliances')" class="button">
+                Add Software Appliance</a>
+
+        @if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceNotInstalled || Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStarted || Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStopped)
+        {
+            if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceNotInstalled)
+            {
+                <a href="@Url.Action("InstallDaemon", "_Machines", new { id = Html.DisplayFor(modelItem => modelItem.MachineId) })" class="button">
+                        Install Daemon</a>
+                <a class="button" style="background: url()">Uninstall</a>
+            }
+            else
+            {
+                <a class="button" style="background: url()">Install Daemon</a>
+                <a href="@Url.Action("UninstallDaemon", "_Machines", new { id = Html.DisplayFor(modelItem => modelItem.MachineId) })" class="button">
+                    Uninstall</a>
+            }
+
+            if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStopped)
+            {
+                <a href="@Url.Action("StartDaemon", "_Machines", new { id = Html.DisplayFor(modelItem => modelItem.MachineId) })" class="button">
+                    Start Daemon</a>
+            }
+            else
+            {
+                <a class="button" style="background: url()">Start Daemon</a>
+            }
+
+            if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStarted)
+            {
+                <a href="@Url.Action("StopDaemon", "_Machines", new { id = Html.DisplayFor(modelItem => modelItem.MachineId) })" class="button">
+                    Stop Daemon</a>
+                <a href="@Url.Action("RestartDaemon", "_Machines", new { id = Html.DisplayFor(modelItem => modelItem.MachineId) })" class="button">
+                    Restart Daemon</a>
+                <a href="@Url.Action("FetchExistCloud", "_Machines", new { id = Html.DisplayFor(modelItem => modelItem.MachineId) })" class="button">
+                    Fetch Exist Cloud</a>
+            }
+            else
+            {
+                <a class="button" style="background: url()">Stop Daemon</a>
+                <a class="button" style="background: url()">Restart Daemon</a>
+                <a class="button" style="background: url()">Fetch Exist Cloud</a>
+            }
+        }
+        else
+        {
+            if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.Unknown)
+            {
+                <a href="@Url.Action("InstallDaemon", "_Machines", new { id = Html.DisplayFor(modelItem => modelItem.MachineId) })" class="button">
+                        Install Daemon</a>
+                <a href="@Url.Action("UninstallDaemon", "_Machines", new { id = Html.DisplayFor(modelItem => modelItem.MachineId) })" class="button">
+                    Uninstall</a>
+                <a href="@Url.Action("StartDaemon", "_Machines", new { id = Html.DisplayFor(modelItem => modelItem.MachineId) })" class="button">
+                    Start Daemon</a>
+                <a href="@Url.Action("StopDaemon", "_Machines", new { id = Html.DisplayFor(modelItem => modelItem.MachineId) })" class="button">
+                    Stop Daemon</a>
+                <a href="@Url.Action("RestartDaemon", "_Machines", new { id = Html.DisplayFor(modelItem => modelItem.MachineId) })" class="button">
+                    Restart Daemon</a>
+            }
+            else
+            {
+                <a class="button" style="background: url()">Install Daemon</a>
+                <a class="button" style="background: url()">Uninstall</a>
+                <a class="button" style="background: url()">Start Daemon</a>
+                <a class="button" style="background: url()">Stop Daemon</a>
+                <a class="button" style="background: url()">Restart Daemon</a>
+                <a class="button" style="background: url()">Fetch Exist Cloud</a>
+            }
+        }
+
+        <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.MachineId),'Delete','_Machines','Remove Machine')">
+            <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
+            Remove this machine</a>
+    </div>
+</div>

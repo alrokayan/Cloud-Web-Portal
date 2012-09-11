@@ -1,0 +1,77 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@model CloudWebPortal.Areas.Aneka.Models.SoftwareAppliance
+@{
+    Layout = null;
+}
+<div class="block-content">
+    <h1>
+        Details For Software Appliance ID: @Model.SoftwareApplianceId
+    </h1>
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','Details','_SoftwareAppliances',9,@Model.SoftwareApplianceId)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <table class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">@Html.LabelFor(model => model.Name)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Machines)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Vendor)
+                </th>
+                <th scope="col">@Html.LabelFor(model => model.Version)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+                <td>
+                    <div class="more-events">@Model.Machines.Count() Machines
+                        <ul>
+                            @foreach (var machine in Model.Machines.ToList())
+                            {
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Details','_Machines',null,1100)">@Html.DisplayFor(Item => machine.DisplayName)</a></li>
+                            }
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Vendor)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Version)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="block-footer">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.SoftwareApplianceId),'Edit','_SoftwareAppliances','Edit Machines Login Credential')" class="button">
+            Edit this appliances</a> <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.SoftwareApplianceId),'Delete','_SoftwareAppliances','Remove Software Appliance')">
+                <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
+                Remove this appliances</a>
+    </div>
+</div>

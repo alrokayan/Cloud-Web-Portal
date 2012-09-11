@@ -1,0 +1,180 @@
+﻿<!--
+  Copyright 2011,2012 CLOUDS Laboratory, The University of Melbourne
+   
+   This file is part of Cloud Web Portal (CWP).
+ 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+@model CloudWebPortal.Areas.Aneka.Models.ResourcePool
+<div class="block-content">
+    <div class="block-controls">
+        <ul class="controls-buttons">
+            <li><a href="@Url.Action("RefreshAllMachineInResourcePool", "_Machines", new {id = Model.ResourcePoolId})" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/arrow-circle.png")" width="16" height="16"> Refreash All Machines</a></li>
+            <li class="sep"></li>
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','Details','_ResourcePools',12,@Model.ResourcePoolId)" title="Add This Widget To The Dashboard">
+                <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
+        </ul>
+    </div>
+    <h1>
+        Resource Pool: @Html.DisplayFor(model => model.ResourcePoolDisplayName)</h1>
+    <!-- Add the class 'table' -->
+    <table class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">@Html.Label("DisplayName")
+                </th>
+                <th scope="col">@Html.Label("IP")
+                </th>
+                <th scope="col">@Html.Label("Platform")
+                </th>
+                <th scope="col">@Html.Label("Type")
+                </th>
+                <th scope="col">@Html.Label("Software Appliances")
+                </th>
+                <th scope="col">@Html.Label("Workers")
+                </th>
+                <th scope="col">@Html.Label("Masters")
+                </th>
+                <th scope="col">@Html.Label("Machine Status")
+                </th>
+                <th scope="col">@Html.Label("Login Username")
+                </th>
+                <th scope="col">@Html.Label("Actions")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var machine in Model.Machines)
+            {
+    
+                <tr>
+                    <td>
+                        <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Details','_Machines',null,1100)">
+                            @Html.DisplayFor(model => machine.DisplayName)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => machine.IP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => machine.Platform.Platform)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => machine.Type.Type)
+                    </td>
+                    <td>
+                        <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_SoftwareAppliances')">
+                            <option>@machine.SoftwareAppliances.Count() Appliances</option>
+                            @foreach (var SoftwareAppliance in machine.SoftwareAppliances.ToList())
+                            {
+                                <option id="@Html.DisplayFor(widgetItem => SoftwareAppliance.SoftwareApplianceId)">@Html.DisplayFor(Item => SoftwareAppliance.Name)</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Workers')">
+                            <option>@machine.Workers.Count() Workers</option>
+                            @foreach (var worker in machine.Workers.ToList())
+                            {
+                                <option id="@Html.DisplayFor(widgetItem => worker.WorkerId)">@Html.DisplayFor(Item => worker.DisplayName)</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <select style="width: 110px;" onchange="">
+                            <option>@machine.Workers.Count() Masters</option>
+                            @foreach (var master in machine.Masters.ToList())
+                            {
+                                <option id="@Html.DisplayFor(widgetItem => master.MasterId)">@Html.DisplayFor(Item => master.DisplayName)</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                    @if (machine.isInProgress != null && machine.isInProgress == true)
+                    {
+                        <span class="button">@machine.ProgressMesage
+					        <span class="progress-bar"><span class="orange with-stripes"></span></span>
+					    </span>
+                    }
+                    else
+                    {
+                        if (machine.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStarted)
+                        {
+                                <a title="@machine.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/status.png")" width="16" height="16"/></a>
+                        }
+                        else
+                        {
+                            if (machine.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStopped)
+                            {
+                                    <a title="@machine.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/status-busy.png")" width="16" height="16"/></a>
+                            }
+                            else
+                            {
+                                if (machine.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.NetworkNotReachable)
+                                {
+                                        <a title="@machine.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/status-offline.png")" width="16" height="16"/></a>
+                                }
+                                else
+                                {
+                                    if (machine.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.BadCredentials)
+                                    {
+                                            <a title="@machine.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/user-silhouette-question.png")" width="16" height="16"/></a>
+                                    }
+                                    else
+                                    {
+                                            <a title="@machine.StatusEnum" class="with-tip"><img src="@Url.Content("~/Content/images/icons/fugue/exclamation-diamond.png")" width="16" height="16"/></a>
+                                    }
+
+                                }
+                            }
+                        }
+                    @machine.StatusEnum
+                    }
+                    </td>
+                    <td>
+                        @{
+                            string LoginCredentialUserName = "Without Login Credential";
+                            foreach (CloudWebPortal.Areas.Aneka.Models.MachineLoginCredential m in ViewBag.MachineLoginCredentials)
+                            {
+                                if (m.Machines.Where(x => x.MachineId == machine.MachineId).Count() > 0)
+                                {
+                                    LoginCredentialUserName = m.Username;
+                                }
+                            }
+                        }
+                        @LoginCredentialUserName
+                    </td>
+                    <!-- The class table-actions is designed for action icons -->
+                    <td class="table-actions">
+                        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => machine.MachineId),'Edit','_Machines','Edit Machine')" title="Edit" class="with-tip">
+                            <img src="@Url.Content("~/Content/images/icons/fugue/pencil.png")" width="16" height="16"></a>
+                        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => machine.MachineId),'Delete','_Machines','Delete Machine')" title="Delete" class="with-tip">
+                            <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16"></a>
+
+                        <a href="@Url.Action("RefreshMachine", "_Machines", new { id = machine.MachineId })" title="Refresh" class="with-tip">
+                            <img src="@Url.Content("~/Content/images/icons/fugue/arrow-circle.png")" width="16" height="16"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="block-footer">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.ResourcePoolId),'Edit','_ResourcePools')" class="button">
+            Edit this resource pool</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.ResourcePoolId),'Create','_Machines')" class="button">
+                Add new machine to this resource pool</a> <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.ResourcePoolId),'Delete','_ResourcePools','Remove Machine')">
+                    <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
+                    Delete this resource pool</a>
+    </div>
+</div>
