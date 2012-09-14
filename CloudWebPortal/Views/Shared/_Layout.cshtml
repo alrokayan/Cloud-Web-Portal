@@ -56,7 +56,7 @@
     <!--[if lte IE 8]><script type="text/javascript" src="js/standard.ie.js"></script><![endif]-->
     <!-- Function To Open a Modal -->
     <script type="text/javascript">
-    function openModalWindow(id, actionName, controllerName, modalTitle, modalWidth) {
+    function openModalWindow(id, actionName, controllerName, modalTitle, modalWidth, areaName) {
         if(modalWidth == null)
             modalWidth = 600;
 
@@ -71,11 +71,14 @@
                 }
             });
             var loadingHTML = "<h2>LOADING ..</h2><br/><br/><img src='@Url.Content("~/Content/images/mask-loader.gif")' alt='loading...' />  Please wait ..";
-            $("#ModelContent").html(loadingHTML).load("@Url.Content("~/")"+controllerName+"/"+actionName+"/" + id);
+            if(areaName == null)
+                $("#ModelContent").html(loadingHTML).load("@Url.Content("~/")"+controllerName+"/"+actionName+"/" + id);
+            else
+                $("#ModelContent").html(loadingHTML).load("@Url.Content("~/")"+areaName+"/"+controllerName+"/"+actionName+"/" + id);
         }, 500);
     }
 
-    function openModalWindow_ForWidget(username, actionName, controllerName, width, actionId) {
+    function openModalWindow_ForWidget(username, actionName, controllerName, width, actionId, areaName) {
         window.setTimeout(function () {
             $.modal({
                 content: '<div id="ModelContent_ForWidget"></div>',
@@ -86,7 +89,10 @@
                 }
             });
             var loadingHTML = "<h2>LOADING ..</h2><br/><br/><img src='@Url.Content("~/Content/images/mask-loader.gif")' alt='loading...' />  Please wait ..";
-            $("#ModelContent_ForWidget").html(loadingHTML).load("@Url.Content("~/_DashboardWidgets/CreateForLoggedInUser")"+"?username=" + username + "&actionName="+actionName+"&controllerName="+controllerName+"&width="+width+"&actionId="+actionId);
+            if(areaName == null)
+                $("#ModelContent_ForWidget").html(loadingHTML).load("@Url.Content("~/_DashboardWidgets/CreateForLoggedInUser")"+"?username=" + username + "&actionName="+actionName+"&controllerName="+controllerName+"&width="+width+"&actionId="+actionId);
+            else
+                $("#ModelContent_ForWidget").html(loadingHTML).load("@Url.Content("~/_DashboardWidgets/CreateForLoggedInUser")"+"?username=" + username + "&actionName="+actionName+"&controllerName="+controllerName+"&width="+width+"&actionId="+actionId+"&areaName="+areaName);
         }, 500);
     }
     </script>
@@ -138,16 +144,16 @@
                             <ul>
                                 <li class="icon_server"><a href="@Url.Action("ManageMachinesandResourcePools", "Infrastructure", new { area = "Aneka" })">Manage Machines and Resource Pools</a>
                                     <ul>
-                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Machines','Add Machine')">
+                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Machines','Add Machine',600,'Aneka')">
                         Add Machine</a></li>
-                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_ResourcePools','Create New Resource Pool',600)">
+                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_ResourcePools','Create New Resource Pool',600,'Aneka')">
                         Create New Resource Pool</a></li>
                                     </ul>
                                 </li>
 
                                 <li class="icon_server"><a href="@Url.Action("ManageMachinesLoginCredentials", "Infrastructure", new { area = "Aneka" })">Manage Machines Login Credentials</a>
                                     <ul>
-                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_MachinesLoginCredentials','Create Machine Login Credential')">
+                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_MachinesLoginCredentials','Create Machine Login Credential',600,'Aneka')">
                         Create Machine Login Credential</a></li>
                                     </ul>
                                 </li>
@@ -168,7 +174,7 @@
          
                             <!-- Menu content -->
                             <ul>
-                                <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_SoftwareAppliances','Add Software Appliance')">
+                                <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_SoftwareAppliances','Add Software Appliance',600,'Aneka')">
                         Add Software Appliance</a></li>
                             </ul>
                             <!-- End  of menu content -->
@@ -187,7 +193,7 @@
          
                             <!-- Menu content -->
                             <ul>
-                                <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Services','Create New Service',600)">
+                                <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Services','Create New Service',600,'Aneka')">
                         Create Service</a></li>
                             </ul>
                             <!-- End  of menu content -->
@@ -207,9 +213,9 @@
                             <ul>
                                 <li class="icon_server"><a href="@Url.Action("BrowseClouds", "CloudManagement", new { area = "Aneka" })">Browse Clouds</a>
                                     <ul>
-                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Clouds','Create New Cloud')">
+                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Clouds','Create New Cloud',600,'Aneka')">
                         Create A Cloud</a></li>
-                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Workers','Create New Worker')">
+                                        <li class="icon_server"><a href="#" onclick="openModalWindow(null,'Create','_Workers','Create New Worker',600,'Aneka')">
                         Add New Worker</a></li>
                                     </ul>
                                 </li>
@@ -238,9 +244,9 @@
                 <ul>
                     <li id="Nav_Users_1"><a href="@Url.Action("UsersManagement", "WebPortalUsersManagement", new { area = "" })">
                         Users management</a></li>
-                    <li id="Nav_Users_2"><a href="#" onclick="openModalWindow(null,'Create','_PortalUsers','Create New User')">
+                    <li id="Nav_Users_2"><a href="#" onclick="openModalWindow(null,'Create','_PortalUsers','Create New User',600,'Aneka')">
                         Create New User</a></li>
-                    <li id="Nav_Users_3"><a href="#" onclick="openModalWindow(null,'Create','_DashboardWidgets','Add Widget To Dashboard')">
+                    <li id="Nav_Users_3"><a href="#" onclick="openModalWindow(null,'Create','_DashboardWidgets','Add Widget To Dashboard',600,'Aneka')">
                         Add Widget To Dashboard</a></li>
                 </ul>
             </li>

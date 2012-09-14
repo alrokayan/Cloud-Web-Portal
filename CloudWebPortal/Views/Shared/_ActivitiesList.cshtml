@@ -37,7 +37,7 @@
         if (machine.isInProgress)
         {
              <li>
-		        <a href="#" onclick="openModalWindow(@machine.MachineId,'Details','_Machines',null,1100)" title="Show Machine Details" class="with-tip">
+		        <a href="#" onclick="openModalWindow(@machine.MachineId,'Details','_Machines',null,1100,'Aneka')" title="Show Machine Details" class="with-tip">
                 <strong>@machine.ProgressMesage: </strong> @machine.DisplayName<br>
 		        <small>IP: @machine.IP</small></a>
 	        </li>
@@ -50,7 +50,7 @@
         if (cloud.Master.isInProgress)
         {
              <li>
-		        <a href="#" onclick="openModalWindow(@cloud.CloudId,'Details','_Clouds',null,1300)" title="Show Cloud/Master Details" class="with-tip">
+		        <a href="#" onclick="openModalWindow(@cloud.CloudId,'Details','_Clouds',null,1300,'Aneka')" title="Show Cloud/Master Details" class="with-tip">
                 <strong>@cloud.Master.ProgressMesage: </strong> @cloud.CloudName<br>
 		        <small>Master: @cloud.Master.DisplayName</small></a>
 	        </li>
@@ -62,7 +62,7 @@
             if (worker.isInProgress)
             {
              <li>
-		        <a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,700)" title="Show Worker Details" class="with-tip">
+		        <a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,700,'Aneka')" title="Show Worker Details" class="with-tip">
                 <strong>@worker.ProgressMesage: </strong> @cloud.CloudName<br>
 		        <small>Worker: @worker.DisplayName</small></a>
 	        </li>

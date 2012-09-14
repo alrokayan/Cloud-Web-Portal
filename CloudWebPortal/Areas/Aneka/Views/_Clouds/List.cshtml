@@ -23,14 +23,14 @@
 <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
 <div class="block-content">
     <h1>
-        Aneka Clounds <a href="#" onclick="openModalWindow(null,'Create','_Clouds','Create New Cloud')">
+        Aneka Clounds <a href="#" onclick="openModalWindow(null,'Create','_Clouds','Create New Cloud',600,'Aneka')">
             <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle-blue.png")" width="16" height="16" alt="">Create
             New Cloud</a>
     </h1>
     <div class="block-controls">
         <ul class="controls-buttons">
             <li class="sep"></li>
-            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','List','_Clouds',12)" title="Add This Widget To The Dashboard">
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','List','_Clouds',12,'Aneka')" title="Add This Widget To The Dashboard">
                 <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
         </ul>
     </div>
@@ -46,16 +46,16 @@
                 </a>
                 <!-- Example use of the mini-menu -->
                 <ul class="mini-menu">
-                    <li><a href="#" onclick="openModalWindow(@item.CloudId,'Edit','_Clouds')" title="Edit">
+                    <li><a href="#" onclick="openModalWindow(@item.CloudId,'Edit','_Clouds',null,600,'Aneka')" title="Edit">
                         <img src="@Url.Content("~/Content/images/icons/fugue/pencil.png")" width="16" height="16"></a></li>
-                    <li><a href="#" onclick="openModalWindow(@item.CloudId,'Delete','_Clouds','Delete Cloud')" title="Delete">
+                    <li><a href="#" onclick="openModalWindow(@item.CloudId,'Delete','_Clouds','Delete Cloud',600,'Aneka')" title="Delete">
                         <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
                         Delete</a></li>
                 </ul>
                 <!-- You can add here any number of option blocks -->
                 <ul class="extended-options">
                     <li># of Workers: <strong>@item.Workers.Count()</strong><br />
-                        <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Workers')">
+                        <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Workers',null,600,'Aneka')">
                             <option></option>
                             @foreach (var worker in item.Workers.ToList())
                             {
@@ -64,7 +64,7 @@
                         </select>
                     </li>
                     <li># of Users: <strong>@item.CloudUserAccounts.Count()</strong><br />
-                        <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_CloudUsers')">
+                        <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_CloudUsers',null,600,'Aneka')">
                             <option></option>
                             @foreach (var user in item.CloudUserAccounts.ToList())
                             {

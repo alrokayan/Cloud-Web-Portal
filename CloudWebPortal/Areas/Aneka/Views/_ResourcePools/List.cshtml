@@ -27,7 +27,7 @@
     <div class="block-content">
         <h1>
             @Html.DisplayFor(modelItem => pool.ResourcePoolDisplayName)
-            <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => pool.ResourcePoolId),'Create','_Machines')">
+            <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => pool.ResourcePoolId),'Create','_Machines',null,600,'Aneka')">
                 <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle-blue.png")" width="16" height="16" alt="">Add
                 Machine To This Resource Pool</a>
         </h1>
@@ -68,7 +68,7 @@
                     <div class="grid-picto computer">
                         <small>@Html.DisplayFor(modelItem => machine.Type.Type)</small>
                         <p class="grid-name">
-                            <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Details','_Machines',null,1100)">@Html.DisplayFor(modelItem => machine.DisplayName)</a></p>
+                            <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Details','_Machines',null,1100,'Aneka')">@Html.DisplayFor(modelItem => machine.DisplayName)</a></p>
                         <p class="grid-details">
                             IP: <b>@Html.DisplayFor(modelItem => machine.IP)</b><br />
                             Platform: <b>@Html.DisplayFor(modelItem => machine.Platform.Platform)</b><br />
@@ -79,7 +79,7 @@
 @*                            <div class="columns">
                                 <!-- Left column -->
                                 <div class="colx2-left">
-                                    <select class="small" style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_SoftwareAppliances')">
+                                    <select class="small" style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_SoftwareAppliances',null,600,'Aneka')">
                                         <option>@machine.SoftwareAppliances.Count() Appliances</option>
                                         @foreach (var SoftwareAppliance in machine.SoftwareAppliances.ToList())
                                         {
@@ -89,7 +89,7 @@
                                 </div>
                                 <!-- Right column -->
                                 <div class="colx2-right">
-                                    <select class="small" style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Workers')">
+                                    <select class="small" style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Workers',null,600,'Aneka')">
                                         <option>@machine.Workers.Count() Workers</option>
                                         @foreach (var worker in machine.Workers.ToList())
                                         {
@@ -159,9 +159,9 @@
                             <img src="@Url.Content("~/Content/images/icons/fugue/arrow-circle.png")" width="16" height="16"></a>
                             </li>
 
-                        <li><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Edit','_Machines')" title="Edit" class="with-tip">
+                        <li><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Edit','_Machines',null,600,'Aneka')" title="Edit" class="with-tip">
                             <img src="@Url.Content("~/Content/images/icons/fugue/pencil.png")" width="16" height="16"></a></li>
-                        <li><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Delete','_Machines')" title="Delete" class="with-tip">
+                        <li><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Delete','_Machines',null,600,'Aneka')" title="Delete" class="with-tip">
                             <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16"></a></li>
                         <li>
                             <input type="checkbox" name="selected[]" id="@Html.DisplayFor(widgetItem => machine.MachineId)" value="1"></li>
@@ -173,11 +173,11 @@
             <li>@pool.Machines.Count() Machines</li>
         </ul>
         <div class="block-footer">
-            <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => pool.ResourcePoolId),'Details','_ResourcePools',null,1600)" class="button">
+            <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => pool.ResourcePoolId),'Details','_ResourcePools',null,1600,'Aneka')" class="button">
                 List</a> <a href="#" onclick="openModalWindow('','','')" class="button">
                     <!-- TO BE IMPLEMENTED -->
-                    Link selected machines to login credential</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => pool.ResourcePoolId),'Edit','_ResourcePools','Edit Resource Pool')" class="button">
-                        Edit this resource pool</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => pool.ResourcePoolId),'Create','_Machines')" class="button">
+                    Link selected machines to login credential</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => pool.ResourcePoolId),'Edit','_ResourcePools','Edit Resource Pool',600,'Aneka')" class="button">
+                        Edit this resource pool</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => pool.ResourcePoolId),'Create','_Machines',null,600,'Aneka')" class="button">
                             Add new machine to this resource pool</a> <a href="#" onclick="openModalWindow('','','')"
                                 class="button">
                                 <!-- TO BE IMPLEMENTED -->
@@ -188,7 +188,7 @@
                                         class="button">
                                         <!-- TO BE IMPLEMENTED -->
                                         Create new workers from selected machines</a> <span class="sep">
-            </span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => pool.ResourcePoolId),'Delete','_ResourcePools','Remove Machine')">
+            </span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => pool.ResourcePoolId),'Delete','_ResourcePools','Remove Machine',600,'Aneka')">
                 <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
                 Delete this resource pool</a>
         </div>

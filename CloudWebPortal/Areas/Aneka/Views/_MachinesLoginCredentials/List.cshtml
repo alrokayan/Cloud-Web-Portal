@@ -22,7 +22,7 @@
 }
 <div class="block-content">
     <h1>
-        Machines Login Credentials <a href="#" onclick="openModalWindow(null,'Create','_MachinesLoginCredentials','Create New Login Credential')">
+        Machines Login Credentials <a href="#" onclick="openModalWindow(null,'Create','_MachinesLoginCredentials','Create New Login Credential',600,'Aneka')">
             <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle-blue.png")" width="16" height="16" alt="">Create
             New Login Credential</a>
     </h1>
@@ -42,14 +42,14 @@
                 {
                     <li class="close">
                         <!-- This span will display a button to open/collapse the branch -->
-                        <span class="toggle"></span><a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => login.MachineLoginCredentialId),'Details','_MachinesLoginCredentials', null)" class="document-access">
+                        <span class="toggle"></span><a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => login.MachineLoginCredentialId),'Details','_MachinesLoginCredentials', null,600,'Aneka')" class="document-access">
                             <span>@login.Username</span></a>
                         <ul>
                             @if (login.Machines.Count() > 0)
                             {
                                 foreach (var machine in login.Machines)
                                 {
-                                <li class="close"><span class="toggle"></span><a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => machine.MachineId),'Details','_Machines', null,1100)" class="folder">
+                                <li class="close"><span class="toggle"></span><a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => machine.MachineId),'Details','_Machines', null,1100,'Aneka')" class="folder">
                                     <span>@machine.DisplayName</span></a>
                                     <ul>
                                         <li><a href="#" class="document-binary"><span>IP: @machine.IP</span></a></li>

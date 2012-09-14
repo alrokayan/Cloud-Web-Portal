@@ -54,7 +54,7 @@
                         <ul>
                             @foreach (var machine in Model.Machines.ToList())
                             {
-                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Details','_Machines',null,1100)">@Html.DisplayFor(Item => machine.DisplayName)</a></li>
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Details','_Machines',null,1100,'Aneka')">@Html.DisplayFor(Item => machine.DisplayName)</a></li>
                             }
                         </ul>
                     </div>
@@ -69,8 +69,8 @@
         </tbody>
     </table>
     <div class="block-footer">
-        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.SoftwareApplianceId),'Edit','_SoftwareAppliances','Edit Machines Login Credential')" class="button">
-            Edit this appliances</a> <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.SoftwareApplianceId),'Delete','_SoftwareAppliances','Remove Software Appliance')">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.SoftwareApplianceId),'Edit','_SoftwareAppliances','Edit Machines Login Credential',600,'Aneka')" class="button">
+            Edit this appliances</a> <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.SoftwareApplianceId),'Delete','_SoftwareAppliances','Remove Software Appliance',600,'Aneka')">
                 <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
                 Remove this appliances</a>
     </div>

@@ -25,7 +25,7 @@
 }
 <div class="block-content">
     <h1>
-        Software Appliances <a href="#" onclick="openModalWindow(null,'Create','_SoftwareAppliances','Create New Software Appliance')">
+        Software Appliances <a href="#" onclick="openModalWindow(null,'Create','_SoftwareAppliances','Create New Software Appliance',600,'Aneka')">
             <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle-blue.png")" width="16" height="16" alt="">Create
             Software Appliance</a>
     </h1>
@@ -65,7 +65,7 @@
                         @Html.DisplayFor(model => app.Version)
                     </td>
                     <td>
-                        <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Machines',null,1100)">
+                        <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Machines',null,1100,'Aneka')">
                             <option>@app.Machines.Count() Machines</option>
                             @foreach (var machine in app.Machines.ToList())
                             {
@@ -75,9 +75,9 @@
                     </td>
                     <!-- The class table-actions is designed for action icons -->
                     <td class="table-actions">
-                        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => app.SoftwareApplianceId),'Edit','_SoftwareAppliances')" title="Edit" class="with-tip">
+                        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => app.SoftwareApplianceId),'Edit','_SoftwareAppliances',null,600,'Aneka')" title="Edit" class="with-tip">
                             <img src="@Url.Content("~/Content/images/icons/fugue/pencil.png")" width="16" height="16"></a>
-                        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => app.SoftwareApplianceId),'Delete','_SoftwareAppliances','Delete Software Appliance')" title="Delete" class="with-tip">
+                        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => app.SoftwareApplianceId),'Delete','_SoftwareAppliances','Delete Software Appliance',600,'Aneka')" title="Delete" class="with-tip">
                             <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16"></a>
                     </td>
                 </tr>

@@ -33,10 +33,10 @@
                 </div>
                 
                 <script type="text/javascript">
-                    var editLink = "<a href='#' onclick=\"openModalWindow("+"@widget.WidgetId"+",'Edit','_DashboardWidgets')\" title='Edit This Widget'><img src='"+"@(Url.Content("~/Content/images/icons/fugue/pencil.png"))"+"' width='16' height='16'></a>";
+                    var editLink = "<a href='#' onclick=\"openModalWindow("+"@widget.WidgetId"+",'Edit','_DashboardWidgets',null,600,'Aneka')\" title='Edit This Widget'><img src='"+"@(Url.Content("~/Content/images/icons/fugue/pencil.png"))"+"' width='16' height='16'></a>";
                     $("#WidgetID_@(widget.WidgetId) #Widget_Link").html(editLink);
 
-                    var removeLink = "<li><a href='#' onclick=\"openModalWindow("+"@widget.WidgetId"+",'Delete','_DashboardWidgets')\" title='Delete This Widget'><img src='"+"@(Url.Content("~/Content/images/icons/fugue/cross-circle.png"))"+"' width='16' height='16'></a></li>";
+                    var removeLink = "<li><a href='#' onclick=\"openModalWindow("+"@widget.WidgetId"+",'Delete','_DashboardWidgets',null,600,'Aneka')\" title='Delete This Widget'><img src='"+"@(Url.Content("~/Content/images/icons/fugue/cross-circle.png"))"+"' width='16' height='16'></a></li>";
                     $("#WidgetID_@(widget.WidgetId) ul").first().append(removeLink);
                 </script>
             }

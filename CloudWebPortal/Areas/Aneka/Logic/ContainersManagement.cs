@@ -179,9 +179,13 @@ namespace CloudWebPortal.Logic
                 List<Software> softwares = new List<Software>();
                 foreach (SoftwareAppliance sw in SoftwareAppliances)
                 {
-                    int majorVersion = Convert.ToInt32(sw.Version.Split(new char[] { '.' }).ElementAt(0));
-                    int minorVersion = Convert.ToInt32(sw.Version.Split(new char[] { '.' }).ElementAt(1));
-                    softwares.Add(new Software(sw.Name, sw.Vendor, majorVersion, minorVersion));
+                    try
+                    {
+                        int majorVersion = Convert.ToInt32(sw.Version.Split(new char[] { '.' }).ElementAt(0));
+                        int minorVersion = Convert.ToInt32(sw.Version.Split(new char[] { '.' }).ElementAt(1));
+                        softwares.Add(new Software(sw.Name, sw.Vendor, majorVersion, minorVersion));
+                    }
+                    catch (Exception ex) { }
                 }
                 configuration.Container.Appliances = softwares.ToArray();
 

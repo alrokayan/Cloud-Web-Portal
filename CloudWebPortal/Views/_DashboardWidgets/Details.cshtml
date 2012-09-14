@@ -44,6 +44,8 @@
                 </th>
                 <th scope="col">@Html.LabelFor(model => model.Width)
                 </th>
+                <th scope="col">@Html.LabelFor(model => model.AreaName)
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -60,13 +62,16 @@
                 <td>
                     @Html.DisplayFor(model => model.Width)
                 </td>
+                <td>
+                    @Html.DisplayFor(model => model.AreaName)
+                </td>
             </tr>
         </tbody>
     </table>
     <div class="block-footer">
-        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WidgetId),'Edit','_DashboardWidgets','Edit Widget')" class="button">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WidgetId),'Edit','_DashboardWidgets','Edit Widget',600,'Aneka')" class="button">
             Edit this widget</a>
-        <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WidgetId),'Delete','_DashboardWidgets','Remove Widget')">
+        <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WidgetId),'Delete','_DashboardWidgets','Remove Widget',600,'Aneka')">
             <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
             Delete this widget</a>
     </div>

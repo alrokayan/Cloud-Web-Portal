@@ -60,6 +60,13 @@ namespace CloudWebPortal.Areas.Aneka.Controllers
             //Get the cloud entity from the database
             Cloud cloud = db.Clouds.Find(id);
 
+            if (cloud == null)
+            {
+                cloud = new Cloud();
+                cloud.CloudName = "Cloud could not be found";
+                return PartialView();
+            }
+
             //Pass the master machine entity to the view
             ViewBag.MasterMachine = masterContainersManagement.machineLookupFromMasterId(cloud.Master.MasterId);
 

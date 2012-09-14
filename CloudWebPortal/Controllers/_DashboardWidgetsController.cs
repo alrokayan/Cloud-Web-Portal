@@ -74,7 +74,7 @@ namespace CloudWebPortal.Controllers
         /// <param name="actionId">The action ID if there is any - Optional</param>
         /// <returns></returns>
         [Authorize]
-        public ActionResult CreateForLoggedInUser(string username, string actionName, string controllerName, int width, int? actionId)
+        public ActionResult CreateForLoggedInUser(string username, string actionName, string controllerName, int width, int? actionId, string areaName)
         {
             //Get the WebPortalLoginCredential entity by looking up for the user using its username
             var LoggedInUser = db.WebPortalLoginCredentials.ToList().Where(x => x.Username == System.Web.HttpContext.Current.User.Identity.Name).First();
@@ -93,6 +93,8 @@ namespace CloudWebPortal.Controllers
                 ViewBag.ActionId = actionId;
             else
                 ViewBag.ActionId = 0;
+
+            ViewBag.AreaName = areaName;
 
             return PartialView("Create");
         } 

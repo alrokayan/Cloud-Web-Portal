@@ -53,7 +53,7 @@
                         <ul>
                             @foreach (var worker in Model.Workers.ToList())
                             {
-                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => worker.WorkerId),'Details','_Workers')">@Html.DisplayFor(widgetItem => worker.DisplayName)</a></li>
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => worker.WorkerId),'Details','_Workers',null,600,'Aneka')">@Html.DisplayFor(widgetItem => worker.DisplayName)</a></li>
                             }
                         </ul>
                     </div>
@@ -96,8 +96,8 @@
         </tbody>
     </table>
     <div class="block-footer">
-        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.ServiceId),'Edit','_Services','Edit Service')" class="button">
-            Edit this service</a> <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.ServiceId),'Delete','_Services','Delete Service')">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.ServiceId),'Edit','_Services','Edit Service',600,'Aneka')" class="button">
+            Edit this service</a> <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.ServiceId),'Delete','_Services','Delete Service',600,'Aneka')">
                 <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
                 Delete this service</a>
     </div>

@@ -90,7 +90,7 @@ namespace CloudWebPortal.Areas.Aneka.Models
         public virtual string Vendor { get; set; }
 
         [Required]
-        [Display(Name = "Software appliance version number")]
+        [Display(Name = "Software appliance version number (NOTICE: It must be in this format 00.00)")]
         public virtual string Version { get; set; }
 
         [Display(Name = "Associated Machines")]

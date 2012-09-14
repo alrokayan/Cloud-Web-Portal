@@ -27,7 +27,7 @@
 <div class="block-content">
 <h1>
     Cloud Users
-    <a href="#" onclick="openModalWindow(null,'Create','_CloudUsers','Create New Cloud User')"><img src="@Url.Content("~/Content/images/icons/fugue/plus-circle-blue.png")" width="16" height="16" alt="">Create New Cloud User</a>
+    <a href="#" onclick="openModalWindow(null,'Create','_CloudUsers','Create New Cloud User',600,'Aneka')"><img src="@Url.Content("~/Content/images/icons/fugue/plus-circle-blue.png")" width="16" height="16" alt="">Create New Cloud User</a>
 </h1>
 <div class="block-controls">
         <ul class="controls-buttons">
@@ -40,9 +40,9 @@
         @foreach (var item in Model)
         {
             <li>
-                <a href="#" style="height: 1.4em;" onclick="openModalWindow(@Html.DisplayFor(modelItem => item.CloudUserAccountId),'Details','_CloudUsers',null,600)">
+                <a href="#" style="height: 1.4em;" onclick="openModalWindow(@Html.DisplayFor(modelItem => item.CloudUserAccountId),'Details','_CloudUsers',null,600,'Aneka')">
                     <span class="icon"></span>@Html.DisplayFor(modelItem => item.Username)<br/></a>
-                    <select class="small" style="width: 93px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Clouds',null,1100)">
+                    <select class="small" style="width: 93px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Clouds',null,1100,'Aneka')">
 						<option>@item.Clouds.Count() Clouds</option>
                         @foreach (var cloud in item.Clouds.ToList())
                         {

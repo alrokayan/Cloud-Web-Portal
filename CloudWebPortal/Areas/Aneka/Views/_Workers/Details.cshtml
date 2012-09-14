@@ -56,14 +56,14 @@
                     @Html.DisplayFor(model => model.DisplayName)
                 </td>
                 <td>
-                    <a href="#" onclick="openModalWindow(@machine.MachineId,'Details','_Machines',null,1100)">@machine.DisplayName</a>
+                    <a href="#" onclick="openModalWindow(@machine.MachineId,'Details','_Machines',null,1100,'Aneka')">@machine.DisplayName</a>
                 </td>
                 <td>
                     <div class="more-events">@Model.Services.Count() Services
                         <ul>
                             @foreach (var Service in Model.Services.ToList())
                             {
-                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => Service.ServiceId),'Details','_Services',null,600)">@Html.DisplayFor(Item => Service.Name)</a></li>
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => Service.ServiceId),'Details','_Services',null,600,'Aneka')">@Html.DisplayFor(Item => Service.Name)</a></li>
                             }
                         </ul>
                     </div>
@@ -89,13 +89,13 @@
     </table>
     <br />
     <div class="block-footer">
-        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'Edit','_Workers','Edit Worker')" class="button">
-            Edit this worker</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'Create','_Services')" class="button">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'Edit','_Workers','Edit Worker',600,'Aneka')" class="button">
+            Edit this worker</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'Create','_Services',null,600,'Aneka')" class="button">
                 Add Service</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'','')" class="button">
                     Re-Install</a><!-- HAS TO BE IMPLEMENTED -->
         <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'','')" class="button">
             Quarantine</a><!-- HAS TO BE IMPLEMENTED -->
-        <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'Delete','_Workers','Remove Worker')">
+        <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WorkerId),'Delete','_Workers','Remove Worker',600,'Aneka')">
             <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
             Remove this worker</a>
     </div>

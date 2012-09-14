@@ -25,7 +25,7 @@
 }
 <div class="block-content">
     <h1>
-        @Model.CloudName Cloud Workers <a href="#" onclick="openModalWindow(null,'Create','_Workers')">
+        @Model.CloudName Cloud Workers <a href="#" onclick="openModalWindow(null,'Create','_Workers',null,600,'Aneka')">
             <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle-blue.png")" width="16" height="16" alt="">Add
             New Worker</a></h1>
     <div class="block-controls">
@@ -40,12 +40,12 @@
 
                     <li class="sep"></li>
 
-            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','Details','_Clouds',12,@Model.CloudId)" title="Add This Widget To The Dashboard">
+            <li id="Widget_Link"><a href="#" onclick="openModalWindow_ForWidget('@HttpContext.Current.User.Identity.Name','Details','_Clouds',12,@Model.CloudId,'Aneka')" title="Add This Widget To The Dashboard">
                 <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle.png")" width="16" height="16"></a></li>
         </ul>
     </div>
     <ul class="icon-list icon-worker">
-        <li><a href="#" onclick="openModalWindow(@MasterMachine.MachineId,'Details','_Machines',null,1100)">
+        <li><a href="#" onclick="openModalWindow(@MasterMachine.MachineId,'Details','_Machines',null,1100,'Aneka')">
                 <span class="icon icon-master"></span>@Model.Master.DisplayName<br />
                 <small>Port: <b>@Model.Master.Port</b></small><br />
                 <small>Machine: <b>@MasterMachine.DisplayName</b></small> </a></li>
@@ -53,7 +53,7 @@
         @foreach (var worker in Model.Workers)
         {
             
-            <li><a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,900)">
+            <li><a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,900,'Aneka')">
                 <span class="icon"></span>
                 @worker.DisplayName<br />
                 <small>Port: <b>@worker.Port</b></small> <br />
@@ -116,7 +116,7 @@
                         <ul>
                             @foreach (var worker in Model.Workers.ToList())
                             {
-                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => worker.WorkerId),'Details','_Workers')">@Html.DisplayFor(Item => worker.DisplayName)</a></li>
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => worker.WorkerId),'Details','_Workers',null,600,'Aneka')">@Html.DisplayFor(Item => worker.DisplayName)</a></li>
                             }
                         </ul>
                     </div>
@@ -126,7 +126,7 @@
                         <ul>
                             @foreach (var user in Model.CloudUserAccounts.ToList())
                             {
-                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => user.CloudUserAccountId),'Details','_CloudUsers')">@Html.DisplayFor(Item => user.Username)</a></li>
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => user.CloudUserAccountId),'Details','_CloudUsers',null,600,'Aneka')">@Html.DisplayFor(Item => user.Username)</a></li>
                             }
                         </ul>
                     </div>
@@ -139,7 +139,7 @@
                         <ul>
                             @foreach (var service in Model.Master.Services.ToList())
                             {
-                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => service.ServiceId),'Details','_Services',null,600)">@Html.DisplayFor(Item => service.Name)</a></li>
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => service.ServiceId),'Details','_Services',null,600,'Aneka')">@Html.DisplayFor(Item => service.Name)</a></li>
                             }
                         </ul>
                     </div>
@@ -205,10 +205,10 @@
         </tbody>
     </table>
     <div class="block-footer">
-        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.CloudId),'Edit','_Clouds','Edit Cloud')" class="button">
-            Edit this cloud and its master</a> <a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.CloudId),'Create','_Workers','Create New Worker')">
-                Create New Worker For This Cloud</a> <a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.CloudId),'Create','_Services','Create New Service')">
-                    Create New Service User For This Cloud</a> <a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.CloudId),'Create','_CloudUsers','Create New Cloud')">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.CloudId),'Edit','_Clouds','Edit Cloud',600,'Aneka')" class="button">
+            Edit this cloud and its master</a> <a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.CloudId),'Create','_Workers','Create New Worker',600,'Aneka')">
+                Create New Worker For This Cloud</a> <a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.CloudId),'Create','_Services','Create New Service',600,'Aneka')">
+                    Create New Service User For This Cloud</a> <a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.CloudId),'Create','_CloudUsers','Create New Cloud',600,'Aneka')">
                         Create New Cloud User For This Cloud</a> <span class="sep"></span>
         <a href="@Url.Action("StartContainer", "_Clouds", new { id = Html.DisplayFor(modelItem => modelItem.CloudId) })" class="button">
                         Start Container</a>
@@ -223,7 +223,7 @@
                         Uninstall Container</a>
         
         <span class="sep"></span>
-        <a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.CloudId),'Delete','_Clouds','Remove Cloud')">
+        <a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.CloudId),'Delete','_Clouds','Remove Cloud',600,'Aneka')">
             <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
             Remove this cloud</a>
     </div>

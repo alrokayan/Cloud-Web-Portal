@@ -73,7 +73,7 @@
                         <ul>
                             @foreach (var SoftwareAppliance in Model.SoftwareAppliances.ToList())
                             {
-                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => SoftwareAppliance.SoftwareApplianceId),'Details','_SoftwareAppliances')">@Html.DisplayFor(Item => SoftwareAppliance.Name)</a></li>
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => SoftwareAppliance.SoftwareApplianceId),'Details','_SoftwareAppliances',null,600,'Aneka')">@Html.DisplayFor(Item => SoftwareAppliance.Name)</a></li>
                             }
                         </ul>
                     </div>
@@ -83,7 +83,7 @@
                         <ul>
                             @foreach (var worker in Model.Workers.ToList())
                             {
-                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => worker.WorkerId),'Details','_Workers')">@Html.DisplayFor(Item => worker.DisplayName)</a></li>
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => worker.WorkerId),'Details','_Workers',null,600,'Aneka')">@Html.DisplayFor(Item => worker.DisplayName)</a></li>
                             }
                         </ul>
                     </div>
@@ -187,8 +187,8 @@
         </tbody>
     </table>
     <div class="block-footer">
-        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.MachineId),'Edit','_Machines','Edit Machine')" class="button">
-            Edit this machine</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.MachineId),'Create','_SoftwareAppliances')" class="button">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.MachineId),'Edit','_Machines','Edit Machine',600,'Aneka')" class="button">
+            Edit this machine</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.MachineId),'Create','_SoftwareAppliances',null,600,'Aneka')" class="button">
                 Add Software Appliance</a>
 
         @if (Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceNotInstalled || Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStarted || Model.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStopped)
@@ -258,7 +258,7 @@
             }
         }
 
-        <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.MachineId),'Delete','_Machines','Remove Machine')">
+        <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.MachineId),'Delete','_Machines','Remove Machine',600,'Aneka')">
             <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
             Remove this machine</a>
     </div>

@@ -54,7 +54,7 @@
                         <ul>
                             @foreach (CloudWebPortal.Models.Widget widget in Model.Widgets.ToList())
                             {
-                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => widget.WidgetId),'Details','_DashboardWidgets')">@Html.DisplayFor(widgetItem => widget.ControllerName)/@Html.DisplayFor(widgetItem => widget.ActionName)/@Html.DisplayFor(widgetItem => widget.ActionId)</a></li>
+                                <li class="icon-file"><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => widget.WidgetId),'Details','_DashboardWidgets',null,600,'Aneka')">@Html.DisplayFor(widgetItem => widget.ControllerName)/@Html.DisplayFor(widgetItem => widget.ActionName)/@Html.DisplayFor(widgetItem => widget.ActionId)</a></li>
                             }
                         </ul>
                     </div>
@@ -63,9 +63,9 @@
         </tbody>
     </table>
     <div class="block-footer">
-        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WebPortalLoginCredentialId),'Edit','_PortalUsers','Edit User')" class="button">
-            Edit this user</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WebPortalLoginCredentialId),'Create','_DashboardWidgets','Add New Widget To The Dashboard')" class="button">
-                Add widget</a> <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WebPortalLoginCredentialId),'Delete','_PortalUsers','Delete User')">
+        <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WebPortalLoginCredentialId),'Edit','_PortalUsers','Edit User',600,'Aneka')" class="button">
+            Edit this user</a> <a href="#" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WebPortalLoginCredentialId),'Create','_DashboardWidgets','Add New Widget To The Dashboard',600,'Aneka')" class="button">
+                Add widget</a> <span class="sep"></span><a href="#" class="button" onclick="openModalWindow(@Html.DisplayFor(modelItem => modelItem.WebPortalLoginCredentialId),'Delete','_PortalUsers','Delete User',600,'Aneka')">
                     <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
                     Delete this user</a>
     </div>

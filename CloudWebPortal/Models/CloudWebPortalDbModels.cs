@@ -62,6 +62,9 @@ namespace CloudWebPortal.Models
         [Display(Name = "Action Id Number (like user ID or cloud ID)")]
         public virtual int ActionId { get; set; }
 
+        [Display(Name = "Area Name (aka Project Name)")]
+        public virtual string AreaName { get; set; }
+
         [Required]
         [Display(Name = "Widget Width")]
         [Range(1, 12, ErrorMessage = "the width must be between 1 and 12")]

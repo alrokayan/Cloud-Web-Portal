@@ -37,9 +37,9 @@
             Are you sure that you want to remove "<strong>@Html.DisplayFor(model => model.Name)</strong>"
             service?</p>
         <p>
-            Number of workers associated to this service: <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => widgetItem.ServiceId),'Details','_Services',null,600)">
+            Number of workers associated to this service: <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => widgetItem.ServiceId),'Details','_Services',null,600,'Aneka')">
                 <strong>@Model.Workers.Count()</strong></a></p>
-        p> Number of masters associated to this service: <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => widgetItem.ServiceId),'Details','_Services',null,600)">
+        p> Number of masters associated to this service: <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => widgetItem.ServiceId),'Details','_Services',null,600,'Aneka')">
             <strong>@Model.Masters.Count()</strong></a></p>
     </div>
     <div class="block-footer">

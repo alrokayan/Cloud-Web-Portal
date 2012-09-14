@@ -37,7 +37,7 @@
         {
             if (machine.StatusEnum != DaemonProbeStatus.ServiceStarted && (machine.isInProgress == null || machine.isInProgress == false))
             {
-            <li><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Details','_Machines',null,1100)" title="Show Machine Details" class="with-tip">
+            <li><a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => machine.MachineId),'Details','_Machines',null,1100,'Aneka')" title="Show Machine Details" class="with-tip">
                 @if (machine.StatusEnum == Aneka.PAL.Management.Model.DaemonProbeStatus.ServiceStarted)
                 {
                     <img src="@Url.Content("~/Content/images/icons/fugue/status.png")" width="16" height="16"/>
@@ -80,14 +80,14 @@
             <li>
                 @if (cloud.Master.isInstalled == false)
                 {
-                    <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => cloud.CloudId),'Details','_Clouds',null,1300)" title="Show Cloud/Master Details" class="with-tip">
+                    <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => cloud.CloudId),'Details','_Clouds',null,1300,'Aneka')" title="Show Cloud/Master Details" class="with-tip">
                         <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16"/>
                         <strong>Not Installed: </strong>@cloud.CloudName<br />
                         <small>Master Name: @cloud.Master.DisplayName</small></a>
                 }
                 else
                 {
-                    <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => cloud.CloudId),'Details','_Clouds',null,1300)" title="Show Cloud/Master Details" class="with-tip">
+                    <a href="#" onclick="openModalWindow(@Html.DisplayFor(widgetItem => cloud.CloudId),'Details','_Clouds',null,1300,'Aneka')" title="Show Cloud/Master Details" class="with-tip">
                         @if (cloud.Master.StatusEnum == Aneka.UI.Configuration.ProbeStatus.ServiceUnactive)
                         {
                             <img src="@Url.Content("~/Content/images/icons/fugue/status-busy.png")" width="16" height="16"/>
@@ -117,14 +117,14 @@
             <li>
                 @if (worker.isInstalled == false)
                 {
-                    <a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,800)" title="Show Worker Details" class="with-tip">
+                    <a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,800,'Aneka')" title="Show Worker Details" class="with-tip">
                         <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16"/>
                         <strong>Not Installed: </strong>@worker.DisplayName<br />
                         <small>Worker In Cloud: @cloud.CloudName</small></a>
                 }
                 else
                 {
-                    <a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,800)" title="Show Worker Details" class="with-tip">
+                    <a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,800,'Aneka')" title="Show Worker Details" class="with-tip">
                         @if (worker.StatusEnum == Aneka.UI.Configuration.ProbeStatus.ServiceUnactive)
                         {
                             <img src="@Url.Content("~/Content/images/icons/fugue/status-busy.png")" width="16" height="16"/>

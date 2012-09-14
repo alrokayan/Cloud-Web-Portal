@@ -25,7 +25,7 @@
 
 <div class="block-content">
     <h1>
-        @Model.CloudName Cloud Workers <a href="#" onclick="openModalWindow(null,'Create','_Workers')">
+        @Model.CloudName Cloud Workers <a href="#" onclick="openModalWindow(null,'Create','_Workers',null,600,'Aneka')">
             <img src="@Url.Content("~/Content/images/icons/fugue/plus-circle-blue.png")" width="16" height="16" alt="">Add
             New Worker</a></h1>
 
@@ -63,7 +63,7 @@
         {
             <tr>
                 <td>
-                    <a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,1100)">@Html.DisplayFor(w => worker.DisplayName)</a>   (<a href="#" onclick="openModalWindow(@WorkersMachines[worker.WorkerId].MachineId,'Details','_Machines',null,1100)">@WorkersMachines[worker.WorkerId].DisplayName</a>)
+                    <a href="#" onclick="openModalWindow(@worker.WorkerId,'Details','_Workers',null,1100,'Aneka')">@Html.DisplayFor(w => worker.DisplayName)</a>   (<a href="#" onclick="openModalWindow(@WorkersMachines[worker.WorkerId].MachineId,'Details','_Machines',null,1100,'Aneka')">@WorkersMachines[worker.WorkerId].DisplayName</a>)
                 </td>
                 <td>
                     @Html.DisplayFor(w => worker.Port)
@@ -72,7 +72,7 @@
                     @Html.DisplayFor(w => worker.Cost)
                 </td>
                 <td>
-                    <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Services')">
+                    <select style="width: 110px;" onchange="openModalWindow(this.options[this.selectedIndex].id,'Details','_Services',null,600,'Aneka')">
                         <option>@worker.Services.Count() Services</option>
                         @foreach (var service in worker.Services.ToList())
                         {
@@ -152,7 +152,7 @@
                         <img src="@Url.Content("~/Content/images/icons/fugue/control-power.png")" width="16" height="16">
                    </a>
                    <span class="sep"></span>
-                   <a href="#" onclick="openModalWindow(@worker.WorkerId,'Delete','_Workers')" title="Remove Worker" class="with-tip">
+                   <a href="#" onclick="openModalWindow(@worker.WorkerId,'Delete','_Workers',null,600,'Aneka')" title="Remove Worker" class="with-tip">
                         <img src="@Url.Content("~/Content/images/icons/fugue/cross-circle.png")" width="16" height="16">
                    </a>
                 </td>
