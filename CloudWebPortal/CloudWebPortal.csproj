@@ -952,6 +952,7 @@
     <Content Include="Content\images_added\container_master_started_32.png" />
     <Content Include="Content\images_added\container_worker_started_32.png" />
     <Content Include="Content\images_added\Dashboard.png" />
+    <Content Include="Content\images_added\images_added.css" />
     <Content Include="Content\images_added\mac-icon.png" />
     <Content Include="Content\images_added\Machines.png" />
     <Content Include="Content\images_added\Services.png" />

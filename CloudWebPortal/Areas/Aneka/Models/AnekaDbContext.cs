@@ -214,10 +214,18 @@ namespace CloudWebPortal.Areas.Aneka.Models
             var Workers = new List<Worker>
             {
                 new Worker { DisplayName="UniMelb Manjra-W",         Port=9055, Services = new List<Service>()},
-                new Worker { DisplayName="Lab12 PC1-W",              Cost=20.1, Port=9058, Services = new List<Service>()},
-                new Worker { DisplayName="Lab12 PC7-W",              Cost=20.1, Port=9050, Services = new List<Service>()},
+                new Worker { DisplayName="Lab12 PC1-W",              Cost=20, Port=9058, Services = new List<Service>()},
+                new Worker { DisplayName="Lab12 PC7-W",              Cost=20, Port=9050, Services = new List<Service>()},
                 new Worker { DisplayName="on EC2-W",                 Port=9050, Services = new List<Service>()},
-                new Worker { DisplayName="on Azure-W",               Cost=20.1, Port=9050, Services = new List<Service>()}
+                new Worker { DisplayName="on Azure-W",               Cost=20, Port=9050, Services = new List<Service>()},
+                new Worker { DisplayName="OpenStack #1",               Cost=20, Port=9050, Services = new List<Service>()},
+                new Worker { DisplayName="OpenStack #2",               Cost=20, Port=9050, Services = new List<Service>()},
+                new Worker { DisplayName="OpenStack #3",               Cost=20, Port=9050, Services = new List<Service>()},
+                new Worker { DisplayName="OpenStack #4",               Cost=20, Port=9050, Services = new List<Service>()},
+                new Worker { DisplayName="OpenStack #5",               Cost=20, Port=9050, Services = new List<Service>()},
+                new Worker { DisplayName="OpenStack #6",               Cost=20, Port=9050, Services = new List<Service>()},
+                new Worker { DisplayName="OpenStack #7",               Cost=20, Port=9050, Services = new List<Service>()},
+                new Worker { DisplayName="OpenStack #8",               Cost=20, Port=9050, Services = new List<Service>()}
             };
             Workers.ForEach(s => context.Workers.Add(s));
             context.SaveChanges();
@@ -302,6 +310,14 @@ namespace CloudWebPortal.Areas.Aneka.Models
             Machines[2].Workers.Add(Workers[2]);
             Machines[6].Workers.Add(Workers[3]);
             Machines[7].Workers.Add(Workers[4]);
+            Machines[7].Workers.Add(Workers[5]);
+            Machines[7].Workers.Add(Workers[6]);
+            Machines[7].Workers.Add(Workers[7]);
+            Machines[7].Workers.Add(Workers[8]);
+            Machines[7].Workers.Add(Workers[9]);
+            Machines[7].Workers.Add(Workers[10]);
+            Machines[7].Workers.Add(Workers[11]);
+            Machines[7].Workers.Add(Workers[12]);
             context.SaveChanges();
 
             Machines[0].Masters.Add(Masters[0]);
@@ -313,23 +329,32 @@ namespace CloudWebPortal.Areas.Aneka.Models
             Clouds[0].Workers.Add(Workers[2]);
             Clouds[1].Workers.Add(Workers[3]);
             Clouds[1].Workers.Add(Workers[4]);
+            Clouds[1].Workers.Add(Workers[5]);
+            Clouds[1].Workers.Add(Workers[6]);
+            Clouds[1].Workers.Add(Workers[7]);
+            Clouds[1].Workers.Add(Workers[8]);
+            Clouds[1].Workers.Add(Workers[9]);
+            Clouds[1].Workers.Add(Workers[10]);
+            Clouds[1].Workers.Add(Workers[11]);
+            Clouds[1].Workers.Add(Workers[12]);
             context.SaveChanges();
 
             Clouds[0].Master = Masters[0];
             Clouds[1].Master = Masters[1];
             context.SaveChanges();
 
-            var CloudUserAccounts = new List<CloudUserAccount>
-            {
-                new CloudUserAccount{ Username="dev", Password="dev", Clouds = new List<Cloud>()}
-            };
-            CloudUserAccounts.ForEach(s => context.CloudUserAccounts.Add(s));
-            context.SaveChanges();
+            //var CloudUserAccounts = new List<CloudUserAccount>
+            //{
+            //    new CloudUserAccount{ Username="dev", Password="dev", useThisAccountForReporting = false, Clouds = new List<Cloud>()}
+            //};
+            //CloudUserAccounts.ForEach(s => context.CloudUserAccounts.Add(s));
+            //context.SaveChanges();
 
-            Clouds[0].CloudUserAccounts.Add(CloudUserAccounts[0]);
-            Clouds[1].CloudUserAccounts.Add(CloudUserAccounts[0]);
-            context.SaveChanges();
+            //Clouds[0].CloudUserAccounts.Add(CloudUserAccounts[0]);
+            //Clouds[1].CloudUserAccounts.Add(CloudUserAccounts[0]);
+            //context.SaveChanges();
             */
+            
 
             base.Seed(context);
         }

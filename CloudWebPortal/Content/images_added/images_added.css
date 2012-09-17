@@ -1,0 +1,13 @@
+.icon-list li
+{
+	height: 5.5em;
+	width: 7em;
+}
+
+.icon-list li a
+{
+	width: 7em;
+}
+
+.icon-worker .icon, .icon.icon-worker { background-image: url(/Content/images_added/container_worker_started_32.png); }
+.icon-master .icon, .icon.icon-master { background-image: url(/Content/images_added/container_master_started_32.png); }
